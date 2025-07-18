@@ -1,3 +1,472 @@
+// Language Management System
+const languageManager = {
+  currentLanguage: "vi",
+
+  translations: {
+    vi: {
+      title: "Xin chào",
+      subtitle: "Em muốn đi chơi với anh chứ?",
+      questionLocation: "Em muốn đi đâu?",
+      questionFood: "Em muốn ăn gì?",
+      questionDrink: "Em muốn uống gì?",
+      questionTime: "Em rảnh khi nào?",
+      successTitle: "Cảm ơn vì em đã đồng ý",
+      successMessage: "Anh rất mong chờ buổi gặp sắp tới!",
+      successSubtitle: "Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!",
+      buttons: {
+        yes: "Cóoooo ♥",
+        no: "Hong ☹",
+        confirmLocation: "Chọn địa điểm mà em muốn đi chơi ♥",
+        confirmTime: "Xác nhận thời gian",
+        chooseLocation: "Chọn địa điểm",
+        addTime: "Thêm thời gian",
+        next: "Tiếp theo",
+        back: "Quay lại",
+        submit: "Gửi thông tin",
+        confirm: "Xác nhận",
+      },
+      locations: {
+        cafe: "Uống nước",
+        restaurant: "Đi ăn",
+        cinema: "Rạp phim",
+        park: "Công viên",
+        mall: "Trung tâm thương mại",
+        beach: "Bãi biển",
+        museum: "Bảo tàng",
+        street: "Lên phố",
+        hotel: "Khách sạn",
+        travel: "Du lịch",
+        karaoke: "Karaoke",
+        home: "Ở nhà",
+        custom: "Nơi khác",
+        other: "Địa điểm khác",
+      },
+      foods: {
+        vietnamese: "🍜 Món Việt",
+        chinese: "🥟 Món Trung",
+        japanese: "🍣 Món Nhật",
+        korean: "🍲 Món Hàn",
+        western: "🍕 Món Tây",
+        seafood: "🦐 Hải sản",
+        vegetarian: "🥗 Chay",
+        other: "🍽️ Món khác",
+      },
+      drinks: {
+        coffee: "☕ Cà phê",
+        tea: "🍵 Trà",
+        juice: "🧃 Nước ép",
+        smoothie: "🥤 Sinh tố",
+        cocktail: "🍹 Cocktail",
+        beer: "🍺 Bia",
+        wine: "🍷 Rượu vang",
+        other: "🥤 Đồ uống khác",
+      },
+      placeholders: {
+        locationInput: "...",
+        locationDetail: "Em còn có mong muốn gì nữa honggg",
+        customFood: "Nhập món ăn em muốn...",
+        customDrink: "Nhập đồ uống em muốn...",
+        name: "Tên của em",
+        phone: "Số điện thoại",
+        email: "Email (không bắt buộc)",
+      },
+      locationPrefixes: {
+        cafe: "đi uống nước",
+        restaurant: "đi ăn",
+        cinema: "đi xem phim",
+        park: "đi công viên",
+        mall: "đi trung tâm thương mại",
+        beach: "đi biển",
+        museum: "đi bảo tàng",
+        street: "đi lên phố",
+        hotel: "đi khách sạn",
+        travel: "đi du lịch",
+        karaoke: "đi karaoke",
+        home: "ở nhà",
+        custom: "đi nơi khác",
+        other: "đi chỗ khác",
+      },
+      messages: {
+        charLimit: "Tối đa 100 ký tự",
+        locationSelected: "Đã chọn địa điểm:",
+        foodSelected: "Đã chọn món ăn:",
+        drinkSelected: "Đã chọn đồ uống:",
+        timeSelected: "Đã chọn thời gian:",
+        formSubmitted: "Thông tin đã được gửi thành công!",
+        fillAllFields: "Vui lòng điền đầy đủ thông tin",
+        invalidPhone: "Số điện thoại không hợp lệ",
+        invalidEmail: "Email không hợp lệ",
+        locationTip: "Đi đâu cũm được miễn là nơi em mún heheh",
+      },
+      notifications: {
+        success: "Thành công!",
+        error: "Có lỗi xảy ra!",
+        info: "Thông tin",
+      },
+    },
+    zh: {
+      title: "你好",
+      subtitle: "我很期待即将到来的约会！",
+      questionLocation: "你想去哪里？",
+      questionFood: "你想吃什么？",
+      questionDrink: "你想喝什么？",
+      questionTime: "你什么时候有空？",
+      successTitle: "谢谢你的同意",
+      successMessage: "我很期待即将到来的约会！",
+      successSubtitle: "我保证会让它变得特别，真的！",
+      buttons: {
+        yes: "好的 ♥",
+        no: "不要 ☹",
+        confirmLocation: "选择我们想去约会的地方 ♥",
+        confirmTime: "确认时间",
+        chooseLocation: "选择地点",
+        addTime: "添加时间",
+        next: "下一步",
+        back: "返回",
+        submit: "提交信息",
+        confirm: "确认",
+      },
+      locations: {
+        cafe: "喝饮料",
+        restaurant: "去吃饭",
+        cinema: "电影院",
+        park: "公园",
+        mall: "购物中心",
+        beach: "海滩",
+        museum: "博物馆",
+        street: "逛街",
+        hotel: "酒店",
+        travel: "旅行",
+        karaoke: "卡拉OK",
+        home: "在家",
+        custom: "其他地方",
+        other: "其他地点",
+      },
+      foods: {
+        vietnamese: "🍜 越南菜",
+        chinese: "🥟 中国菜",
+        japanese: "🍣 日本菜",
+        korean: "🍲 韩国菜",
+        western: "🍕 西餐",
+        seafood: "🦐 海鲜",
+        vegetarian: "🥗 素食",
+        other: "🍽️ 其他菜系",
+      },
+      drinks: {
+        coffee: "☕ 咖啡",
+        tea: "🍵 茶",
+        juice: "🧃 果汁",
+        smoothie: "🥤 奶昔",
+        cocktail: "🍹 鸡尾酒",
+        beer: "🍺 啤酒",
+        wine: "🍷 红酒",
+        other: "🥤 其他饮料",
+      },
+      placeholders: {
+        locationInput: "输入你想去的地方...",
+        locationDetail: "你还有什么其他愿望吗",
+        customFood: "输入你想吃的食物...",
+        customDrink: "输入你想喝的饮料...",
+        name: "你的名字",
+        phone: "电话号码",
+        email: "邮箱（可选）",
+      },
+      locationPrefixes: {
+        cafe: "去喝饮料",
+        restaurant: "去吃饭",
+        cinema: "去看电影",
+        park: "去公园",
+        mall: "去购物中心",
+        beach: "去海滩",
+        museum: "去博物馆",
+        street: "去逛街",
+        hotel: "去酒店",
+        travel: "去旅行",
+        karaoke: "去卡拉OK",
+        home: "在家",
+        custom: "去其他地方",
+        other: "去别的地方",
+      },
+      messages: {
+        charLimit: "最多100个字符",
+        locationSelected: "已选择地点：",
+        foodSelected: "已选择食物：",
+        drinkSelected: "已选择饮料：",
+        timeSelected: "已选择时间：",
+        formSubmitted: "信息提交成功！",
+        fillAllFields: "请填写完整信息",
+        invalidPhone: "电话号码无效",
+        invalidEmail: "邮箱无效",
+        locationTip: "去哪里都可以，只要是你想去的地方呵呵",
+      },
+      notifications: {
+        success: "成功！",
+        error: "发生错误！",
+        info: "信息",
+      },
+    },
+  },
+
+  getText(key) {
+    const keys = key.split(".");
+    let value = this.translations[this.currentLanguage];
+
+    for (const k of keys) {
+      value = value?.[k];
+    }
+
+    return value || key;
+  },
+
+  getLocationPrefix(location) {
+    return (
+      this.translations[this.currentLanguage]?.locationPrefixes?.[location] ||
+      ""
+    );
+  },
+
+  setLanguage(lang) {
+    if (this.translations[lang]) {
+      this.currentLanguage = lang;
+      localStorage.setItem("selectedLanguage", lang);
+      this.updateUI();
+    }
+  },
+
+  updateUI() {
+    // Update main title with name
+    const titleElement = document.querySelector("h1");
+    if (titleElement) {
+      const nameSpan = titleElement.querySelector(".special-text");
+      const name = nameSpan ? nameSpan.textContent : "Huyền";
+      titleElement.innerHTML =
+        this.getText("title") +
+        ' <span class="special-text gorgeous">' +
+        name +
+        "</span>...";
+    }
+
+    // Update all elements with data-translate attribute
+    document.querySelectorAll("[data-translate]").forEach((element) => {
+      const key = element.getAttribute("data-translate");
+      element.textContent = this.getText(key);
+    });
+
+    // Update success card content
+    const successTitle = document.querySelector("#success-card h1");
+    if (successTitle) {
+      successTitle.textContent = this.getText("successTitle");
+    }
+
+    const successMessage = document.querySelector(
+      "#success-card p:first-of-type"
+    );
+    if (successMessage) {
+      successMessage.textContent = this.getText("successMessage");
+    }
+
+    const successSubtitle = document.querySelector("#success-card .message");
+    if (successSubtitle) {
+      successSubtitle.textContent = this.getText("successSubtitle");
+    }
+
+    // Update main question
+    const questionElement = document.querySelector(".question");
+    if (
+      questionElement &&
+      (questionElement.textContent.includes("đi chơi") ||
+        questionElement.textContent.includes("约会"))
+    ) {
+      questionElement.textContent = this.getText("subtitle");
+    }
+
+    // Update all questions
+    const locationQuestions = document.querySelectorAll(".question");
+    locationQuestions.forEach((q) => {
+      if (
+        q.textContent.includes("đi đâu") ||
+        q.textContent.includes("去哪里")
+      ) {
+        q.textContent = this.getText("questionLocation");
+      }
+      if (q.textContent.includes("ăn gì") || q.textContent.includes("吃什么")) {
+        q.textContent = this.getText("questionFood");
+      }
+      if (
+        q.textContent.includes("uống gì") ||
+        q.textContent.includes("喝什么")
+      ) {
+        q.textContent = this.getText("questionDrink");
+      }
+      if (
+        q.textContent.includes("rảnh khi nào") ||
+        q.textContent.includes("什么时候有空")
+      ) {
+        q.textContent = this.getText("questionTime");
+      }
+    });
+
+    // Update main buttons
+    const yesBtn = document.getElementById("yes-btn");
+    if (yesBtn) {
+      yesBtn.textContent = this.getText("buttons.yes");
+    }
+
+    const noBtn = document.getElementById("no-btn");
+    if (noBtn) {
+      noBtn.innerHTML = "<b>" + this.getText("buttons.no") + "</b>";
+    }
+
+    // Update all other buttons
+    const chooseLocationBtn = document.getElementById("choose-location-btn");
+    if (chooseLocationBtn) {
+      chooseLocationBtn.textContent = this.getText("buttons.confirmLocation");
+    }
+
+    const confirmLocationBtn = document.getElementById("confirm-location-btn");
+    if (confirmLocationBtn) {
+      const btnText = confirmLocationBtn.querySelector(".btn-text");
+      if (btnText) {
+        btnText.textContent = this.getText("buttons.confirmLocation");
+      } else {
+        confirmLocationBtn.textContent = this.getText(
+          "buttons.confirmLocation"
+        );
+      }
+    }
+
+    const confirmTimeBtn = document.getElementById("confirm-datetime");
+    if (confirmTimeBtn) {
+      confirmTimeBtn.textContent = this.getText("buttons.confirmTime");
+    }
+
+    const addTimeBtn = document.getElementById("add-datetime");
+    if (addTimeBtn) {
+      addTimeBtn.textContent = this.getText("buttons.addTime");
+    }
+
+    // Update location buttons
+    document.querySelectorAll(".location-btn").forEach((btn) => {
+      const location = btn.dataset.location;
+      if (location && this.getText(`locations.${location}`)) {
+        const span = btn.querySelector("span:last-child");
+        if (span) {
+          span.textContent = this.getText(`locations.${location}`);
+        }
+      }
+    });
+
+    // Update food buttons
+    document.querySelectorAll(".food-btn").forEach((btn) => {
+      const food = btn.dataset.food;
+      if (food && this.getText(`foods.${food}`)) {
+        const span = btn.querySelector("span:last-child");
+        if (span) {
+          span.textContent = this.getText(`foods.${food}`).replace(
+            /^[^\s]+\s/,
+            ""
+          ); // Remove emoji
+        }
+      }
+    });
+
+    // Update drink buttons
+    document.querySelectorAll(".drink-btn").forEach((btn) => {
+      const drink = btn.dataset.drink;
+      if (drink && this.getText(`drinks.${drink}`)) {
+        const span = btn.querySelector("span:last-child");
+        if (span) {
+          span.textContent = this.getText(`drinks.${drink}`).replace(
+            /^[^\s]+\s/,
+            ""
+          ); // Remove emoji
+        }
+      }
+    });
+
+    // Update placeholders
+    const locationDetailInput = document.getElementById(
+      "location-detail-input"
+    );
+    if (locationDetailInput) {
+      locationDetailInput.placeholder = this.getText(
+        "placeholders.locationInput"
+      );
+    }
+
+    const customFoodInput = document.getElementById("custom-food-input");
+    if (customFoodInput) {
+      customFoodInput.placeholder = this.getText("placeholders.customFood");
+    }
+
+    const customDrinkInput = document.getElementById("custom-drink-input");
+    if (customDrinkInput) {
+      customDrinkInput.placeholder = this.getText("placeholders.customDrink");
+    }
+
+    // Update form placeholders
+    const nameInput = document.getElementById("name");
+    if (nameInput) {
+      nameInput.placeholder = this.getText("placeholders.name");
+    }
+
+    const phoneInput = document.getElementById("phone");
+    if (phoneInput) {
+      phoneInput.placeholder = this.getText("placeholders.phone");
+    }
+
+    const emailInput = document.getElementById("email");
+    if (emailInput) {
+      emailInput.placeholder = this.getText("placeholders.email");
+    }
+
+    // Update helper text
+    const helperTexts = document.querySelectorAll(
+      ".input-helper-text .helper-text"
+    );
+    helperTexts.forEach((helperText) => {
+      if (
+        helperText.textContent.includes("100") ||
+        helperText.textContent.includes("字符")
+      ) {
+        helperText.textContent = this.getText("messages.charLimit");
+      }
+    });
+
+    // Update selected messages
+    const selectedMessages = document.querySelectorAll(".selected-message");
+    selectedMessages.forEach((msg) => {
+      if (
+        msg.textContent.includes("Đã chọn") ||
+        msg.textContent.includes("已选择")
+      ) {
+        const type =
+          msg.textContent.includes("địa điểm") ||
+          msg.textContent.includes("地点")
+            ? "location"
+            : msg.textContent.includes("món ăn") ||
+              msg.textContent.includes("食物")
+            ? "food"
+            : msg.textContent.includes("đồ uống") ||
+              msg.textContent.includes("饮料")
+            ? "drink"
+            : msg.textContent.includes("thời gian") ||
+              msg.textContent.includes("时间")
+            ? "time"
+            : "";
+
+        if (type) {
+          const parts = msg.textContent.split(":");
+          if (parts.length > 1) {
+            msg.textContent =
+              this.getText(`messages.${type}Selected`) + ":" + parts[1];
+          }
+        }
+      }
+    });
+  },
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   // Main UI elements with null checks
   const yesBtn = document.getElementById("yes-btn");
@@ -845,10 +1314,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.stopPropagation();
 
     try {
-      notificationManager.showNotification(
-        "Tuyệt vời! Hãy chọn địa điểm nhé 💕",
-        "success"
-      );
+      // Removed notification to reduce clutter
 
       // Hide the yes arrow pointer when yes is clicked if it exists
       if (yesArrow) {
@@ -1038,14 +1504,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create heart burst around the button
         utils.createHeartBurst(this, 15);
 
-        // Show detail input if needed
-        if (needsDetail) {
-          showLocationDetailInput(locationKey);
-        } else {
-          hideLocationDetailInput();
-          updateSelectedLocationDisplay(locationKey, "");
-          enableConfirmButton();
-        }
+        // Always show detail input with updated text
+        showLocationDetailInput(locationKey);
       } else {
         // Clear selection
         state.currentSelectedLocation = null;
@@ -1095,22 +1555,19 @@ document.addEventListener("DOMContentLoaded", function () {
       locationDetailContainer.classList.remove("hidden");
       locationDetailContainer.classList.add("show");
 
-      // Update placeholder based on location type
-      const placeholders = {
-        cafe: "Nhập nơi mà em muốn điiii...",
-        restaurant: "Nhập nơi mà em muốn điiii...",
-        cinema: "Nhập bộ phim em muốn xem nè",
-        travel: "Nhập nơi mà em muốn điiii...",
-        hotel: "Nhập nơi mà em muốn điiii...",
-        beach: "Nhập nơi mà em muốn điiii....",
-        mountain: "Nhập nơi mà em muốn điiii...",
-        karaoke: "Nhập nơi mà em muốn điiii...",
-        custom: "Nhập nơi mà em muốn điiii...",
-      };
+      // Update the label text with prefix + new question
+      const labelElement =
+        locationDetailContainer.querySelector(".detail-text");
+      if (labelElement) {
+        const prefix = translator.getLocationPrefix(locationKey);
+        const question = translator.getText("placeholders.locationDetail");
+        labelElement.textContent = `${prefix}, ${question}`;
+      }
 
       if (locationDetailInput) {
-        locationDetailInput.placeholder =
-          placeholders[locationKey] || "Nhập địa điểm cụ thể...";
+        locationDetailInput.placeholder = translator.getText(
+          "placeholders.locationInput"
+        );
         locationDetailInput.focus();
         locationDetailInput.value =
           state.selectedLocationDetails[locationKey] || "";
@@ -2694,6 +3151,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const angle = Math.random() * Math.PI * 2;
           const distance = Math.random() * 100 + 50;
           const duration = Math.random() * 0.7 + 0.7;
+          x;
           heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
           heart.style.opacity = Math.random() * 0.5 + 0.5;
 
@@ -2858,4 +3316,35 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => telegramSetup.classList.add("show"), 100);
     }
   });
+
+  // Language selector initialization with flag buttons
+  const flagButtons = document.querySelectorAll(".flag-btn");
+  if (flagButtons.length > 0) {
+    // Load saved language or default to Vietnamese
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "vi";
+    languageManager.currentLanguage = savedLanguage;
+
+    // Set active flag button
+    flagButtons.forEach((btn) => {
+      btn.classList.remove("active");
+      if (btn.dataset.lang === savedLanguage) {
+        btn.classList.add("active");
+      }
+    });
+
+    // Update UI with saved language
+    languageManager.updateUI();
+
+    // Add event listeners for flag button clicks
+    flagButtons.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        // Remove active class from all buttons
+        flagButtons.forEach((b) => b.classList.remove("active"));
+        // Add active class to clicked button
+        this.classList.add("active");
+        // Set language
+        languageManager.setLanguage(this.dataset.lang);
+      });
+    });
+  }
 });

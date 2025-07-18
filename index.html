@@ -53,6 +53,19 @@
         </div>
     </div>
 
+    <!-- Language selector -->
+    <div class="language-selector">
+        <button class="flag-btn active" data-lang="vi" title="Tiếng Việt">
+            <svg class="flag-icon" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="20" fill="#da251d"/>
+                <polygon points="15,6 16.5,10.5 21,10.5 17.25,13.5 18.75,18 15,15 11.25,18 12.75,13.5 9,10.5 13.5,10.5" fill="#ffff00"/>
+            </svg>
+        </button>
+        <button class="flag-btn" data-lang="zh" title="中文">
+            <img class="flag-icon" src="cotq.jpg" alt="China Flag">
+        </button>
+    </div>
+
     <!-- Dark mode toggle -->
     <div class="theme-toggle">
         <input type="checkbox" id="darkmode-toggle">
@@ -167,10 +180,10 @@
         <div class="card hidden" id="success-card">
             <div class="hearts-celebration" id="celebration"></div>
             <div class="card-content">
-                <h1>Cảm ơn vì em đã đồng ý</h1>
+                <h1 data-translate="successTitle">Cảm ơn vì em đã đồng ý</h1>
                 <div class="sakura-divider"></div>
-                <p>Anh rất mong chờ buổi gặp sắp tới!</p>
-                <p class="message">Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
+                <p data-translate="successMessage">Anh rất mong chờ buổi gặp sắp tới!</p>
+                <p class="message" data-translate="successSubtitle">Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
                 <div class="cute-animation">
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                          width="320" height="220" viewBox="0 0 370.000000 270.000000"
@@ -257,7 +270,7 @@
                     </div>
                 </div>
                 <div class="next-step">
-                    <button id="choose-location-btn" class="btn yes-btn">Chọn địa điểm mà em muốn đi chơi ♥</button>
+                    <button id="choose-location-btn" class="btn yes-btn" data-translate="buttons.confirmLocation">Chọn địa điểm mà em muốn đi chơi ♥</button>
                 </div>
             </div>
         </div>
@@ -267,7 +280,7 @@
                 <div class="card-content">
                     <h1>Chọn nơi <span class="special-text">đi chơi</span>...</h1>
                     <div class="sakura-divider"></div>
-                    <p class="question">Em muốn đi đâu? 💕</p>
+                    <p class="question" data-translate="questionLocation">Em muốn đi đâu? 💕</p>
                     <div class="location-options">
                         <button class="location-btn" data-location="cafe" data-needs-detail="true">
                             <span class="location-icon">☕</span>
@@ -320,7 +333,7 @@
                         <div class="location-detail-input-group">
                             <label for="location-detail-input" class="location-detail-label">
                                 <span class="detail-icon">📍</span>
-                                <span class="detail-text">Em có chỗ nào cụ thể muốn tới hông:</span>
+                                <span class="detail-text" data-translate="placeholders.locationDetail">Em có chỗ nào cụ thể muốn tới hông:</span>
                             </label>
                             <input
                                 type="text"
@@ -331,7 +344,7 @@
                             >
                             <div class="input-helper-text">
                                 <span class="char-count">0/100</span>
-                                <span class="helper-tip">Đi đâu cũm được miễn là nơi em mún heheh</span>
+                                <span class="helper-tip" data-translate="messages.locationTip">Đi đâu cũm được miễn là nơi em mún heheh</span>
                             </div>
                         </div>
                     </div>
@@ -350,7 +363,7 @@
                     <div class="location-actions">
                         <button id="confirm-location-btn" class="btn yes-btn" disabled>
                             <span class="btn-icon">💖</span>
-                            <span class="btn-text">Xác nhận & Tiếp tục</span>
+                            <span class="btn-text" data-translate="buttons.confirmLocation">Xác nhận & Tiếp tục</span>
                         </button>
                     </div>
                 </div>

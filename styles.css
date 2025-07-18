@@ -856,6 +856,79 @@ body.dark-mode::before {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M20 0C18 10 10 18 0 20C10 22 18 30 20 40C22 30 30 22 40 20C30 18 22 10 20 0Z" fill="%23ff8bb3" opacity="0.7"/></svg>');
 }
 
+/* Language selector styles */
+.language-selector {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 2000;
+    display: flex;
+    gap: 8px;
+}
+
+.flag-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 6px 8px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    outline: none;
+    width: 50px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flag-icon {
+    width: 30px;
+    height: 20px;
+    border-radius: 2px;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+    transition: all 0.3s ease;
+}
+
+.flag-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.flag-btn.active {
+    background: rgba(255, 107, 149, 0.2);
+    border-color: #ff6b95;
+    box-shadow: 0 0 0 2px rgba(255, 107, 149, 0.3);
+}
+
+.flag-btn:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(118, 0, 255, 0.2);
+}
+
+/* Dark mode styles for language selector */
+.dark-mode .flag-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .flag-btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.dark-mode .flag-btn.active {
+    background: rgba(255, 107, 149, 0.2);
+    border-color: #ff6b95;
+    box-shadow: 0 0 0 2px rgba(255, 107, 149, 0.3);
+}
+
+.dark-mode .flag-icon {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.7));
+}
+
 /* Theme toggle styling - modern glassmorphism design */
 .theme-toggle {
     position: fixed;

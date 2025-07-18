@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>A Special Question</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Updated favicon with new purple heart SVG -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPGRlZnM+CiAgICA8cGF0aCBpZD0iaGVhcnQtYSIgZD0iTTcuNjQ2NDg0MzcsMS4xOTMxMTUyMyBDOC4zMzA1NjY0MSw1LjMwMTM1MDkxIDYuOTYxNDI1NzgsNy45NDU1NTY2NCAzLjUzOTA2MjUsOS4xMjU3MzI0MiBDMC4xMTY2OTkyMTksMTAuMzA1OTA4MiAtMC44MDE3NTc4MTMsMTIuOTQ5MjE4OCAwLjc4MzY5MTQwNiwxNy4wNTU2NjQxIEwzLDE5LjI2NTM4MDkgTDEyLjUyMjk0OTIsOS41NDc4NTE1NiBDMTMuNTA1MDQ1Niw2LjQxNjE3ODM5IDEyLjgwODI2ODIsMy44Mjk1MDg0NiAxMC40MzI2MTcyLDEuNzg3ODQxOCBDOC44NTc3NDc0LDAuNTc0OTUxMTcyIDcuOTI5MDM2NDYsMC4zNzY3MDg5ODQgNy42NDY0ODQzNywxLjE5MzExNTIzIFoiLz4KICAgIDxwYXRoIGlkPSJoZWFydC1jIiBkPSJNMTguNjcwNzMzNSwxMC4wNDY5OTQ5IEMyMC40NDQ0MjA0LDguMjA0NzUzMzMgMjAuNDQyODkzMSw1LjIyMTU0MzA4IDE4LjY2NzMyMDgsMy4zODEyNTM1NiBDMTYuODkxNzQ4NCwxLjU0MDk2NDA1IDE0LjAxMzQ0ODIsMS41MzkzODEwNSAxMi4yMzU5OTI1LDMuMzc3NzE2NDggTDEwLjk3MDIwNjksNC42ODk2MzgyMyBMOS43NDY2MzAyNCwzLjQyMTA2MjU3IEM3Ljk3NDIxNjc3LDEuNTg0NDM0OTggNS4xMDA4NzAxNSwxLjU4NDc0OTQ0IDMuMzI4ODMwOTUsMy40MjE3NjQ5NCBDMS41NTY3OTE3NCw1LjI1ODc4MDQzIDEuNTU3MDk1MTQsOC4yMzY4NTY1NyAzLjMyOTUwODYxLDEwLjA3MzQ4NDIgTDEwLjk3NTA0NzMsMTggTDE4LjY3MDczMzUsMTAuMDQ2OTk0OSBaIE05LjUzNTU1MDQ4LDE5LjM4ODQ2OTkgTDEuODkwMzYwMzQsMTEuNDYyMzE1NCBDLTAuNjI5NzQ0MDM3LDguODUwOTA4MjUgLTAuNjMwMTcyNTA5LDQuNjQ1MTg1NjUgMS44ODkzODk1OSwyLjAzMzIzNzQ1IEM0LjM3NjU1MTcyLC0wLjU0NTEyMjc1NiA4LjM5NTQzMzk3LC0wLjYxNzMyOTY2IDEwLjk2ODcxNjksMS44MTczMDE2MiBDMTMuNTQ0NTU3NiwtMC42NjMxMjY5NCAxNy42MDEyMywtMC42MDQxMjkyMzkgMjAuMTA2NjE1NiwxLjk5MjU3NDE5IEMyMi42MjkyMzUyLDQuNjA3MTM5NzggMjIuNjMxMzkwNCw4LjgxNjg2MDg3IDIwLjExMTUwMDIsMTEuNDM0MTQ3IEwxMi40NDI3MDc0LDE5LjM4MjQ1ODQgQzEyLjE1NDQ2ODUsMTkuNjgxMjAzMiAxMS43OTY0NzAxLDE5Ljg3MDQ1MzQgMTEuNDE5ODQ4MSwxOS45NTAyMDg4IEMxMC43NjA5MzcxLDIwLjA5OTc2MzcgMTAuMDQwODkwNCwxOS45MTIzODEzIDkuNTM1NTUwNDgsMTkuMzg4NDY5OSBaIi8+CiAgPC9kZWZzPgogIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSAyKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4KSI+CiAgICAgIDxtYXNrIGlkPSJoZWFydC1iIiBmaWxsPSIjZmZmZmZmIj4KICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNoZWFydC1hIi8+CiAgICAgIDwvbWFzaz4KICAgICAgPHVzZSBmaWxsPSIjRDhEOEQ4IiB4bGluazpocmVmPSIjaGVhcnQtYSIvPgogICAgICA8ZyBmaWxsPSIjRkZBMEEwIiBtYXNrPSJ1cmwoI2hlYXJ0LWIpIj4KICAgICAgICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05IC0yKSIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8bWFzayBpZD0iaGVhcnQtZCIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2hlYXJ0LWMiLz4KICAgIDwvbWFzaz4KICAgIDx1c2UgZmlsbD0iIzAwMDAwMCIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjaGVhcnQtYyIvPgogICAgPGcgZmlsbD0iIzc2MDBGRiIgbWFzaz0idXJsKCNoZWFydC1kKSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTIpIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize dark mode immediately to prevent flash of wrong theme
+        (function() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'enabled' || 
+                (savedDarkMode === null && 
+                 window.matchMedia && 
+                 window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <script>
+        // Force body to be scrollable
+        document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
+    </script>
+    <div class="cherry-blossoms" id="cherry-blossoms"></div>
+    
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <!-- Telegram Setup Panel (chỉ hiện khi cần setup) -->
+    <div class="telegram-setup" id="telegram-setup" style="display: none;">
+        <div class="setup-content">
+            <h3>🤖 Cấu hình Telegram Bot</h3>
+            <p>Để nhận thông tin form qua Telegram:</p>
+            <ol>
+                <li>Gửi tin nhắn bất kỳ cho bot của bạn</li>
+                <li>Nhấn nút "Lấy Chat ID" bên dưới</li>
+                <li>Test bot để đảm bảo hoạt động</li>
+            </ol>
+            <div class="setup-buttons">
+                <button id="get-chat-id-btn" class="btn secondary-btn">Lấy Chat ID</button>
+                <button id="test-bot-btn" class="btn yes-btn">Test Bot</button>
+                <button id="close-setup-btn" class="btn secondary-btn">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark mode toggle -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="darkmode-toggle">
+        <label for="darkmode-toggle">
+            <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 A7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </label>
+    </div>
+    
+
+
+    <div class="container">
+        <div class="card" id="main-card">
+            <div class="hearts-container" id="hearts-container"></div>
+            <!-- Nervous cat -->
+            <div class="nervous-cat">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                     width="120" height="70" viewBox="0 0 498.000000 284.000000"
+                     preserveAspectRatio="xMidYMid meet">
+                    <g class="sweat-drops">
+                        <ellipse class="sweat-drop drop1" cx="1650" cy="1800" rx="30" ry="40" fill="#a3d9ff" />
+                        <ellipse class="sweat-drop drop2" cx="1850" cy="1900" rx="25" ry="35" fill="#a3d9ff" />
+                        <ellipse class="sweat-drop drop3" cx="2050" cy="1850" rx="20" ry="30" fill="#a3d9ff" />
+                        <ellipse class="sweat-drop drop4" cx="1750" cy="1700" rx="22" ry="32" fill="#a3d9ff" />
+                        <ellipse class="sweat-drop drop5" cx="1950" cy="1750" rx="18" ry="28" fill="#a3d9ff" />
+                    </g>
+                    <g transform="translate(0.000000,284.000000) scale(0.100000,-0.100000)"
+                    fill="#6fbce8" stroke="none">
+                        <path d="M1872 2628 c-62 -30 -158 -128 -223 -228 -83 -127 -96 -149 -133
+                        -223 -19 -37 -38 -73 -43 -80 -5 -7 -22 -41 -38 -77 -16 -36 -45 -83 -65 -105
+                        -136 -152 -245 -328 -300 -485 -41 -117 -65 -421 -40 -505 70 -230 133 -339
+                        282 -484 85 -83 141 -128 195 -156 71 -37 90 -57 123 -127 53 -112 100 -147
+                        172 -127 39 10 78 59 78 97 0 34 31 44 102 33 189 -29 304 -34 593 -22 160 7
+                        324 17 365 22 184 25 211 28 224 23 8 -3 21 -22 29 -43 34 -83 93 -124 149
+                        -102 30 11 80 58 132 124 34 43 41 47 81 47 24 0 56 5 71 11 39 14 72 4 80
+                        -26 8 -33 81 -95 111 -95 45 0 143 79 158 128 9 31 39 28 67 -7 26 -32 77 -61
+                        108 -61 33 0 98 47 125 90 14 22 25 42 25 46 0 3 6 20 14 37 13 30 60 178 92
+                        292 7 28 21 111 30 185 25 208 9 613 -32 784 -31 126 -100 174 -289 201 -140
+                        19 -183 31 -189 53 -3 10 -17 86 -31 168 -43 262 -84 386 -146 438 -59 50
+                        -205 71 -319 46 -52 -12 -257 -111 -314 -152 -21 -15 -43 -28 -48 -28 -5 0
+                        -16 -6 -23 -12 -52 -47 -43 -46 -200 -12 -100 22 -150 27 -297 29 -97 2 -181
+                        6 -187 10 -6 3 -20 23 -30 43 -34 64 -167 199 -235 237 -53 29 -73 35 -122 35
+                        -39 -1 -74 -8 -102 -22z m217 -89 c62 -43 185 -184 178 -203 -3 -8 -34 -19
+                        -79 -26 -40 -7 -104 -21 -143 -32 -38 -11 -83 -23 -100 -28 -95 -27 -291 -112
+                        -347 -151 -64 -46 -63 -15 4 98 111 190 202 306 278 355 39 26 52 29 102 26
+                        46 -3 68 -11 107 -39z m1571 -110 c62 -35 91 -74 109 -145 5 -22 18 -73 29
+                        -114 11 -41 23 -104 27 -140 4 -36 11 -72 15 -80 5 -9 11 -47 15 -86 l7 -71
+                        -31 -13 c-38 -15 -39 -30 -3 -84 68 -102 131 -251 148 -346 4 -25 8 -47 9 -50
+                        9 -38 25 -126 30 -167 7 -58 24 -78 54 -68 39 12 36 44 -20 275 -11 47 -38
+                        140 -64 224 -8 27 -15 64 -15 82 0 18 -4 44 -9 58 -15 37 3 44 105 36 86 -7
+                        109 -14 211 -63 55 -26 76 -102 94 -337 11 -143 7 -536 -5 -585 -3 -11 -11
+                        -49 -19 -85 -21 -92 -48 -183 -58 -194 -5 -6 -9 -18 -9 -28 0 -9 -6 -32 -14
+                        -50 -8 -18 -20 -49 -27 -67 -17 -45 -66 -101 -89 -101 -26 0 -64 34 -97 85
+                        -30 49 -66 67 -87 44 -7 -8 -21 -34 -31 -59 -24 -56 -70 -117 -95 -125 -32
+                        -10 -61 14 -86 71 -13 30 -31 57 -39 61 -9 3 -39 -2 -68 -10 -29 -9 -74 -17
+                        -102 -18 -66 -3 -76 -9 -130 -80 -62 -80 -83 -98 -107 -94 -25 5 -43 29 -58
+                        77 -6 21 -21 50 -34 65 l-24 28 -48 -18 c-71 -25 -291 -46 -596 -58 -228 -8
+                        -291 -8 -424 6 -86 9 -168 21 -181 26 -64 24 -123 -8 -123 -66 0 -37 -25 -75
+                        -49 -75 -27 0 -65 48 -94 120 -26 61 -32 68 -100 109 -225 138 -389 333 -462
+                        552 -24 74 -34 211 -23 328 11 120 51 251 106 351 20 36 41 74 47 85 64 119
+                        225 296 342 375 41 28 77 50 82 50 4 0 30 11 56 26 76 40 273 106 410 138 206
+                        48 613 46 738 -3 16 -6 39 -11 51 -11 53 0 284 -109 426 -201 60 -39 117 -69
+                        127 -67 22 4 29 43 13 63 -7 8 -37 30 -67 47 -31 18 -72 43 -92 56 -58 36
+                        -112 64 -176 94 -33 14 -61 33 -63 41 -2 10 36 38 113 81 64 36 120 66 123 66
+                        4 0 34 14 67 31 56 28 66 30 150 26 52 -2 101 -10 115 -18z"/>
+                        <path d="M1535 1574 c-58 -21 -103 -69 -122 -131 l-17 -53 39 -40 c38 -39 41
+                        -40 107 -40 69 0 88 9 176 81 18 15 14 80 -8 116 -21 36 -90 83 -117 82 -10 0
+                        -36 -7 -58 -15z m75 -62 c-1 -38 -90 -65 -90 -27 0 25 60 59 83 48 4 -2 7 -12
+                        7 -21z m-130 -98 c0 -8 -4 -12 -10 -9 -5 3 -10 10 -10 16 0 5 5 9 10 9 6 0 10
+                        -7 10 -16z m70 -18 c0 -20 -19 -31 -32 -18 -6 6 -7 15 -4 21 10 16 36 13 36
+                        -3z"/>
+                        <path d="M3167 1535 c-41 -28 -52 -57 -50 -128 1 -47 21 -90 52 -114 22 -17
+                        81 -16 124 2 20 8 48 15 61 15 14 0 37 10 52 23 22 19 28 34 31 78 2 33 -1 64
+                        -9 79 -37 69 -186 95 -261 45z m111 -52 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3
+                        22 9 14 37 9 43 -7z m80 -21 c3 -19 -1 -23 -15 -20 -10 2 -19 14 -21 26 -3 19
+                        1 23 15 20 10 -2 19 -14 21 -26z m-158 -83 c0 -31 -9 -36 -28 -17 -13 13 -16
+                        50 -5 61 12 13 33 -15 33 -44z m90 -9 c0 -13 -7 -20 -20 -20 -19 0 -27 20 -13
+                        33 13 14 33 6 33 -13z m70 -6 c0 -8 -5 -12 -10 -9 -6 4 -8 11 -5 16 9 14 15
+                        11 15 -7z"/>
+                        <path d="M2731 1496 c-7 -8 -14 -27 -17 -43 -11 -59 -69 -88 -162 -81 -51 5
+                        -59 9 -96 50 -43 47 -70 53 -81 18 -12 -36 -123 -83 -151 -63 -15 11 -37 54
+                        -30 60 9 9 -14 43 -29 43 -45 0 -61 -87 -25 -133 41 -52 137 -59 220 -17 46
+                        23 66 25 73 6 7 -17 90 -46 135 -46 50 0 142 29 168 54 12 11 32 40 44 63 19
+                        37 20 45 8 70 -15 32 -40 40 -57 19z"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="card-content">
+                <h1>Xin chào <span class="special-text gorgeous">Huyền</span>...</h1>
+                <div class="sakura-divider"></div>
+                <p class="question">Em muốn đi chơi với anh chứ ?</p>
+                <div class="buttons">
+                    <button id="yes-btn" class="btn yes-btn">Cóoooo ♥</button>
+                    <button id="no-btn" class="btn no-btn"><b>Hong ☹</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card hidden" id="success-card">
+            <div class="hearts-celebration" id="celebration"></div>
+            <div class="card-content">
+                <h1>Cảm ơn vì em đã đồng ý</h1>
+                <div class="sakura-divider"></div>
+                <p>Anh rất mong chờ buổi gặp sắp tới!</p>
+                <p class="message">Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
+                <div class="cute-animation">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                         width="320" height="220" viewBox="0 0 370.000000 270.000000"
+                         preserveAspectRatio="xMidYMid meet" class="cat-svg">
+                        <g transform="translate(0.000000,270.000000) scale(0.100000,-0.100000)" fill="#ff6b95" stroke="none">
+                            <path d="M745 2534 c-189 -34 -253 -64 -356 -171 -94 -96 -117 -140 -131 -249
+                            -21 -163 17 -282 118 -372 105 -94 233 -142 378 -142 56 0 65 -3 91 -30 38
+                            -39 102 -68 169 -76 68 -8 74 1 52 77 -22 74 -21 76 28 83 120 18 255 131 292
+                            242 15 46 19 89 19 199 l0 140 -34 63 c-63 117 -193 204 -353 236 -93 19 -166
+                            19 -273 0z m267 -49 c155 -33 273 -115 322 -225 25 -55 28 -73 27 -164 -2
+                            -174 -39 -265 -138 -337 -50 -35 -142 -69 -189 -69 -18 0 -36 -4 -39 -10 -3
+                            -5 1 -38 10 -71 8 -34 13 -64 11 -66 -12 -12 -89 22 -127 55 -41 37 -49 39
+                            -127 46 -158 13 -225 36 -327 111 -64 47 -98 95 -119 164 -26 90 -18 228 20
+                            307 24 50 144 169 200 197 46 22 190 62 259 70 71 9 149 6 217 -8z"/>
+                            <path d="M901 2339 c-13 -5 -45 -25 -72 -45 -26 -19 -50 -30 -53 -25 -3 5 -27
+                            23 -53 40 -62 42 -106 41 -169 -1 -87 -58 -117 -161 -74 -255 32 -71 162 -186
+                            291 -257 62 -34 66 -35 94 -20 135 70 252 174 297 264 53 105 9 249 -89 291
+                            -48 20 -132 24 -172 8z m-241 -53 c0 -3 -4 -8 -10 -11 -5 -3 -10 -1 -10 4 0 6
+                            5 11 10 11 6 0 10 -2 10 -4z m230 -20 c0 -2 -8 -10 -17 -17 -16 -13 -17 -12
+                            -4 4 13 16 21 21 21 13z m-130 -56 c0 -5 -7 -10 -16 -10 -8 0 -12 5 -9 10 3 6
+                            10 10 16 10 5 0 9 -4 9 -10z m-239 -37 c-12 -20 -14 -14 -5 12 4 9 9 14 11 11
+                            3 -2 0 -13 -6 -23z m606 -45 c-3 -7 -5 -2 -5 12 0 14 2 19 5 13 2 -7 2 -19 0
+                            -25z m-567 -78 c0 -5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6 -1 10 4 10 6 0 11
+                            -4 11 -10z m90 -90 c0 -5 -5 -10 -11 -10 -5 0 -7 5 -4 10 3 6 8 10 11 10 2 0
+                            4 -4 4 -10z m351 -23 c-10 -9 -11 -8 -5 6 3 10 9 15 12 12 3 -3 0 -11 -7 -18z
+                            m-237 -64 c4 -11 1 -11 -14 -3 -24 13 -25 17 -5 17 8 0 16 -6 19 -14z m86 -32
+                            c0 -5 -7 -12 -16 -15 -14 -5 -15 -4 -4 9 14 17 20 19 20 6z"/>
+                            <path d="M1831 2053 c-75 -45 -199 -171 -268 -274 -28 -41 -96 -120 -151 -175
+                            -154 -154 -211 -259 -232 -431 -36 -287 89 -547 360 -747 54 -40 71 -60 102
+                            -121 40 -77 67 -105 106 -105 37 0 58 17 76 60 18 46 10 44 141 25 60 -9 180
+                            -14 303 -15 176 0 202 -2 202 -15 0 -20 29 -78 44 -87 6 -4 28 -8 49 -8 40 0
+                            57 13 117 88 21 26 34 32 83 37 54 6 57 5 57 -15 0 -28 61 -90 89 -90 51 0 86
+                            37 115 123 3 9 17 22 31 29 22 10 29 8 53 -14 59 -55 105 -60 135 -14 9 13 25
+                            68 36 123 11 54 30 125 41 158 47 136 93 376 115 592 25 256 3 323 -107 323
+                            -25 0 -69 12 -107 29 l-64 29 -24 119 c-41 204 -91 273 -200 273 -92 0 -260
+                            -67 -342 -135 -26 -23 -30 -23 -68 -10 -41 14 -200 48 -285 60 -44 7 -49 11
+                            -78 61 -93 165 -197 205 -329 127z m207 -47 c21 -19 50 -57 65 -85 l27 -49
+                            -77 -7 c-109 -9 -274 -42 -357 -71 -38 -13 -71 -23 -73 -21 -6 7 107 135 158
+                            179 82 70 118 88 171 88 41 0 54 -5 86 -34z m956 -127 c14 -11 33 -34 41 -49
+                            17 -33 61 -204 69 -271 4 -25 13 -69 21 -97 12 -40 20 -52 36 -52 25 0 33 19
+                            20 53 -6 15 -8 27 -5 27 2 0 27 -12 55 -26 34 -17 64 -24 89 -23 77 6 87 -36
+                            65 -261 -21 -205 -68 -450 -119 -608 -13 -42 -33 -113 -43 -157 -22 -97 -39
+                            -106 -90 -50 -36 39 -43 40 -113 7 -29 -14 -38 -26 -53 -74 -12 -39 -25 -59
+                            -38 -63 -31 -10 -57 20 -61 69 -3 41 -3 41 -43 40 -114 -3 -174 -30 -213 -96
+                            -8 -14 -26 -31 -39 -37 -20 -9 -25 -7 -39 15 -14 21 -15 29 -4 48 7 13 10 29
+                            6 34 -4 7 -70 8 -184 5 -147 -5 -206 -2 -351 17 -257 32 -355 69 -487 181 -97
+                            82 -146 139 -198 228 -140 241 -123 527 45 737 145 182 280 263 524 312 164
+                            34 290 38 426 13 115 -21 216 -47 276 -72 40 -16 65 -1 47 29 -13 21 5 37 96
+                            83 124 63 216 76 264 38z m-1206 -1577 c5 -17 -34 -56 -51 -49 -13 5 -57 75
+                            -57 90 0 8 105 -32 108 -41z"/>
+                            <path d="M1447 1409 c-59 -39 -88 -98 -95 -190 -4 -54 -1 -74 13 -95 16 -25
+                            19 -26 101 -22 108 4 128 21 145 123 14 86 1 145 -41 187 -36 36 -65 35 -123
+                            -3z"/>
+                            <path d="M2590 1334 c-56 -35 -97 -144 -87 -232 5 -50 33 -82 71 -82 11 -1 32
+                            -7 46 -15 57 -33 129 -2 148 63 16 53 15 165 -2 206 -28 67 -116 97 -176 60z"/>
+                            <path d="M1947 1215 c-34 -30 -63 -32 -79 -5 -13 21 -58 28 -58 9 0 -6 6 -23
+                            14 -37 8 -15 21 -64 29 -109 18 -96 47 -142 111 -172 53 -26 112 -27 152 -2
+                            42 26 84 114 84 177 0 38 5 54 26 75 41 43 10 67 -42 33 -35 -23 -97 -13 -149
+                            25 -24 17 -47 31 -52 31 -4 0 -21 -12 -36 -25z m-27 -84 c0 -6 -4 -13 -10 -16
+                            -5 -3 -10 1 -10 9 0 9 5 16 10 16 6 0 10 -4 10 -9z m213 -28 c-7 -2 -19 -2
+                            -25 0 -7 3 -2 5 12 5 14 0 19 -2 13 -5z m-138 -151 c-3 -3 -11 0 -18 7 -9 10
+                            -8 11 6 5 10 -3 15 -9 12 -12z"/>
+                            <path d="M1442 998 c-1 -66 -1 -70 -12 -63 -5 3 -10 1 -10 -4 0 -21 20 -10 35
+                            19 9 17 13 30 9 30 -4 0 -1 7 6 15 10 11 9 18 -3 30 -22 22 -25 20 -25 -27z"/>
+                            <path d="M1578 1029 c-10 -5 -18 -20 -18 -31 0 -12 -5 -37 -12 -55 -9 -26 -9
+                            -36 0 -45 20 -20 31 3 33 62 1 30 6 61 12 68 11 14 8 15 -15 1z"/>
+                            <path d="M1315 1022 c-10 -7 -12 -14 -20 -55 -2 -9 -7 -22 -10 -27 -3 -6 3
+                            -10 14 -10 15 0 21 6 21 21 0 11 4 28 9 38 11 20 0 43 -14 33z"/>
+                            <path d="M2465 951 c3 -5 -2 -16 -10 -24 -8 -9 -15 -33 -15 -53 0 -39 16 -38
+                            23 1 2 11 8 29 14 40 11 22 7 45 -8 45 -6 0 -8 -4 -4 -9z"/>
+                            <path d="M2572 935 c-15 -32 -16 -115 -2 -115 6 0 10 8 11 18 0 9 2 24 4 32
+                            12 50 14 64 7 77 -6 11 -11 8 -20 -12z"/>
+                            <path d="M2721 890 c1 -27 6 -50 10 -50 9 0 13 30 10 59 -2 7 2 10 9 6 7 -4 7
+                            1 -2 14 -20 33 -28 25 -27 -29z"/>
+                        </g>
+                    </svg>
+                    
+                    <div class="cat-hearts">
+                        <div class="cat-heart ch1"></div>
+                        <div class="cat-heart ch2"></div>
+                        <div class="cat-heart ch3"></div>
+                        <div class="cat-heart ch4"></div>
+                        <div class="cat-heart ch5"></div>
+                    </div>
+                </div>
+                <div class="next-step">
+                    <button id="choose-location-btn" class="btn yes-btn">Chọn địa điểm mà em muốn đi chơi ♥</button>
+                </div>
+            </div>
+        </div>
+
+            <div class="card hidden" id="location-card">
+                <div class="hearts-celebration" id="location-celebration"></div>
+                <div class="card-content">
+                    <h1>Chọn nơi <span class="special-text">đi chơi</span>...</h1>
+                    <div class="sakura-divider"></div>
+                    <p class="question">Em muốn đi đâu? 💕</p>
+                    <div class="location-options">
+                        <button class="location-btn" data-location="cafe" data-needs-detail="true">
+                            <span class="location-icon">☕</span>
+                            <span>Uống nước</span>
+                        </button>
+                        <button class="location-btn" data-location="restaurant" data-needs-detail="true">
+                            <span class="location-icon">🍽️</span>
+                            <span>Đi ăn</span>
+                        </button>
+                        <button class="location-btn" data-location="cinema" data-needs-detail="true">
+                            <span class="location-icon">🎬</span>
+                            <span>Rạp phim</span>
+                        </button>
+                        <button class="location-btn" data-location="park" data-needs-detail="true">
+                            <span class="location-icon">🌳</span>
+                            <span>Công viên</span>
+                        </button>
+                        <button class="location-btn" data-location="mall" data-needs-detail="true">
+                            <span class="location-icon">🛍️</span>
+                            <span>Trung tâm thương mại</span>
+                        </button>
+                        <button class="location-btn" data-location="street" data-needs-detail="false">
+                            <span class="location-icon">🏍️</span>
+                            <span>Lên phố</span>
+                        </button>
+                        <button class="location-btn" data-location="hotel" data-needs-detail="true">
+                            <span class="location-icon">🏨</span>
+                            <span>Khách sạn</span>
+                        </button>
+                        <button class="location-btn" data-location="travel" data-needs-detail="true">
+                            <span class="location-icon">🌍</span>
+                            <span>Du lịch</span>
+                        </button>
+                        <button class="location-btn" data-location="karaoke" data-needs-detail="true">
+                            <span class="location-icon">🎤</span>
+                            <span>Karaoke</span>
+                        </button>
+                        <button class="location-btn" data-location="home" data-needs-detail="false">
+                            <span class="location-icon">🏠</span>
+                            <span>Ở nhà</span>
+                        </button>
+                        <button class="location-btn" data-location="custom" data-needs-detail="true">
+                            <span class="location-icon">✨</span>
+                            <span>Nơi khác</span>
+                        </button>
+                    </div>
+
+                    <!-- Location Detail Input -->
+                    <div class="location-detail-container hidden" id="location-detail-container">
+                        <div class="location-detail-input-group">
+                            <label for="location-detail-input" class="location-detail-label">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">Em có chỗ nào cụ thể muốn tới hông:</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="location-detail-input"
+                                class="location-detail-input"
+                                placeholder="Ví dụ: Lào Cai, Hồ Gươm, Lotte Center..."
+                                maxlength="100"
+                            >
+                            <div class="input-helper-text">
+                                <span class="char-count">0/100</span>
+                                <span class="helper-tip">Đi đâu cũm được miễn là nơi em mún heheh</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selected-location-message hidden" id="selected-location-message">
+                        <div class="message-content">
+                            <span class="message-icon">💕</span>
+                            <p class="message-text">Lựa chọn tuyệt vời nha lớn!</p>
+                            <div class="selected-info" id="selected-info">
+                                <span class="selected-type"></span>
+                                <span class="selected-detail"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-actions">
+                        <button id="confirm-location-btn" class="btn yes-btn" disabled>
+                            <span class="btn-icon">💖</span>
+                            <span class="btn-text">Xác nhận & Tiếp tục</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Thay thế phần chọn đồ ăn bằng form nhập thông tin cá nhân
+                <div class="card hidden" id="info-card">
+                    <div class="hearts-celebration" id="info-celebration"></div>
+                    <div class="card-content">
+                        <h1>Hãy để lại <span class="special-text">thông tin</span> nhé!</h1>
+                        <div class="sakura-divider"></div>
+                        <p class="question">Nhập thông tin để mình có thể liên hệ với bạn 💌</p>
+        
+                        <form id="user-info-form">
+                            <div class="input-group">
+                                <label for="name">Tên của bạn</label>
+                                <input type="text" id="name" name="name" placeholder="Nhập tên của bạn" required>
+                            </div>
+        
+                            <div class="input-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                            </div>
+        
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
+                            </div>
+        
+                            <button type="submit" class="btn yes-btn">Xác nhận ♥</button>
+                        </form>
+                    </div>
+                </div> -->
+                <div class="card hidden" id="info-card">
+                    <p class="question">Nhập thông tin để mình có thể liên hệ với bạn 💌</p>
+                    <div class="sakura-divider"></div>
+                    <form id="info-form">
+                        <label for="name">Tên:</label>
+                        <input type="text" id="name" name="name" required>
+                        
+                        <label for="phone">Số điện thoại:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                
+                        <button type="submit" id="confirm-info-btn" class="btn yes-btn">Tiếp tục ♥</button>
+                    </form>
+                </div>
+                
+        <!-- Add the date and time selection card -->
+        <div class="card hidden" id="datetime-card">
+            <div class="hearts-celebration" id="datetime-celebration"></div>
+            <div class="card-content">
+                <h1>Giờ hãy em chọn <span class="special-text">thời gian nhé</span>...</h1>
+                <div class="sakura-divider"></div>
+                <p class="question">Em muốn anh sang đón em lúc mấy giờ?</p>
+                <div class="datetime-container">
+                    <div class="datetime-row" id="datetime-row-template">
+                        <div class="date-input">
+                            <label>Ngày</label>
+                            <input type="date" class="date-picker" placeholder="">
+                        </div>
+                        <div class="time-input">
+                            <label>Giờ</label>
+                            <div class="time-picker-container">
+                                <select class="hour-picker">
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19" selected>19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                </select>
+                                <span class="time-separator">:</span>
+                                <select class="minute-picker">
+                                    <option value="00" selected>00</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="remove-datetime btn-icon" title="Remove this option">
+                            <span>✕</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="datetime-actions">
+                    <button id="confirm-datetime" class="btn yes-btn">Xác nhận♥</button>
+                </div>
+                
+                <div class="selected-datetime-message hidden" id="selected-datetime-message">
+                    <p class="message">Hoàn hảo! 💕</p>
+                    <button id="food-next-btn" class="btn yes-btn" style="margin-top: 15px; display: inline-block;">Hoàn tất ♥</button>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <!-- Review Summary Card -->
+        <div class="card hidden" id="review-card">
+            <div class="hearts-celebration" id="review-celebration"></div>
+            <div class="card-content">
+                <h1>Xem lại <span class="special-text">thông tin</span> nhé!</h1>
+                <div class="sakura-divider"></div>
+                <p class="question">Kiểm tra lại thông tin trước khi gửi 💌</p>
+
+                <div class="summary-container">
+                    <div class="summary-section">
+                        <h3>👤 Thông tin cá nhân</h3>
+                        <div id="summary-personal"></div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3>📍 Địa điểm</h3>
+                        <div id="summary-locations"></div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3>📅 Thời gian</h3>
+                        <div id="summary-datetime"></div>
+                    </div>
+                </div>
+
+                <div class="review-actions">
+                    <button id="edit-info-btn" class="btn secondary-btn">Chỉnh sửa</button>
+                    <button id="confirm-final-btn" class="btn yes-btn">Xác nhận gửi ♥</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card hidden" id="completion-card">
+            <div class="hearts-celebration" id="completion-hearts"></div>
+            <div class="card-content">
+                <h1>Cảm ơn em rất nhiều! <span class="special-text">💕</span></h1>
+                <div class="sakura-divider"></div>
+                <div class="celebration-icon">🎉</div>
+                <p class="big-message">Anh đã được thông tin thành công!</p>
+                <p class="message">Hy vọng chúng ta sẽ có những khoảnh khắc tuyệt vời bên nhau! ✨</p>
+
+                <div class="final-actions">
+               
+                    <button id="restart-btn" class="btn yes-btn">Bắt đầu lại ♥</button>
+                </div>
+
+                <!-- Hidden canvas for screenshot -->
+                <canvas id="screenshot-canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+        
+        <!-- Add the perpetual hearts container for endless hearts -->
+        <div class="perpetual-hearts" id="perpetual-hearts"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>

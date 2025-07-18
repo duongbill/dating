@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .step {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .step h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            min-width: 150px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .error {
+            background: #ffe8e8;
+            border-color: #f44336;
+            color: #d32f2f;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .chat-id-display {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Telegram Bot Test</h1>
+        
+        <div class="instructions">
+            <h3>📋 Hướng dẫn:</h3>
+            <ol>
+                <li>Tìm bot <strong>@AnswerThanhHuyen_bot</strong> trên Telegram</li>
+                <li>Gửi tin nhắn bất kỳ cho bot (VD: "Hello")</li>
+                <li>Quay lại đây và nhấn "Lấy Chat ID"</li>
+                <li>Sau đó test gửi tin nhắn</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>Bước 1: Lấy Chat ID</h3>
+            <p>Nhấn nút này sau khi đã gửi tin nhắn cho bot:</p>
+            <button id="getChatIdBtn" class="btn">Lấy Chat ID</button>
+            <div id="chatIdResult"></div>
+        </div>
+
+        <div class="step">
+            <h3>Bước 2: Test gửi tin nhắn</h3>
+            <p>Kiểm tra bot có hoạt động không:</p>
+            <button id="testBotBtn" class="btn" disabled>Test Bot</button>
+            <div id="testResult"></div>
+        </div>
+
+        <div class="step">
+            <h3>Bước 3: Test gửi form data</h3>
+            <p>Test gửi dữ liệu form mẫu:</p>
+            <button id="testFormBtn" class="btn" disabled>Test Form Data</button>
+            <div id="formResult"></div>
+        </div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = '8188463035:AAEQtz13139Qsnmb_Gzgb18NU5m2u9VibOM';
+        const API_URL = 'https://api.telegram.org/bot';
+        let CHAT_ID = null;
+
+        const getChatIdBtn = document.getElementById('getChatIdBtn');
+        const testBotBtn = document.getElementById('testBotBtn');
+        const testFormBtn = document.getElementById('testFormBtn');
+
+        // Function để lấy Chat ID
+        async function getChatId() {
+            try {
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/getUpdates`);
+                const result = await response.json();
+                
+                if (result.ok && result.result.length > 0) {
+                    const chatId = result.result[result.result.length - 1].message.chat.id;
+                    return chatId;
+                } else {
+                    throw new Error('Không tìm thấy tin nhắn nào');
+                }
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        // Function để gửi tin nhắn
+        async function sendMessage(message) {
+            try {
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const result = await response.json();
+                return result;
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        // Event Listeners
+        getChatIdBtn.addEventListener('click', async function() {
+            this.innerHTML = 'Đang lấy... <div class="loading"></div>';
+            this.disabled = true;
+
+            try {
+                CHAT_ID = await getChatId();
+                
+                document.getElementById('chatIdResult').innerHTML = `
+                    <div class="chat-id-display">
+                        Chat ID: ${CHAT_ID}
+                    </div>
+                    <div class="result">✅ Đã lấy Chat ID thành công!</div>
+                `;
+                
+                this.innerHTML = 'Đã lấy Chat ID ✅';
+                testBotBtn.disabled = false;
+                testFormBtn.disabled = false;
+                
+            } catch (error) {
+                document.getElementById('chatIdResult').innerHTML = `
+                    <div class="result error">❌ Lỗi: ${error.message}</div>
+                `;
+                this.innerHTML = 'Lấy Chat ID';
+                this.disabled = false;
+            }
+        });
+
+        testBotBtn.addEventListener('click', async function() {
+            this.innerHTML = 'Đang test... <div class="loading"></div>';
+            this.disabled = true;
+
+            try {
+                const testMessage = '🤖 Test message từ website!\n\n✅ Bot hoạt động thành công!';
+                const result = await sendMessage(testMessage);
+                
+                if (result.ok) {
+                    document.getElementById('testResult').innerHTML = `
+                        <div class="result">✅ Gửi tin nhắn thành công!</div>
+                    `;
+                } else {
+                    throw new Error(result.description || 'Lỗi không xác định');
+                }
+                
+                this.innerHTML = 'Test thành công ✅';
+                
+            } catch (error) {
+                document.getElementById('testResult').innerHTML = `
+                    <div class="result error">❌ Lỗi: ${error.message}</div>
+                `;
+                this.innerHTML = 'Test Bot';
+                this.disabled = false;
+            }
+        });
+
+        testFormBtn.addEventListener('click', async function() {
+            this.innerHTML = 'Đang gửi... <div class="loading"></div>';
+            this.disabled = true;
+
+            try {
+                const formData = `🌸 <b>THÔNG TIN HẸN HÒ MỚI</b> 🌸
+
+👤 <b>THÔNG TIN CÁ NHÂN:</b>
+• Tên: Nguyễn Văn Test
+• Số điện thoại: 0912345678
+• Email: test@example.com
+
+📍 <b>ĐỊA ĐIỂM MUỐN ĐI:</b>
+• ☕ Café
+• 🎬 Rạp phim
+
+🍽️ <b>ĐỒ ĂN YÊU THÍCH:</b>
+• 🍕 Pizza
+• 🍜 Phở
+
+🥤 <b>ĐỒ UỐNG YÊU THÍCH:</b>
+• ☕ Cà phê
+• 🧃 Nước ép
+
+📅 <b>THỜI GIAN CÓ THỂ HẸN:</b>
+• Lựa chọn 1: 2024-07-18 lúc 19:00
+• Lựa chọn 2: 2024-07-19 lúc 20:00
+
+⏰ <b>Thời gian gửi:</b> ${new Date().toLocaleString('vi-VN')}
+🌐 <b>Từ website:</b> Test Page`;
+
+                const result = await sendMessage(formData);
+                
+                if (result.ok) {
+                    document.getElementById('formResult').innerHTML = `
+                        <div class="result">✅ Gửi form data thành công!</div>
+                    `;
+                } else {
+                    throw new Error(result.description || 'Lỗi không xác định');
+                }
+                
+                this.innerHTML = 'Gửi thành công ✅';
+                
+            } catch (error) {
+                document.getElementById('formResult').innerHTML = `
+                    <div class="result error">❌ Lỗi: ${error.message}</div>
+                `;
+                this.innerHTML = 'Test Form Data';
+                this.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

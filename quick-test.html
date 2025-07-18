@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Test Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            border-left: 4px solid #f44336;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .bot-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Quick Test @AnswerThanhHuyen_bot</h1>
+        
+        <div class="bot-info">
+            <strong>Bot Username:</strong> @AnswerThanhHuyen_bot<br>
+            <strong>Bot Token:</strong> 8188463035:AAEQtz13139Qsnmb_Gzgb18NU5m2u9VibOM
+        </div>
+
+        <button onclick="step1()">Bước 1: Lấy thông tin Bot</button>
+        <button onclick="step2()">Bước 2: Lấy Chat ID</button>
+        <button onclick="step3()">Bước 3: Test gửi tin nhắn</button>
+        <button onclick="step4()">Bước 4: Test form data</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = '8188463035:AAEQtz13139Qsnmb_Gzgb18NU5m2u9VibOM';
+        const API_URL = 'https://api.telegram.org/bot';
+        let CHAT_ID = null;
+
+        function showResult(content, isSuccess = true) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<div class="result ${isSuccess ? 'success' : 'error'}">${content}</div>`;
+        }
+
+        async function step1() {
+            showResult('🔄 Đang lấy thông tin bot...');
+            
+            try {
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/getMe`);
+                const data = await response.json();
+                
+                if (data.ok) {
+                    const bot = data.result;
+                    showResult(`✅ Thông tin Bot:
+
+ID: ${bot.id}
+Tên: ${bot.first_name}
+Username: @${bot.username}
+Có thể join group: ${bot.can_join_groups ? 'Có' : 'Không'}
+Có thể đọc tin nhắn: ${bot.can_read_all_group_messages ? 'Có' : 'Không'}
+Hỗ trợ inline: ${bot.supports_inline_queries ? 'Có' : 'Không'}
+
+✅ Bot hoạt động bình thường!`);
+                } else {
+                    showResult(`❌ Lỗi: ${data.description}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Lỗi kết nối: ${error.message}`, false);
+            }
+        }
+
+        async function step2() {
+            showResult('🔄 Đang lấy Chat ID...');
+            
+            try {
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/getUpdates`);
+                const data = await response.json();
+                
+                if (data.ok && data.result.length > 0) {
+                    const lastMessage = data.result[data.result.length - 1];
+                    CHAT_ID = lastMessage.message.chat.id;
+                    
+                    showResult(`✅ Đã tìm thấy Chat ID!
+
+Chat ID: ${CHAT_ID}
+Tên: ${lastMessage.message.chat.first_name || 'N/A'}
+Username: @${lastMessage.message.chat.username || 'N/A'}
+Loại chat: ${lastMessage.message.chat.type}
+
+Tin nhắn cuối: "${lastMessage.message.text}"
+Thời gian: ${new Date(lastMessage.message.date * 1000).toLocaleString('vi-VN')}
+
+📋 Copy Chat ID này: ${CHAT_ID}`);
+                } else {
+                    showResult(`❌ Không tìm thấy tin nhắn nào.
+
+Hãy gửi tin nhắn cho bot @AnswerThanhHuyen_bot trước!
+Ví dụ: gửi "Hello" hoặc "/start"`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Lỗi: ${error.message}`, false);
+            }
+        }
+
+        async function step3() {
+            if (!CHAT_ID) {
+                showResult('❌ Chưa có Chat ID! Hãy thực hiện Bước 2 trước.', false);
+                return;
+            }
+
+            showResult('🔄 Đang gửi tin nhắn test...');
+            
+            try {
+                const testMessage = `🎉 Test message từ website hẹn hò!
+
+✅ Bot @AnswerThanhHuyen_bot hoạt động thành công!
+📱 Chat ID: ${CHAT_ID}
+⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}
+🌐 Từ: Quick Test Page`;
+
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: testMessage
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.ok) {
+                    showResult(`✅ Gửi tin nhắn thành công!
+
+Message ID: ${data.result.message_id}
+Thời gian gửi: ${new Date(data.result.date * 1000).toLocaleString('vi-VN')}
+
+🎉 Bot hoạt động hoàn hảo!`);
+                } else {
+                    showResult(`❌ Lỗi gửi tin nhắn: ${data.description}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Lỗi: ${error.message}`, false);
+            }
+        }
+
+        async function step4() {
+            if (!CHAT_ID) {
+                showResult('❌ Chưa có Chat ID! Hãy thực hiện Bước 2 trước.', false);
+                return;
+            }
+
+            showResult('🔄 Đang gửi form data mẫu...');
+            
+            try {
+                const formData = `🌸 <b>THÔNG TIN HẸN HÒ MỚI</b> 🌸
+
+👤 <b>THÔNG TIN CÁ NHÂN:</b>
+• Tên: Nguyễn Văn Test
+• Số điện thoại: 0912345678
+• Email: test@example.com
+
+📍 <b>ĐỊA ĐIỂM MUỐN ĐI:</b>
+• ☕ Café
+• 🎬 Rạp phim
+
+🍽️ <b>ĐỒ ĂN YÊU THÍCH:</b>
+• 🍕 Pizza
+• 🍜 Phở
+
+🥤 <b>ĐỒ UỐNG YÊU THÍCH:</b>
+• ☕ Cà phê
+• 🧃 Nước ép
+
+📅 <b>THỜI GIAN CÓ THỂ HẸN:</b>
+• Lựa chọn 1: 2024-07-18 lúc 19:00
+• Lựa chọn 2: 2024-07-19 lúc 20:00
+
+⏰ <b>Thời gian gửi:</b> ${new Date().toLocaleString('vi-VN')}
+🌐 <b>Từ website:</b> Quick Test Page
+🤖 <b>Bot:</b> @AnswerThanhHuyen_bot`;
+
+                const response = await fetch(`${API_URL}${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: formData,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.ok) {
+                    showResult(`✅ Gửi form data thành công!
+
+Message ID: ${data.result.message_id}
+Thời gian gửi: ${new Date(data.result.date * 1000).toLocaleString('vi-VN')}
+
+🎉 Tất cả đều hoạt động hoàn hảo!
+📋 Chat ID để copy: ${CHAT_ID}`);
+                } else {
+                    showResult(`❌ Lỗi gửi form data: ${data.description}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Lỗi: ${error.message}`, false);
+            }
+        }
+
+        // Auto start
+        window.onload = function() {
+            showResult('🤖 Sẵn sàng test bot @AnswerThanhHuyen_bot!\n\nHãy bắt đầu từ Bước 1.');
+        };
+    </script>
+</body>
+</html>

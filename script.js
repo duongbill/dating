@@ -1,473 +1,380 @@
-// Language Management System
-const languageManager = {
-  currentLanguage: "vi",
+// Main Application Script
 
-  translations: {
-    vi: {
-      title: "Xin chào",
-      subtitle: "Em muốn đi chơi với anh chứ?",
-      questionLocation: "Em muốn đi đâu?",
-      questionFood: "Em muốn ăn gì?",
-      questionDrink: "Em muốn uống gì?",
-      questionTime: "Em rảnh khi nào?",
-      successTitle: "Cảm ơn vì em đã đồng ý",
-      successMessage: "Anh rất mong chờ buổi gặp sắp tới!",
-      successSubtitle: "Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!",
-      buttons: {
-        yes: "Cóoooo ♥",
-        no: "Hong ☹",
-        confirmLocation: "Chọn địa điểm mà em muốn đi chơi ♥",
-        confirmTime: "Xác nhận thời gian",
-        chooseLocation: "Chọn địa điểm",
-        addTime: "Thêm thời gian",
-        next: "Tiếp theo",
-        back: "Quay lại",
-        submit: "Gửi thông tin",
-        confirm: "Xác nhận",
-      },
-      locations: {
-        cafe: "Uống nước",
-        restaurant: "Đi ăn",
-        cinema: "Rạp phim",
-        park: "Công viên",
-        mall: "Trung tâm thương mại",
-        beach: "Bãi biển",
-        museum: "Bảo tàng",
-        street: "Lên phố",
-        hotel: "Khách sạn",
-        travel: "Du lịch",
-        karaoke: "Karaoke",
-        home: "Ở nhà",
-        custom: "Nơi khác",
-        other: "Địa điểm khác",
-      },
-      foods: {
-        vietnamese: "🍜 Món Việt",
-        chinese: "🥟 Món Trung",
-        japanese: "🍣 Món Nhật",
-        korean: "🍲 Món Hàn",
-        western: "🍕 Món Tây",
-        seafood: "🦐 Hải sản",
-        vegetarian: "🥗 Chay",
-        other: "🍽️ Món khác",
-      },
-      drinks: {
-        coffee: "☕ Cà phê",
-        tea: "🍵 Trà",
-        juice: "🧃 Nước ép",
-        smoothie: "🥤 Sinh tố",
-        cocktail: "🍹 Cocktail",
-        beer: "🍺 Bia",
-        wine: "🍷 Rượu vang",
-        other: "🥤 Đồ uống khác",
-      },
-      placeholders: {
-        locationInput: "...",
-        locationDetail: "Em còn có mong muốn gì nữa honggg",
-        customFood: "Nhập món ăn em muốn...",
-        customDrink: "Nhập đồ uống em muốn...",
-        name: "Tên của em",
-        phone: "Số điện thoại",
-        email: "Email (không bắt buộc)",
-      },
-      locationPrefixes: {
-        cafe: "đi uống nước",
-        restaurant: "đi ăn",
-        cinema: "đi xem phim",
-        park: "đi công viên",
-        mall: "đi trung tâm thương mại",
-        beach: "đi biển",
-        museum: "đi bảo tàng",
-        street: "đi lên phố",
-        hotel: "đi khách sạn",
-        travel: "đi du lịch",
-        karaoke: "đi karaoke",
-        home: "ở nhà",
-        custom: "đi nơi khác",
-        other: "đi chỗ khác",
-      },
-      messages: {
-        charLimit: "Tối đa 100 ký tự",
-        locationSelected: "Đã chọn địa điểm:",
-        foodSelected: "Đã chọn món ăn:",
-        drinkSelected: "Đã chọn đồ uống:",
-        timeSelected: "Đã chọn thời gian:",
-        formSubmitted: "Thông tin đã được gửi thành công!",
-        fillAllFields: "Vui lòng điền đầy đủ thông tin",
-        invalidPhone: "Số điện thoại không hợp lệ",
-        invalidEmail: "Email không hợp lệ",
-        locationTip: "Đi đâu cũm được miễn là nơi em mún heheh",
-      },
-      notifications: {
-        success: "Thành công!",
-        error: "Có lỗi xảy ra!",
-        info: "Thông tin",
-      },
-    },
-    zh: {
-      title: "你好",
-      subtitle: "我很期待即将到来的约会！",
-      questionLocation: "你想去哪里？",
-      questionFood: "你想吃什么？",
-      questionDrink: "你想喝什么？",
-      questionTime: "你什么时候有空？",
-      successTitle: "谢谢你的同意",
-      successMessage: "我很期待即将到来的约会！",
-      successSubtitle: "我保证会让它变得特别，真的！",
-      buttons: {
-        yes: "好的 ♥",
-        no: "不要 ☹",
-        confirmLocation: "选择我们想去约会的地方 ♥",
-        confirmTime: "确认时间",
-        chooseLocation: "选择地点",
-        addTime: "添加时间",
-        next: "下一步",
-        back: "返回",
-        submit: "提交信息",
-        confirm: "确认",
-      },
-      locations: {
-        cafe: "喝饮料",
-        restaurant: "去吃饭",
-        cinema: "电影院",
-        park: "公园",
-        mall: "购物中心",
-        beach: "海滩",
-        museum: "博物馆",
-        street: "逛街",
-        hotel: "酒店",
-        travel: "旅行",
-        karaoke: "卡拉OK",
-        home: "在家",
-        custom: "其他地方",
-        other: "其他地点",
-      },
-      foods: {
-        vietnamese: "🍜 越南菜",
-        chinese: "🥟 中国菜",
-        japanese: "🍣 日本菜",
-        korean: "🍲 韩国菜",
-        western: "🍕 西餐",
-        seafood: "🦐 海鲜",
-        vegetarian: "🥗 素食",
-        other: "🍽️ 其他菜系",
-      },
-      drinks: {
-        coffee: "☕ 咖啡",
-        tea: "🍵 茶",
-        juice: "🧃 果汁",
-        smoothie: "🥤 奶昔",
-        cocktail: "🍹 鸡尾酒",
-        beer: "🍺 啤酒",
-        wine: "🍷 红酒",
-        other: "🥤 其他饮料",
-      },
-      placeholders: {
-        locationInput: "输入你想去的地方...",
-        locationDetail: "你还有什么其他愿望吗",
-        customFood: "输入你想吃的食物...",
-        customDrink: "输入你想喝的饮料...",
-        name: "你的名字",
-        phone: "电话号码",
-        email: "邮箱（可选）",
-      },
-      locationPrefixes: {
-        cafe: "去喝饮料",
-        restaurant: "去吃饭",
-        cinema: "去看电影",
-        park: "去公园",
-        mall: "去购物中心",
-        beach: "去海滩",
-        museum: "去博物馆",
-        street: "去逛街",
-        hotel: "去酒店",
-        travel: "去旅行",
-        karaoke: "去卡拉OK",
-        home: "在家",
-        custom: "去其他地方",
-        other: "去别的地方",
-      },
-      messages: {
-        charLimit: "最多100个字符",
-        locationSelected: "已选择地点：",
-        foodSelected: "已选择食物：",
-        drinkSelected: "已选择饮料：",
-        timeSelected: "已选择时间：",
-        formSubmitted: "信息提交成功！",
-        fillAllFields: "请填写完整信息",
-        invalidPhone: "电话号码无效",
-        invalidEmail: "邮箱无效",
-        locationTip: "去哪里都可以，只要是你想去的地方呵呵",
-      },
-      notifications: {
-        success: "成功！",
-        error: "发生错误！",
-        info: "信息",
-      },
-    },
-  },
+// Progress Indicator System
+const progressManager = {
+  currentStep: 1,
+  totalSteps: 5,
 
-  getText(key) {
-    const keys = key.split(".");
-    let value = this.translations[this.currentLanguage];
+  updateProgress(step) {
+    this.currentStep = step;
+    const progressFill = document.getElementById("progress-fill");
+    const steps = document.querySelectorAll(".step");
 
-    for (const k of keys) {
-      value = value?.[k];
+    // Update progress bar
+    const percentage = (step / this.totalSteps) * 100;
+    if (progressFill) {
+      progressFill.style.width = `${percentage}%`;
     }
 
-    return value || key;
-  },
+    // Update step indicators
+    steps.forEach((stepEl, index) => {
+      const stepNumber = index + 1;
+      stepEl.classList.remove("active", "completed");
 
-  getLocationPrefix(location) {
-    return (
-      this.translations[this.currentLanguage]?.locationPrefixes?.[location] ||
-      ""
-    );
-  },
-
-  setLanguage(lang) {
-    if (this.translations[lang]) {
-      this.currentLanguage = lang;
-      localStorage.setItem("selectedLanguage", lang);
-      this.updateUI();
-    }
-  },
-
-  updateUI() {
-    // Update main title with name
-    const titleElement = document.querySelector("h1");
-    if (titleElement) {
-      const nameSpan = titleElement.querySelector(".special-text");
-      const name = nameSpan ? nameSpan.textContent : "Huyền";
-      titleElement.innerHTML =
-        this.getText("title") +
-        ' <span class="special-text gorgeous">' +
-        name +
-        "</span>...";
-    }
-
-    // Update all elements with data-translate attribute
-    document.querySelectorAll("[data-translate]").forEach((element) => {
-      const key = element.getAttribute("data-translate");
-      element.textContent = this.getText(key);
-    });
-
-    // Update success card content
-    const successTitle = document.querySelector("#success-card h1");
-    if (successTitle) {
-      successTitle.textContent = this.getText("successTitle");
-    }
-
-    const successMessage = document.querySelector(
-      "#success-card p:first-of-type"
-    );
-    if (successMessage) {
-      successMessage.textContent = this.getText("successMessage");
-    }
-
-    const successSubtitle = document.querySelector("#success-card .message");
-    if (successSubtitle) {
-      successSubtitle.textContent = this.getText("successSubtitle");
-    }
-
-    // Update main question
-    const questionElement = document.querySelector(".question");
-    if (
-      questionElement &&
-      (questionElement.textContent.includes("đi chơi") ||
-        questionElement.textContent.includes("约会"))
-    ) {
-      questionElement.textContent = this.getText("subtitle");
-    }
-
-    // Update all questions
-    const locationQuestions = document.querySelectorAll(".question");
-    locationQuestions.forEach((q) => {
-      if (
-        q.textContent.includes("đi đâu") ||
-        q.textContent.includes("去哪里")
-      ) {
-        q.textContent = this.getText("questionLocation");
-      }
-      if (q.textContent.includes("ăn gì") || q.textContent.includes("吃什么")) {
-        q.textContent = this.getText("questionFood");
-      }
-      if (
-        q.textContent.includes("uống gì") ||
-        q.textContent.includes("喝什么")
-      ) {
-        q.textContent = this.getText("questionDrink");
-      }
-      if (
-        q.textContent.includes("rảnh khi nào") ||
-        q.textContent.includes("什么时候有空")
-      ) {
-        q.textContent = this.getText("questionTime");
+      if (stepNumber < step) {
+        stepEl.classList.add("completed");
+      } else if (stepNumber === step) {
+        stepEl.classList.add("active");
       }
     });
 
-    // Update main buttons
-    const yesBtn = document.getElementById("yes-btn");
-    if (yesBtn) {
-      yesBtn.textContent = this.getText("buttons.yes");
+    // Add haptic feedback on mobile
+    if ("vibrate" in navigator) {
+      navigator.vibrate(50);
     }
+  },
 
-    const noBtn = document.getElementById("no-btn");
-    if (noBtn) {
-      noBtn.innerHTML = "<b>" + this.getText("buttons.no") + "</b>";
+  nextStep() {
+    if (this.currentStep < this.totalSteps) {
+      this.updateProgress(this.currentStep + 1);
     }
+  },
 
-    // Update all other buttons
-    const chooseLocationBtn = document.getElementById("choose-location-btn");
-    if (chooseLocationBtn) {
-      chooseLocationBtn.textContent = this.getText("buttons.confirmLocation");
+  prevStep() {
+    if (this.currentStep > 1) {
+      this.updateProgress(this.currentStep - 1);
     }
+  },
 
-    const confirmLocationBtn = document.getElementById("confirm-location-btn");
-    if (confirmLocationBtn) {
-      const btnText = confirmLocationBtn.querySelector(".btn-text");
-      if (btnText) {
-        btnText.textContent = this.getText("buttons.confirmLocation");
+  hide() {
+    const container = document.getElementById("progress-container");
+    if (container) {
+      container.style.transform = "translateY(-100%)";
+      container.style.opacity = "0";
+      // Adjust body padding
+      document.body.style.paddingTop = "20px";
+    }
+  },
+
+  show() {
+    const container = document.getElementById("progress-container");
+    if (container) {
+      container.style.transform = "translateY(0)";
+      container.style.opacity = "1";
+      // Restore body padding
+      if (window.innerWidth <= 480) {
+        document.body.style.paddingTop = "80px";
+      } else if (window.innerWidth <= 768) {
+        document.body.style.paddingTop = "90px";
       } else {
-        confirmLocationBtn.textContent = this.getText(
-          "buttons.confirmLocation"
-        );
+        document.body.style.paddingTop = "100px";
       }
     }
+  },
+};
 
-    const confirmTimeBtn = document.getElementById("confirm-datetime");
-    if (confirmTimeBtn) {
-      confirmTimeBtn.textContent = this.getText("buttons.confirmTime");
+// Enhanced Toast Notification System
+const toastManager = {
+  container: null,
+  toasts: [],
+
+  init() {
+    this.container = document.getElementById("toast-container");
+    if (!this.container) {
+      this.container = document.createElement("div");
+      this.container.id = "toast-container";
+      this.container.className = "toast-container";
+      document.body.appendChild(this.container);
+    }
+  },
+
+  show(message, type = "info", title = "", duration = 4000) {
+    const toast = this.createToast(message, type, title, duration);
+    this.container.appendChild(toast);
+    this.toasts.push(toast);
+
+    // Trigger animation
+    setTimeout(() => toast.classList.add("show"), 100);
+
+    // Auto remove
+    setTimeout(() => this.remove(toast), duration);
+
+    return toast;
+  },
+
+  createToast(message, type, title, duration) {
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+
+    const icons = {
+      success: "✅",
+      error: "❌",
+      warning: "⚠️",
+      info: "ℹ️",
+    };
+
+    const titles = {
+      success: title || "Thành công!",
+      error: title || "Có lỗi xảy ra!",
+      warning: title || "Cảnh báo!",
+      info: title || "Thông tin",
+    };
+
+    toast.innerHTML = `
+      <div class="toast-icon">${icons[type] || icons.info}</div>
+      <div class="toast-content">
+        <div class="toast-title">${titles[type]}</div>
+        <div class="toast-message">${message}</div>
+      </div>
+      <button class="toast-close" onclick="toastManager.remove(this.parentElement)">×</button>
+      <div class="toast-progress"></div>
+    `;
+
+    // Progress bar animation
+    const progressBar = toast.querySelector(".toast-progress");
+    let width = 100;
+    const interval = setInterval(() => {
+      width -= 100 / (duration / 100);
+      progressBar.style.width = `${Math.max(0, width)}%`;
+      if (width <= 0) clearInterval(interval);
+    }, 100);
+
+    return toast;
+  },
+
+  remove(toast) {
+    if (toast && toast.parentElement) {
+      toast.classList.remove("show");
+      setTimeout(() => {
+        if (toast.parentElement) {
+          toast.parentElement.removeChild(toast);
+          this.toasts = this.toasts.filter((t) => t !== toast);
+        }
+      }, 400);
+    }
+  },
+
+  success(message, title) {
+    hapticManager.light();
+    return this.show(message, "success", title);
+  },
+
+  error(message, title) {
+    hapticManager.error();
+    return this.show(message, "error", title);
+  },
+
+  warning(message, title) {
+    hapticManager.medium();
+    return this.show(message, "warning", title);
+  },
+
+  info(message, title) {
+    hapticManager.light();
+    return this.show(message, "info", title);
+  },
+};
+
+// Enhanced Confetti Animation System
+const confettiManager = {
+  colors: ["#ff6b95", "#7600ff", "#ff8bb3", "#9d4edd", "#ffd23f", "#06ffa5"],
+
+  createConfetti(count = 100) {
+    const container = document.createElement("div");
+    container.className = "confetti-container";
+    container.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    `;
+    document.body.appendChild(container);
+
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        this.createSingleConfetti(container);
+      }, i * 20);
     }
 
-    const addTimeBtn = document.getElementById("add-datetime");
-    if (addTimeBtn) {
-      addTimeBtn.textContent = this.getText("buttons.addTime");
-    }
+    // Remove container after animation
+    setTimeout(() => {
+      container.remove();
+    }, 5000);
+  },
 
-    // Update location buttons
-    document.querySelectorAll(".location-btn").forEach((btn) => {
-      const location = btn.dataset.location;
-      if (location && this.getText(`locations.${location}`)) {
-        const span = btn.querySelector("span:last-child");
-        if (span) {
-          span.textContent = this.getText(`locations.${location}`);
+  createSingleConfetti(container) {
+    const confetti = document.createElement("div");
+    const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    const size = Math.random() * 8 + 4;
+    const startX = Math.random() * window.innerWidth;
+    const endX = startX + (Math.random() - 0.5) * 200;
+    const duration = Math.random() * 3 + 2;
+    const rotation = Math.random() * 360;
+    const rotationSpeed = Math.random() * 360 + 180;
+
+    confetti.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
+      top: -10px;
+      left: ${startX}px;
+      border-radius: ${Math.random() > 0.5 ? "50%" : "2px"};
+      transform: rotate(${rotation}deg);
+      animation: confettiFall ${duration}s linear forwards;
+    `;
+
+    // Add CSS animation
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes confettiFall {
+        to {
+          transform: translateY(${window.innerHeight + 20}px) translateX(${
+      endX - startX
+    }px) rotate(${rotation + rotationSpeed}deg);
+          opacity: 0;
         }
       }
+    `;
+    document.head.appendChild(style);
+
+    container.appendChild(confetti);
+
+    // Clean up
+    setTimeout(() => {
+      confetti.remove();
+      style.remove();
+    }, duration * 1000);
+  },
+
+  celebrate() {
+    // Create multiple bursts
+    this.createConfetti(50);
+    setTimeout(() => this.createConfetti(30), 500);
+    setTimeout(() => this.createConfetti(20), 1000);
+  },
+};
+
+// Enhanced Loading State Manager
+const loadingManager = {
+  show(element, text = "Đang tải...") {
+    if (!element) return;
+
+    element.classList.add("loading");
+    element.setAttribute("data-original-text", element.textContent);
+    element.innerHTML = `${text} <div class="loading-spinner"></div>`;
+    element.disabled = true;
+  },
+
+  hide(element) {
+    if (!element) return;
+
+    element.classList.remove("loading");
+    const originalText = element.getAttribute("data-original-text");
+    if (originalText) {
+      element.textContent = originalText;
+      element.removeAttribute("data-original-text");
+    }
+    element.disabled = false;
+  },
+
+  showSkeleton(container) {
+    if (!container) return;
+
+    container.innerHTML = `
+      <div class="loading-skeleton skeleton-title"></div>
+      <div class="loading-skeleton skeleton-text"></div>
+      <div class="loading-skeleton skeleton-text" style="width: 80%;"></div>
+      <div class="loading-skeleton skeleton-button"></div>
+    `;
+  },
+};
+
+// Enhanced Transition Manager
+const transitionManager = {
+  slideOut(element, direction = "down") {
+    return new Promise((resolve) => {
+      element.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+      element.style.transform =
+        direction === "down"
+          ? "translateY(100px) scale(0.9)"
+          : "translateY(-100px) scale(0.9)";
+      element.style.opacity = "0";
+
+      setTimeout(() => {
+        element.style.display = "none";
+        resolve();
+      }, 600);
     });
+  },
 
-    // Update food buttons
-    document.querySelectorAll(".food-btn").forEach((btn) => {
-      const food = btn.dataset.food;
-      if (food && this.getText(`foods.${food}`)) {
-        const span = btn.querySelector("span:last-child");
-        if (span) {
-          span.textContent = this.getText(`foods.${food}`).replace(
-            /^[^\s]+\s/,
-            ""
-          ); // Remove emoji
-        }
-      }
-    });
+  slideIn(element, direction = "up") {
+    return new Promise((resolve) => {
+      element.style.display = "block";
+      element.style.transform =
+        direction === "up"
+          ? "translateY(100px) scale(0.9)"
+          : "translateY(-100px) scale(0.9)";
+      element.style.opacity = "0";
+      element.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
 
-    // Update drink buttons
-    document.querySelectorAll(".drink-btn").forEach((btn) => {
-      const drink = btn.dataset.drink;
-      if (drink && this.getText(`drinks.${drink}`)) {
-        const span = btn.querySelector("span:last-child");
-        if (span) {
-          span.textContent = this.getText(`drinks.${drink}`).replace(
-            /^[^\s]+\s/,
-            ""
-          ); // Remove emoji
-        }
-      }
-    });
-
-    // Update placeholders
-    const locationDetailInput = document.getElementById(
-      "location-detail-input"
-    );
-    if (locationDetailInput) {
-      locationDetailInput.placeholder = this.getText(
-        "placeholders.locationInput"
-      );
-    }
-
-    const customFoodInput = document.getElementById("custom-food-input");
-    if (customFoodInput) {
-      customFoodInput.placeholder = this.getText("placeholders.customFood");
-    }
-
-    const customDrinkInput = document.getElementById("custom-drink-input");
-    if (customDrinkInput) {
-      customDrinkInput.placeholder = this.getText("placeholders.customDrink");
-    }
-
-    // Update form placeholders
-    const nameInput = document.getElementById("name");
-    if (nameInput) {
-      nameInput.placeholder = this.getText("placeholders.name");
-    }
-
-    const phoneInput = document.getElementById("phone");
-    if (phoneInput) {
-      phoneInput.placeholder = this.getText("placeholders.phone");
-    }
-
-    const emailInput = document.getElementById("email");
-    if (emailInput) {
-      emailInput.placeholder = this.getText("placeholders.email");
-    }
-
-    // Update helper text
-    const helperTexts = document.querySelectorAll(
-      ".input-helper-text .helper-text"
-    );
-    helperTexts.forEach((helperText) => {
-      if (
-        helperText.textContent.includes("100") ||
-        helperText.textContent.includes("字符")
-      ) {
-        helperText.textContent = this.getText("messages.charLimit");
-      }
-    });
-
-    // Update selected messages
-    const selectedMessages = document.querySelectorAll(".selected-message");
-    selectedMessages.forEach((msg) => {
-      if (
-        msg.textContent.includes("Đã chọn") ||
-        msg.textContent.includes("已选择")
-      ) {
-        const type =
-          msg.textContent.includes("địa điểm") ||
-          msg.textContent.includes("地点")
-            ? "location"
-            : msg.textContent.includes("món ăn") ||
-              msg.textContent.includes("食物")
-            ? "food"
-            : msg.textContent.includes("đồ uống") ||
-              msg.textContent.includes("饮料")
-            ? "drink"
-            : msg.textContent.includes("thời gian") ||
-              msg.textContent.includes("时间")
-            ? "time"
-            : "";
-
-        if (type) {
-          const parts = msg.textContent.split(":");
-          if (parts.length > 1) {
-            msg.textContent =
-              this.getText(`messages.${type}Selected`) + ":" + parts[1];
-          }
-        }
-      }
+      setTimeout(() => {
+        element.style.transform = "translateY(0) scale(1)";
+        element.style.opacity = "1";
+        resolve();
+      }, 50);
     });
   },
 };
 
+// Haptic Feedback Manager
+const hapticManager = {
+  vibrate(pattern) {
+    if ("vibrate" in navigator) {
+      navigator.vibrate(pattern);
+    }
+  },
+
+  light() {
+    this.vibrate(50);
+  },
+
+  medium() {
+    this.vibrate(100);
+  },
+
+  heavy() {
+    this.vibrate([100, 50, 100]);
+  },
+
+  success() {
+    this.vibrate([50, 50, 50, 50, 100]);
+  },
+
+  error() {
+    this.vibrate([200, 100, 200]);
+  },
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialize systems
+  toastManager.init();
+  progressManager.updateProgress(1);
+
+  // Welcome toast
+  setTimeout(() => {
+    toastManager.info("Chào mừng bạn đến với trang web! 💕", "Xin chào!");
+    hapticManager.light();
+  }, 1000);
+
+  // Handle window resize for progress indicator
+  window.addEventListener("resize", () => {
+    progressManager.show(); // Recalculate padding
+  });
+
   // Main UI elements with null checks
   const yesBtn = document.getElementById("yes-btn");
   const noBtn = document.getElementById("no-btn");
@@ -569,49 +476,109 @@ document.addEventListener("DOMContentLoaded", function () {
     API_URL: "https://api.telegram.org/bot",
   };
 
-  // Notification Management
-  const notificationManager = {
-    showNotification(message, type = "success", duration = 3000) {
-      const container = document.getElementById("notification-container");
-      if (!container) return;
+  // User tracking utilities
+  const userTracker = {
+    // Generate or get existing user ID
+    getUserId() {
+      let userId = localStorage.getItem("user_id");
+      if (!userId) {
+        userId =
+          "user_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("user_id", userId);
+      }
+      return userId;
+    },
 
-      const notification = document.createElement("div");
-      notification.className = `notification ${type}`;
+    // Get user's IP address
+    async getUserIP() {
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        console.error("Error getting IP:", error);
+        return "Unknown";
+      }
+    },
 
-      const icons = {
-        success: "✅",
-        error: "❌",
-        info: "ℹ️",
-        warning: "⚠️",
+    // Get user agent info
+    getUserAgent() {
+      return navigator.userAgent;
+    },
+
+    // Get device info
+    getDeviceInfo() {
+      const ua = navigator.userAgent;
+      let device = "Unknown";
+      let browser = "Unknown";
+      let os = "Unknown";
+
+      // Detect device type
+      if (/Mobile|Android|iPhone|iPad/.test(ua)) {
+        device = "Mobile";
+      } else if (/Tablet|iPad/.test(ua)) {
+        device = "Tablet";
+      } else {
+        device = "Desktop";
+      }
+
+      // Detect browser
+      if (ua.includes("Chrome")) browser = "Chrome";
+      else if (ua.includes("Firefox")) browser = "Firefox";
+      else if (ua.includes("Safari")) browser = "Safari";
+      else if (ua.includes("Edge")) browser = "Edge";
+
+      // Detect OS
+      if (ua.includes("Windows")) os = "Windows";
+      else if (ua.includes("Mac")) os = "macOS";
+      else if (ua.includes("Linux")) os = "Linux";
+      else if (ua.includes("Android")) os = "Android";
+      else if (ua.includes("iOS")) os = "iOS";
+
+      return { device, browser, os };
+    },
+
+    // Get session info
+    getSessionInfo() {
+      const sessionStart = sessionStorage.getItem("session_start");
+      if (!sessionStart) {
+        sessionStorage.setItem("session_start", Date.now().toString());
+        return { isNewSession: true, sessionStart: Date.now() };
+      }
+      return { isNewSession: false, sessionStart: parseInt(sessionStart) };
+    },
+
+    // Track user interactions
+    trackInteraction(action, details = {}) {
+      const interactions = JSON.parse(
+        localStorage.getItem("user_interactions") || "[]"
+      );
+      const interaction = {
+        action,
+        details,
+        timestamp: Date.now(),
+        url: window.location.href,
       };
+      interactions.push(interaction);
 
-      notification.innerHTML = `
-        <div class="notification-content">
-          <span class="notification-icon">${icons[type] || icons.info}</span>
-          <span class="notification-text">${message}</span>
-          <button class="notification-close">×</button>
-        </div>
-      `;
+      // Keep only last 50 interactions to avoid storage bloat
+      if (interactions.length > 50) {
+        interactions.splice(0, interactions.length - 50);
+      }
 
-      container.appendChild(notification);
+      localStorage.setItem("user_interactions", JSON.stringify(interactions));
+    },
 
-      // Show notification
-      setTimeout(() => notification.classList.add("show"), 100);
-
-      // Auto remove
-      const autoRemove = setTimeout(() => {
-        notification.classList.remove("show");
-        setTimeout(() => notification.remove(), 300);
-      }, duration);
-
-      // Manual close
-      notification
-        .querySelector(".notification-close")
-        .addEventListener("click", () => {
-          clearTimeout(autoRemove);
-          notification.classList.remove("show");
-          setTimeout(() => notification.remove(), 300);
-        });
+    // Get user interactions summary
+    getInteractionsSummary() {
+      const interactions = JSON.parse(
+        localStorage.getItem("user_interactions") || "[]"
+      );
+      const summary = {};
+      interactions.forEach((interaction) => {
+        summary[interaction.action] = (summary[interaction.action] || 0) + 1;
+      });
+      return summary;
     },
   };
 
@@ -648,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     },
 
-    formatFormData() {
+    async formatFormData() {
       const locationNames = {
         cafe: "☕ Café",
         restaurant: "🍽️ Đi ănnn",
@@ -660,13 +627,82 @@ document.addEventListener("DOMContentLoaded", function () {
         travel: "🌍 Du lịch",
 
         karaoke: "🎤 Karaoke",
-        home: "🏠 Ở nhà(anh)",
+        home: "🏠 Ở nhà(mình)",
         custom: "✨ Nơi khác",
       };
 
+      // Get tracking information
+      const userIP = await userTracker.getUserIP();
+      const deviceInfo = userTracker.getDeviceInfo();
+      const sessionInfo = userTracker.getSessionInfo();
+      const userId = userTracker.getUserId();
+      const userAgent = userTracker.getUserAgent();
+      const currentTime = new Date().toLocaleString("vi-VN", {
+        timeZone: "Asia/Ho_Chi_Minh",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+
       let message = `🌸 <b>THÔNG TIN HẸN HÒ MỚI</b> 🌸\n\n`;
 
-      // Bỏ phần thông tin cá nhân
+      // Get user interactions summary
+      const interactionsSummary = userTracker.getInteractionsSummary();
+      const lastSessionDuration = localStorage.getItem("last_session_duration");
+
+      // Add tracking information at the top
+      message += `🔍 <b>THÔNG TIN TRACKING:</b>\n`;
+      message += `• User ID: <code>${userId}</code>\n`;
+      message += `• IP Address: <code>${userIP}</code>\n`;
+      message += `• Device: ${deviceInfo.device} | ${deviceInfo.browser} | ${deviceInfo.os}\n`;
+      message += `• Session: ${sessionInfo.isNewSession ? "Mới" : "Cũ"}\n`;
+      message += `• Thời gian: ${currentTime}\n`;
+
+      // Add interaction summary
+      if (Object.keys(interactionsSummary).length > 0) {
+        message += `• Tương tác: `;
+        const interactions = Object.entries(interactionsSummary)
+          .map(([action, count]) => `${action}(${count})`)
+          .join(", ");
+        message += `${interactions}\n`;
+      }
+
+      if (lastSessionDuration) {
+        const duration = Math.round(parseInt(lastSessionDuration) / 1000);
+        message += `• Thời gian session trước: ${duration}s\n`;
+      }
+
+      message += `• User Agent: <code>${userAgent.substring(
+        0,
+        100
+      )}...</code>\n\n`;
+
+      // Thông tin cá nhân
+      if (state.userInfo && state.userInfo.name) {
+        message += `👤 <b>THÔNG TIN CÁ NHÂN:</b>\n`;
+        message += `• Tên: ${state.userInfo.name}\n`;
+
+        if (state.userInfo.phone) {
+          message += `• Số điện thoại: ${state.userInfo.phone}\n`;
+        }
+
+        if (state.userInfo.email) {
+          message += `• Email: ${state.userInfo.email}\n`;
+        }
+
+        if (state.userInfo.address) {
+          message += `• Địa chỉ đón: ${state.userInfo.address}\n`;
+        }
+
+        if (state.userInfo.note) {
+          message += `• Ghi chú: ${state.userInfo.note}\n`;
+        }
+
+        message += `\n`;
+      }
 
       // Địa điểm
       if (state.selectedLocations.length > 0) {
@@ -750,6 +786,44 @@ document.addEventListener("DOMContentLoaded", function () {
       return message;
     },
 
+    // Send visitor tracking info
+    async sendVisitorInfo() {
+      try {
+        const userIP = await userTracker.getUserIP();
+        const deviceInfo = userTracker.getDeviceInfo();
+        const sessionInfo = userTracker.getSessionInfo();
+        const userId = userTracker.getUserId();
+        const userAgent = userTracker.getUserAgent();
+        const currentTime = new Date().toLocaleString("vi-VN", {
+          timeZone: "Asia/Ho_Chi_Minh",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+
+        const message =
+          `🔍 <b>VISITOR TRACKING</b> 🔍\n\n` +
+          `• User ID: <code>${userId}</code>\n` +
+          `• IP Address: <code>${userIP}</code>\n` +
+          `• Device: ${deviceInfo.device}\n` +
+          `• Browser: ${deviceInfo.browser}\n` +
+          `• OS: ${deviceInfo.os}\n` +
+          `• Session: ${sessionInfo.isNewSession ? "New" : "Returning"}\n` +
+          `• Visit Time: ${currentTime}\n` +
+          `• Page: ${window.location.href}\n` +
+          `• Referrer: ${document.referrer || "Direct"}\n` +
+          `• User Agent: <code>${userAgent.substring(0, 150)}...</code>`;
+
+        return await this.sendMessage(message);
+      } catch (error) {
+        console.error("Error sending visitor info:", error);
+        return false;
+      }
+    },
+
     // Function để lấy Chat ID tự động
     async getChatId() {
       try {
@@ -781,15 +855,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const success = await this.sendMessage(testMessage);
 
       if (success) {
-        notificationManager.showNotification(
+        toastManager.success(
           "Bot Telegram hoạt động tốt! ✅",
-          "success"
+          "Kết nối thành công"
         );
       } else {
-        notificationManager.showNotification(
-          "Lỗi kết nối bot Telegram! ❌",
-          "error"
-        );
+        toastManager.error("Lỗi kết nối bot Telegram! ❌", "Kết nối thất bại");
       }
 
       return success;
@@ -1091,27 +1162,27 @@ document.addEventListener("DOMContentLoaded", function () {
   // Make the "No" button always escape the card immediately
   let noBtnClickCount = 0;
   const noBtnResponses = [
-    "Thật hả em?",
-    "Em chắc chứ?",
+    "Thật hả bạn?",
+    "Bạn chắc chứ?",
     "Nghĩ lại đi mà~",
     "Cơ hội cuối cùng đó nha...",
     "Làm ơn đi mà~",
-    "Anh đoán là em bấm nhầm nút rồi đó",
-    "Em đang làm tan nát trái tim anh đấy!",
-    "Thôi mà em...",
+    "Mình đoán là bạn bấm nhầm nút rồi đó",
+    "Bạn đang làm tan nát trái tim mình đấy!",
+    "Thôi mà bạn...",
     "Đừng ngại nữa nha!",
     "Như vậy là không ngoan đâu đó~",
-    "Ý em là có, đúng không?",
+    "Ý bạn là có, đúng không?",
     "Thử lại lần nữa nha?",
-    "Anh vẫn đang đợi em đó...",
+    "Mình vẫn đang đợi bạn đó...",
     "Nghĩ lại một chút được không?",
-    "Em vừa bấm nhầm nút có rồi đó nha~",
-    "Có khi em nhấn nhầm rồi á?",
-    "Thêm một cơ hội cho anh nha?",
+    "Bạn vừa bấm nhầm nút có rồi đó nha~",
+    "Có khi bạn nhấn nhầm rồi á?",
+    "Thêm một cơ hội cho mình nha?",
     "Còn bây giờ thì sao nè?",
-    "Em đổi ý chưa vậy?",
-    "Anh biết mà, em sẽ đồng ý thôi~",
-    "Nói đồng ý đi em!",
+    "Bạn đổi ý chưa vậy?",
+    "Mình biết mà, bạn sẽ đồng ý thôi~",
+    "Nói đồng ý đi bạn!",
   ];
 
   // Function to move No button and change text
@@ -1313,8 +1384,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Yes button clicked!");
     e.stopPropagation();
 
+    // Track the interaction
+    userTracker.trackInteraction("yes_button_click", {
+      button: "yes",
+      page: "main",
+      timestamp: Date.now(),
+    });
+
     try {
-      // Removed notification to reduce clutter
+      // Show success toast and update progress with haptic
+      toastManager.success("Tuyệt vời! Bạn đã đồng ý! 💕", "Yay!");
+      hapticManager.success();
+      progressManager.nextStep(); // Move to step 2
 
       // Hide the yes arrow pointer when yes is clicked if it exists
       if (yesArrow) {
@@ -1365,36 +1446,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }, i * 50);
       }
 
+      // Enhanced transition with confetti
       mainCard.style.transform = "scale(1.05)";
+      confettiManager.createConfetti(30); // Small confetti burst
 
-      setTimeout(() => {
+      setTimeout(async () => {
         console.log("Starting transition to success card...");
-        mainCard.style.transform = "scale(0.8)";
-        mainCard.style.opacity = "0";
+        await transitionManager.slideOut(mainCard);
 
-        setTimeout(() => {
-          console.log("Hiding main card, showing success card...");
-          mainCard.style.display = "none";
-          successCard.style.display = "block";
+        // Start perpetual hearts for eternal celebration
+        startPerpetualHearts();
 
-          // Start perpetual hearts for eternal celebration
-          startPerpetualHearts();
+        await transitionManager.slideIn(successCard);
 
-          setTimeout(() => {
-            console.log("Revealing success card...");
-            successCard.classList.remove("hidden");
-            successCard.style.opacity = "1";
-            successCard.style.transform = "scale(1)";
+        // Show the success arrow pointing right if it exists
+        if (successArrow) {
+          successArrow.classList.remove("hidden");
+          successArrow.style.opacity = "1";
+        }
 
-            // Show the success arrow pointing right if it exists
-            if (successArrow) {
-              successArrow.classList.remove("hidden");
-              successArrow.style.opacity = "1";
-            }
-
-            celebrateSuccess();
-          }, 50);
-        }, 500);
+        celebrateSuccess();
       }, 300);
 
       // Hide nervous cat when Yes is clicked
@@ -1415,39 +1486,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Choose location button handler
   if (chooseLocationBtn) {
-    chooseLocationBtn.addEventListener("click", function () {
-      // Transition to location selection
-      successCard.style.transform = "scale(0.8)";
-      successCard.style.opacity = "0";
+    chooseLocationBtn.addEventListener("click", async function () {
+      // Enhanced transition to location selection
+      loadingManager.show(this, "Đang chuyển...");
 
-      setTimeout(() => {
-        successCard.style.display = "none";
-        locationCard.style.display = "block";
+      setTimeout(async () => {
+        await transitionManager.slideOut(successCard);
+        await transitionManager.slideIn(locationCard);
 
-        setTimeout(() => {
-          locationCard.classList.remove("hidden");
-          locationCard.style.opacity = "1";
-          locationCard.style.transform = "scale(1)";
+        loadingManager.hide(this);
 
-          // Create some hearts in the location card too
-          for (let i = 0; i < 15; i++) {
+        // Create some hearts in the location card too
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.top = Math.random() * 100 + "%";
+            heart.style.animationDuration = Math.random() * 2 + 2 + "s";
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            heart.style.transform = `scale(${Math.random() * 0.8 + 0.5})`;
+            locationCelebration.appendChild(heart);
+
             setTimeout(() => {
-              const heart = document.createElement("div");
-              heart.classList.add("heart");
-              heart.style.left = Math.random() * 100 + "%";
-              heart.style.top = Math.random() * 100 + "%";
-              heart.style.animationDuration = Math.random() * 2 + 2 + "s";
-              heart.style.opacity = Math.random() * 0.7 + 0.3;
-              heart.style.transform = `scale(${Math.random() * 0.8 + 0.5})`;
-              locationCelebration.appendChild(heart);
-
-              setTimeout(() => {
-                heart.remove();
-              }, 4000);
-            }, i * 100);
-          }
-        }, 50);
-      }, 500);
+              heart.remove();
+            }, 4000);
+          }, i * 100);
+        }
+      }, 300);
     });
   }
 
@@ -1501,8 +1567,9 @@ document.addEventListener("DOMContentLoaded", function () {
         state.currentSelectedLocation = locationKey;
         state.selectedLocations = [locationKey];
 
-        // Create heart burst around the button
+        // Create heart burst around the button with haptic
         utils.createHeartBurst(this, 15);
+        hapticManager.light();
 
         // Always show detail input with updated text
         showLocationDetailInput(locationKey);
@@ -1664,7 +1731,7 @@ document.addEventListener("DOMContentLoaded", function () {
         beach: "🏖️ Biển",
         mountain: "⛰️ Núi",
         karaoke: "🎤 Karaoke",
-        home: "🏠 Ở nhà(anh)",
+        home: "🏠 Ở nhà(mình)",
         custom: "✨ Nơi khác",
       };
 
@@ -1705,17 +1772,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (response.ok) {
           console.log("✅ Đã gửi thông tin địa điểm qua Telegram thành công!");
-          notificationManager.showNotification(
-            "Đã gửi qua Telegram! 📱",
-            "success"
-          );
+          toastManager.success("Đã gửi qua Telegram! 📱", "Gửi thành công");
         } else {
           throw new Error("Failed to send to Telegram");
         }
       }
     } catch (error) {
       console.error("❌ Lỗi khi gửi qua Telegram:", error);
-      notificationManager.showNotification("Lỗi khi gửi Telegram", "error");
+      toastManager.error("Lỗi khi gửi Telegram", "Gửi thất bại");
     }
   }
 
@@ -1843,10 +1907,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // Send to Telegram
       sendLocationToTelegram(locationKey, locationDetail);
 
-      notificationManager.showNotification(
-        "Địa điểm đã được chọn và gửi!",
-        "success"
-      );
+      // Show success toast and update progress
+      toastManager.success("Địa điểm đã được chọn! 📍", "Tuyệt vời!");
+      progressManager.nextStep(); // Move to step 3
 
       // Add celebration hearts - shorter and more concentrated burst
       for (let i = 0; i < 20; i++) {
@@ -1885,19 +1948,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }, i * 30);
       }
 
-      // Transition directly to datetime card (skip info card)
+      // Transition to info card to collect user information
       locationCard.style.transform = "scale(0.8)";
       locationCard.style.opacity = "0";
 
       setTimeout(() => {
         locationCard.style.display = "none";
-        const datetimeCard = document.getElementById("datetime-card");
-        datetimeCard.style.display = "block";
+        const infoCard = document.getElementById("info-card");
+        infoCard.style.display = "block";
 
         setTimeout(() => {
-          datetimeCard.classList.remove("hidden");
-          datetimeCard.style.opacity = "1";
-          datetimeCard.style.transform = "scale(1)";
+          infoCard.classList.remove("hidden");
+          infoCard.style.opacity = "1";
+          infoCard.style.transform = "scale(1)";
 
           // Create some hearts in the datetime card too
           const datetimeCelebration = document.getElementById(
@@ -2408,9 +2471,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 1000);
 
             // Show error message
-            notificationManager.showNotification(
+            toastManager.error(
               "Vui lòng chọn thời gian trong tương lai!",
-              "error"
+              "Thời gian không hợp lệ"
             );
           } else {
             dateOptions.push({ date, time });
@@ -2424,8 +2487,9 @@ document.addEventListener("DOMContentLoaded", function () {
         state.dateOptions = dateOptions;
         utils.saveToStorage("dateOptions", dateOptions);
 
-        // Show success notification
-        notificationManager.showNotification("Đang gửi thông tin...", "info");
+        // Show success toast and update progress
+        toastManager.info("Đang gửi thông tin...", "Vui lòng đợi");
+        progressManager.nextStep(); // Move to step 5
 
         // Add loading state to button
         this.innerHTML = 'Đang gửi... <div class="loading-spinner"></div>';
@@ -2434,7 +2498,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Send data directly to Telegram
         setTimeout(async () => {
           try {
-            const formattedMessage = telegramBot.formatFormData();
+            const formattedMessage = await telegramBot.formatFormData();
             console.log("Sending message to Telegram:", formattedMessage);
             const success = await telegramBot.sendMessage(formattedMessage);
 
@@ -2452,10 +2516,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 setTimeout(() => {
                   completionCard.classList.add("show");
-                  notificationManager.showNotification(
-                    "✅ Form đã được gửi tới Telegram thành công! Cảm ơn bạn! 💕",
-                    "success"
+                  toastManager.success(
+                    "Đã được gửi tới Dương thành công! Cảm ơn bạn! 💕",
+                    "Hoàn thành!"
                   );
+
+                  // Trigger confetti celebration
+                  confettiManager.celebrate();
                   createCompletionCelebration();
                 }, 50);
               }, 500);
@@ -2464,25 +2531,25 @@ document.addEventListener("DOMContentLoaded", function () {
               this.innerHTML = "Xác nhận thời gian";
               this.disabled = false;
               console.error("Failed to send message to Telegram");
-              notificationManager.showNotification(
-                "❌ Không thể gửi tới Telegram. Vui lòng kiểm tra cấu hình bot!",
-                "error"
+              toastManager.error(
+                "Không thể gửi tới Telegram. Vui lòng kiểm tra cấu hình bot!",
+                "Lỗi gửi"
               );
             }
           } catch (error) {
             console.error("Error:", error);
             this.innerHTML = "Xác nhận thời gian";
             this.disabled = false;
-            notificationManager.showNotification(
+            toastManager.error(
               "Có lỗi xảy ra. Vui lòng kiểm tra kết nối mạng!",
-              "error"
+              "Lỗi kết nối"
             );
           }
         }, 1000);
       } else {
-        notificationManager.showNotification(
+        toastManager.warning(
           "Vui lòng chọn đầy đủ ngày và giờ!",
-          "error"
+          "Thiếu thông tin"
         );
       }
     });
@@ -2497,7 +2564,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         // Format and send data to Telegram
-        const formattedMessage = telegramBot.formatFormData();
+        const formattedMessage = await telegramBot.formatFormData();
         const success = await telegramBot.sendMessage(formattedMessage);
 
         if (success) {
@@ -2513,10 +2580,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               setTimeout(() => {
                 completionCard.classList.add("show");
-                notificationManager.showNotification(
-                  "Đã gửi thành công! 🎉",
-                  "success"
-                );
+                toastManager.success("Đã gửi thành công! 🎉", "Hoàn thành!");
                 createCompletionCelebration();
               }, 50);
             }, 500);
@@ -2525,18 +2589,18 @@ document.addEventListener("DOMContentLoaded", function () {
           // Error - show error message and reset button
           this.innerHTML = "Xác nhận gửi ♥";
           this.disabled = false;
-          notificationManager.showNotification(
+          toastManager.error(
             "Có lỗi xảy ra khi gửi. Vui lòng thử lại!",
-            "error"
+            "Gửi thất bại"
           );
         }
       } catch (error) {
         console.error("Error:", error);
         this.innerHTML = "Xác nhận gửi ♥";
         this.disabled = false;
-        notificationManager.showNotification(
+        toastManager.error(
           "Có lỗi xảy ra. Vui lòng kiểm tra kết nối mạng!",
-          "error"
+          "Lỗi kết nối"
         );
       }
     });
@@ -2577,7 +2641,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // Fallback: copy to clipboard
         navigator.clipboard.writeText(window.location.href).then(() => {
-          notificationManager.showNotification("Đã copy link!", "success");
+          toastManager.success("Đã copy link!", "Sao chép thành công");
         });
       }
     });
@@ -2709,6 +2773,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // If somehow the No button is clicked, show final message then convert to Yes
   noBtn.addEventListener("click", function (e) {
     e.preventDefault();
+
+    // Track the interaction
+    userTracker.trackInteraction("no_button_click", {
+      button: "no",
+      page: "main",
+      clickCount: noBtnClickCount,
+      timestamp: Date.now(),
+    });
 
     // Move button one more time and show final message
     moveNoButton();
@@ -2889,7 +2961,7 @@ document.addEventListener("DOMContentLoaded", function () {
           beach: "🏖️ Biển",
           mountain: "⛰️ Núi",
           karaoke: "🎤 Karaoke",
-          home: "🏠 Ở nhà(anh)",
+          home: "🏠 Ở nhà(mình)",
           custom: "✨ Nơi khác",
         };
 
@@ -3084,6 +3156,25 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   };
 
+  // Character counter for textarea
+  const noteInput = document.getElementById("note");
+  const charCountElement = document.querySelector(".char-count");
+
+  if (noteInput && charCountElement) {
+    noteInput.addEventListener("input", function () {
+      const currentLength = this.value.length;
+      const maxLength = this.getAttribute("maxlength") || 200;
+      charCountElement.textContent = `${currentLength}/${maxLength}`;
+
+      // Change color when approaching limit
+      if (currentLength > maxLength * 0.8) {
+        charCountElement.style.color = "#ff6b6b";
+      } else {
+        charCountElement.style.color = "";
+      }
+    });
+  }
+
   // Handle info form submission with enhanced validation
   const infoForm = document.getElementById("info-form");
   if (infoForm) {
@@ -3094,15 +3185,20 @@ document.addEventListener("DOMContentLoaded", function () {
       const nameInput = document.getElementById("name");
       const phoneInput = document.getElementById("phone");
       const emailInput = document.getElementById("email");
+      const addressInput = document.getElementById("address");
+      const noteInput = document.getElementById("note");
 
       const name = nameInput.value.trim();
       const phone = phoneInput.value.trim();
       const email = emailInput.value.trim();
+      const address = addressInput.value.trim();
+      const note = noteInput.value.trim();
 
       // Clear previous errors
       validation.clearError(nameInput);
       validation.clearError(phoneInput);
       validation.clearError(emailInput);
+      validation.clearError(addressInput);
 
       // Validate all fields
       let hasErrors = false;
@@ -3119,9 +3215,18 @@ document.addEventListener("DOMContentLoaded", function () {
         hasErrors = true;
       }
 
-      const emailError = validation.validateEmail(email);
-      if (emailError) {
-        validation.showError(emailInput, emailError);
+      // Validate email (optional, but if provided must be valid)
+      if (email) {
+        const emailError = validation.validateEmail(email);
+        if (emailError) {
+          validation.showError(emailInput, emailError);
+          hasErrors = true;
+        }
+      }
+
+      // Validate address (required)
+      if (!address) {
+        validation.showError(addressInput, "Vui lòng nhập địa chỉ đón");
         hasErrors = true;
       }
 
@@ -3131,14 +3236,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Store user info in localStorage
-      state.userInfo = { name, phone, email };
+      state.userInfo = { name, phone, email, address, note };
       utils.saveToStorage("userInfo", state.userInfo);
 
-      // Show success notification
-      notificationManager.showNotification(
-        "Thông tin đã được lưu thành công!",
-        "success"
+      // Show success toast and update progress
+      toastManager.success(
+        "Thông tin đã được lưu thành công! 📝",
+        "Hoàn thành!"
       );
+      progressManager.nextStep(); // Move to step 4
 
       // Add celebration hearts
       const infoCelebration = document.getElementById("info-celebration");
@@ -3151,7 +3257,6 @@ document.addEventListener("DOMContentLoaded", function () {
           const angle = Math.random() * Math.PI * 2;
           const distance = Math.random() * 100 + 50;
           const duration = Math.random() * 0.7 + 0.7;
-          x;
           heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
           heart.style.opacity = Math.random() * 0.5 + 0.5;
 
@@ -3259,9 +3364,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update config
         TELEGRAM_CONFIG.CHAT_ID = chatId.toString();
 
-        notificationManager.showNotification(
+        toastManager.success(
           `Chat ID: ${chatId}`,
-          "success",
+          "Lấy Chat ID thành công",
           5000
         );
         this.innerHTML = "Đã lấy Chat ID ✅";
@@ -3269,9 +3374,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Enable test button
         if (testBotBtn) testBotBtn.disabled = false;
       } else {
-        notificationManager.showNotification(
+        toastManager.error(
           "Không tìm thấy tin nhắn. Hãy gửi tin nhắn cho bot trước!",
-          "error"
+          "Không tìm thấy Chat ID"
         );
         this.innerHTML = "Lấy Chat ID";
         this.disabled = false;
@@ -3317,34 +3422,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Language selector initialization with flag buttons
-  const flagButtons = document.querySelectorAll(".flag-btn");
-  if (flagButtons.length > 0) {
-    // Load saved language or default to Vietnamese
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "vi";
-    languageManager.currentLanguage = savedLanguage;
-
-    // Set active flag button
-    flagButtons.forEach((btn) => {
-      btn.classList.remove("active");
-      if (btn.dataset.lang === savedLanguage) {
-        btn.classList.add("active");
+  // Send visitor tracking info when page loads
+  setTimeout(async () => {
+    try {
+      const sessionInfo = userTracker.getSessionInfo();
+      // Only send visitor info for new sessions to avoid spam
+      if (sessionInfo.isNewSession) {
+        console.log("Sending visitor tracking info...");
+        await telegramBot.sendVisitorInfo();
+        console.log("Visitor tracking info sent successfully");
       }
-    });
+    } catch (error) {
+      console.error("Error sending visitor tracking:", error);
+    }
+  }, 2000); // Wait 2 seconds after page load
 
-    // Update UI with saved language
-    languageManager.updateUI();
+  // Track page visibility changes
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      // User is leaving the page
+      const sessionDuration =
+        Date.now() - userTracker.getSessionInfo().sessionStart;
+      localStorage.setItem("last_session_duration", sessionDuration.toString());
+    }
+  });
 
-    // Add event listeners for flag button clicks
-    flagButtons.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        // Remove active class from all buttons
-        flagButtons.forEach((b) => b.classList.remove("active"));
-        // Add active class to clicked button
-        this.classList.add("active");
-        // Set language
-        languageManager.setLanguage(this.dataset.lang);
-      });
-    });
-  }
+  // Track when user leaves the page
+  window.addEventListener("beforeunload", () => {
+    const sessionDuration =
+      Date.now() - userTracker.getSessionInfo().sessionStart;
+    localStorage.setItem("last_session_duration", sessionDuration.toString());
+  });
 });

@@ -3,12 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>A Special Question</title>
+    <title>Dating with Dbill</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Updated favicon with new purple heart SVG -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPGRlZnM+CiAgICA8cGF0aCBpZD0iaGVhcnQtYSIgZD0iTTcuNjQ2NDg0MzcsMS4xOTMxMTUyMyBDOC4zMzA1NjY0MSw1LjMwMTM1MDkxIDYuOTYxNDI1NzgsNy45NDU1NTY2NCAzLjUzOTA2MjUsOS4xMjU3MzI0MiBDMC4xMTY2OTkyMTksMTAuMzA1OTA4MiAtMC44MDE3NTc4MTMsMTIuOTQ5MjE4OCAwLjc4MzY5MTQwNiwxNy4wNTU2NjQxIEwzLDE5LjI2NTM4MDkgTDEyLjUyMjk0OTIsOS41NDc4NTE1NiBDMTMuNTA1MDQ1Niw2LjQxNjE3ODM5IDEyLjgwODI2ODIsMy44Mjk1MDg0NiAxMC40MzI2MTcyLDEuNzg3ODQxOCBDOC44NTc3NDc0LDAuNTc0OTUxMTcyIDcuOTI5MDM2NDYsMC4zNzY3MDg5ODQgNy42NDY0ODQzNywxLjE5MzExNTIzIFoiLz4KICAgIDxwYXRoIGlkPSJoZWFydC1jIiBkPSJNMTguNjcwNzMzNSwxMC4wNDY5OTQ5IEMyMC40NDQ0MjA0LDguMjA0NzUzMzMgMjAuNDQyODkzMSw1LjIyMTU0MzA4IDE4LjY2NzMyMDgsMy4zODEyNTM1NiBDMTYuODkxNzQ4NCwxLjU0MDk2NDA1IDE0LjAxMzQ0ODIsMS41MzkzODEwNSAxMi4yMzU5OTI1LDMuMzc3NzE2NDggTDEwLjk3MDIwNjksNC42ODk2MzgyMyBMOS43NDY2MzAyNCwzLjQyMTA2MjU3IEM3Ljk3NDIxNjc3LDEuNTg0NDM0OTggNS4xMDA4NzAxNSwxLjU4NDc0OTQ0IDMuMzI4ODMwOTUsMy40MjE3NjQ5NCBDMS41NTY3OTE3NCw1LjI1ODc4MDQzIDEuNTU3MDk1MTQsOC4yMzY4NTY1NyAzLjMyOTUwODYxLDEwLjA3MzQ4NDIgTDEwLjk3NTA0NzMsMTggTDE4LjY3MDczMzUsMTAuMDQ2OTk0OSBaIE05LjUzNTU1MDQ4LDE5LjM4ODQ2OTkgTDEuODkwMzYwMzQsMTEuNDYyMzE1NCBDLTAuNjI5NzQ0MDM3LDguODUwOTA4MjUgLTAuNjMwMTcyNTA5LDQuNjQ1MTg1NjUgMS44ODkzODk1OSwyLjAzMzIzNzQ1IEM0LjM3NjU1MTcyLC0wLjU0NTEyMjc1NiA4LjM5NTQzMzk3LC0wLjYxNzMyOTY2IDEwLjk2ODcxNjksMS44MTczMDE2MiBDMTMuNTQ0NTU3NiwtMC42NjMxMjY5NCAxNy42MDEyMywtMC42MDQxMjkyMzkgMjAuMTA2NjE1NiwxLjk5MjU3NDE5IEMyMi42MjkyMzUyLDQuNjA3MTM5NzggMjIuNjMxMzkwNCw4LjgxNjg2MDg3IDIwLjExMTUwMDIsMTEuNDM0MTQ3IEwxMi40NDI3MDc0LDE5LjM4MjQ1ODQgQzEyLjE1NDQ2ODUsMTkuNjgxMjAzMiAxMS43OTY0NzAxLDE5Ljg3MDQ1MzQgMTEuNDE5ODQ4MSwxOS45NTAyMDg4IEMxMC43NjA5MzcxLDIwLjA5OTc2MzcgMTAuMDQwODkwNCwxOS45MTIzODEzIDkuNTM1NTUwNDgsMTkuMzg4NDY5OSBaIi8+CiAgPC9kZWZzPgogIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSAyKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4KSI+CiAgICAgIDxtYXNrIGlkPSJoZWFydC1iIiBmaWxsPSIjZmZmZmZmIj4KICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNoZWFydC1hIi8+CiAgICAgIDwvbWFzaz4KICAgICAgPHVzZSBmaWxsPSIjRDhEOEQ4IiB4bGluazpocmVmPSIjaGVhcnQtYSIvPgogICAgICA8ZyBmaWxsPSIjRkZBMEEwIiBtYXNrPSJ1cmwoI2hlYXJ0LWIpIj4KICAgICAgICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05IC0yKSIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8bWFzayBpZD0iaGVhcnQtZCIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2hlYXJ0LWMiLz4KICAgIDwvbWFzaz4KICAgIDx1c2UgZmlsbD0iIzAwMDAwMCIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjaGVhcnQtYyIvPgogICAgPGcgZmlsbD0iIzc2MDBGRiIgbWFzaz0idXJsKCNoZWFydC1kKSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTIpIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=">
+    <!-- Enhanced Open Graph and Twitter Card meta tags -->
+    <meta property="og:title" content="A Special Question">
+    <meta property="og:description" content="Someone has a special question for you...">
+    <meta property="og:image" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:url" content="https://duongbill.github.io/will-you-date-me/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="A Special Question">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A Special Question">
+    <meta name="twitter:description" content="Someone has a special question for you...">
+    <meta name="twitter:image" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
+
+    <!-- Additional meta tags to prevent other images from being used -->
+    <meta name="description" content="Someone has a special question for you...">
+    <meta name="robots" content="index, follow">
+
+    <!-- Prevent any other images from being used as preview -->
+    <meta property="og:image:secure_url" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
+    <meta name="twitter:image:src" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
@@ -32,8 +56,37 @@
     </script>
     <div class="cherry-blossoms" id="cherry-blossoms"></div>
     
-    <!-- Notification Container -->
-    <div class="notification-container" id="notification-container"></div>
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-steps">
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Câu hỏi</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Địa điểm</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Thông tin</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Thời gian</div>
+            </div>
+            <div class="step" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-label">Hoàn thành</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
 
     <!-- Telegram Setup Panel (chỉ hiện khi cần setup) -->
     <div class="telegram-setup" id="telegram-setup" style="display: none;">
@@ -53,18 +106,7 @@
         </div>
     </div>
 
-    <!-- Language selector -->
-    <div class="language-selector">
-        <button class="flag-btn active" data-lang="vi" title="Tiếng Việt">
-            <svg class="flag-icon" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-                <rect width="30" height="20" fill="#da251d"/>
-                <polygon points="15,6 16.5,10.5 21,10.5 17.25,13.5 18.75,18 15,15 11.25,18 12.75,13.5 9,10.5 13.5,10.5" fill="#ffff00"/>
-            </svg>
-        </button>
-        <button class="flag-btn" data-lang="zh" title="中文">
-            <img class="flag-icon" src="cotq.jpg" alt="China Flag">
-        </button>
-    </div>
+
 
     <!-- Dark mode toggle -->
     <div class="theme-toggle">
@@ -167,9 +209,9 @@
             </div>
             
             <div class="card-content">
-                <h1>Xin chào <span class="special-text gorgeous">Huyền</span>...</h1>
+                <h1>Xin chào <span class="special-text gorgeous">Ai đó</span>...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">Em muốn đi chơi với anh chứ ?</p>
+                <p class="question">Bạn muốn đi chơi với mình chứ ?</p>
                 <div class="buttons">
                     <button id="yes-btn" class="btn yes-btn">Cóoooo ♥</button>
                     <button id="no-btn" class="btn no-btn"><b>Hong ☹</button>
@@ -180,10 +222,10 @@
         <div class="card hidden" id="success-card">
             <div class="hearts-celebration" id="celebration"></div>
             <div class="card-content">
-                <h1 data-translate="successTitle">Cảm ơn vì em đã đồng ý</h1>
+                <h1>Cảm ơn vì bạn đã đồng ý</h1>
                 <div class="sakura-divider"></div>
-                <p data-translate="successMessage">Anh rất mong chờ buổi gặp sắp tới!</p>
-                <p class="message" data-translate="successSubtitle">Anh hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
+                <p>Mình rất mong chờ buổi gặp sắp tới!</p>
+                <p class="message">Mình hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
                 <div class="cute-animation">
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                          width="320" height="220" viewBox="0 0 370.000000 270.000000"
@@ -270,7 +312,7 @@
                     </div>
                 </div>
                 <div class="next-step">
-                    <button id="choose-location-btn" class="btn yes-btn" data-translate="buttons.confirmLocation">Chọn địa điểm mà em muốn đi chơi ♥</button>
+                    <button id="choose-location-btn" class="btn yes-btn">Chọn địa điểm mà bạn muốn đi chơi ♥</button>
                 </div>
             </div>
         </div>
@@ -280,7 +322,7 @@
                 <div class="card-content">
                     <h1>Chọn nơi <span class="special-text">đi chơi</span>...</h1>
                     <div class="sakura-divider"></div>
-                    <p class="question" data-translate="questionLocation">Em muốn đi đâu? 💕</p>
+                    <p class="question">Bạn muốn đi đâu? 💕</p>
                     <div class="location-options">
                         <button class="location-btn" data-location="cafe" data-needs-detail="true">
                             <span class="location-icon">☕</span>
@@ -333,7 +375,7 @@
                         <div class="location-detail-input-group">
                             <label for="location-detail-input" class="location-detail-label">
                                 <span class="detail-icon">📍</span>
-                                <span class="detail-text" data-translate="placeholders.locationDetail">Em có chỗ nào cụ thể muốn tới hông:</span>
+                                <span class="detail-text">Bạn có chỗ nào cụ thể muốn tới hông:</span>
                             </label>
                             <input
                                 type="text"
@@ -344,7 +386,7 @@
                             >
                             <div class="input-helper-text">
                                 <span class="char-count">0/100</span>
-                                <span class="helper-tip" data-translate="messages.locationTip">Đi đâu cũm được miễn là nơi em mún heheh</span>
+                                <span class="helper-tip">Đi đâu cũm được miễn là nơi bạn mún heheh</span>
                             </div>
                         </div>
                     </div>
@@ -352,7 +394,7 @@
                     <div class="selected-location-message hidden" id="selected-location-message">
                         <div class="message-content">
                             <span class="message-icon">💕</span>
-                            <p class="message-text">Lựa chọn tuyệt vời nha lớn!</p>
+                            <p class="message-text">Lựa chọn tuyệt vời nha!</p>
                             <div class="selected-info" id="selected-info">
                                 <span class="selected-type"></span>
                                 <span class="selected-detail"></span>
@@ -363,64 +405,92 @@
                     <div class="location-actions">
                         <button id="confirm-location-btn" class="btn yes-btn" disabled>
                             <span class="btn-icon">💖</span>
-                            <span class="btn-text" data-translate="buttons.confirmLocation">Xác nhận & Tiếp tục</span>
+                            <span class="btn-text">Xác nhận & Tiếp tục</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-                <!-- Thay thế phần chọn đồ ăn bằng form nhập thông tin cá nhân
                 <div class="card hidden" id="info-card">
                     <div class="hearts-celebration" id="info-celebration"></div>
                     <div class="card-content">
                         <h1>Hãy để lại <span class="special-text">thông tin</span> nhé!</h1>
                         <div class="sakura-divider"></div>
-                        <p class="question">Nhập thông tin để mình có thể liên hệ với bạn 💌</p>
-        
-                        <form id="user-info-form">
-                            <div class="input-group">
-                                <label for="name">Tên của bạn</label>
-                                <input type="text" id="name" name="name" placeholder="Nhập tên của bạn" required>
+                        <p class="question">Nhập thông tin để mình có thể liên hệ với bạn (Không thì biết ai mà đón) 💌</p>
+
+                        <form id="info-form" class="info-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="name" class="input-label">
+                                        <span class="label-icon">👤</span>
+                                        <span class="label-text">Tên của bạn</span>
+                                    </label>
+                                    <input type="text" id="name" name="name" placeholder="Tên của em" required class="form-input">
+                                    <div class="input-helper">
+                                        <span class="helper-text">Tên của bạn, hoặc biệt danh</span>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="phone" class="input-label">
+                                        <span class="label-icon">📱</span>
+                                        <span class="label-text">Số điện thoại</span>
+                                    </label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" required class="form-input">
+                                    <div class="input-helper">
+                                        <span class="helper-text">Để có thể liên lạc khi cần thiết</span>
+                                    </div>
+                                </div>
                             </div>
-        
-                            <div class="input-group">
-                                <label for="phone">Số điện thoại</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="email" class="input-label">
+                                        <span class="label-icon">📧</span>
+                                        <span class="label-text">Email</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" placeholder="Email (không bắt buộc)" class="form-input">
+                                    <div class="input-helper">
+                                        <span class="helper-text">Email để gửi thông tin chi tiết về buổi hẹn của chúng ta</span>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="address" class="input-label">
+                                        <span class="label-icon">📍</span>
+                                        <span class="label-text">Địa chỉ đón</span>
+                                    </label>
+                                    <input type="text" id="address" name="address" placeholder="Địa chỉ để mình đón bạn" required class="form-input">
+                                    <div class="input-helper">
+                                        <span class="helper-text">Nơi mình có thể đến đón bạn</span>
+                                    </div>
+                                </div>
                             </div>
-        
-                            <div class="input-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
+
+                            <div class="input-group full-width">
+                                <label for="note" class="input-label">
+                                    <span class="label-icon">💭</span>
+                                    <span class="label-text">Ghi chú thêm (tùy chọn)</span>
+                                </label>
+                                <textarea id="note" name="note" placeholder="Có gì muốn nói thêm không...?" class="form-textarea" rows="3" maxlength="200"></textarea>
+                                <div class="input-helper">
+                                    <span class="char-count">0/200</span>
+                                    <span class="helper-text">Nếu bạn còn có mong muốn hay chia sẻ gì khác nói ở đây nhaa</span>
+                                </div>
                             </div>
-        
-                            <button type="submit" class="btn yes-btn">Xác nhận ♥</button>
+
+                            <button type="submit" id="confirm-info-btn" class="btn yes-btn">Tiếp tục ♥</button>
                         </form>
                     </div>
-                </div> -->
-                <div class="card hidden" id="info-card">
-                    <p class="question">Nhập thông tin để mình có thể liên hệ với bạn 💌</p>
-                    <div class="sakura-divider"></div>
-                    <form id="info-form">
-                        <label for="name">Tên:</label>
-                        <input type="text" id="name" name="name" required>
-                        
-                        <label for="phone">Số điện thoại:</label>
-                        <input type="tel" id="phone" name="phone" required>
-                
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                
-                        <button type="submit" id="confirm-info-btn" class="btn yes-btn">Tiếp tục ♥</button>
-                    </form>
                 </div>
                 
         <!-- Add the date and time selection card -->
         <div class="card hidden" id="datetime-card">
             <div class="hearts-celebration" id="datetime-celebration"></div>
             <div class="card-content">
-                <h1>Giờ hãy em chọn <span class="special-text">thời gian nhé</span>...</h1>
+                <h1>Giờ hãy bạn chọn <span class="special-text">thời gian nhé</span>...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">Em muốn anh sang đón em lúc mấy giờ?</p>
+                <p class="question">Bạn muốn mình sang đón bạn lúc mấy giờ?</p>
                 <div class="datetime-container">
                     <div class="datetime-row" id="datetime-row-template">
                         <div class="date-input">
@@ -511,10 +581,10 @@
         <div class="card hidden" id="completion-card">
             <div class="hearts-celebration" id="completion-hearts"></div>
             <div class="card-content">
-                <h1>Cảm ơn em rất nhiều! <span class="special-text">💕</span></h1>
+                <h1>Cảm ơn bạn rất nhiều! <span class="special-text">💕</span></h1>
                 <div class="sakura-divider"></div>
                 <div class="celebration-icon">🎉</div>
-                <p class="big-message">Anh đã được thông tin thành công!</p>
+                <p class="big-message">Mình đã được thông tin thành công!</p>
                 <p class="message">Hy vọng chúng ta sẽ có những khoảnh khắc tuyệt vời bên nhau! ✨</p>
 
                 <div class="final-actions">

@@ -383,7 +383,7 @@ body::before {
     }
 
 
-}
+
 
 /* Mobile responsive design */
 @media (max-width: 768px) {
@@ -3701,7 +3701,6 @@ body:hover .scrollbar-decoration {
         font-size: 12px;
         padding: 6px 10px 6px 12px;
     }
-}
 
 /* Heart trail effect for mouse cursor */
 .heart-trail-container {

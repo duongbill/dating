@@ -1,40 +1,788 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Dating with Dbill</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Gửi lời nhắn</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Updated favicon with new purple heart SVG -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPGRlZnM+CiAgICA8cGF0aCBpZD0iaGVhcnQtYSIgZD0iTTcuNjQ2NDg0MzcsMS4xOTMxMTUyMyBDOC4zMzA1NjY0MSw1LjMwMTM1MDkxIDYuOTYxNDI1NzgsNy45NDU1NTY2NCAzLjUzOTA2MjUsOS4xMjU3MzI0MiBDMC4xMTY2OTkyMTksMTAuMzA1OTA4MiAtMC44MDE3NTc4MTMsMTIuOTQ5MjE4OCAwLjc4MzY5MTQwNiwxNy4wNTU2NjQxIEwzLDE5LjI2NTM4MDkgTDEyLjUyMjk0OTIsOS41NDc4NTE1NiBDMTMuNTA1MDQ1Niw2LjQxNjE3ODM5IDEyLjgwODI2ODIsMy44Mjk1MDg0NiAxMC40MzI2MTcyLDEuNzg3ODQxOCBDOC44NTc3NDc0LDAuNTc0OTUxMTcyIDcuOTI5MDM2NDYsMC4zNzY3MDg5ODQgNy42NDY0ODQzNywxLjE5MzExNTIzIFoiLz4KICAgIDxwYXRoIGlkPSJoZWFydC1jIiBkPSJNMTguNjcwNzMzNSwxMC4wNDY5OTQ5IEMyMC40NDQ0MjA0LDguMjA0NzUzMzMgMjAuNDQyODkzMSw1LjIyMTU0MzA4IDE4LjY2NzMyMDgsMy4zODEyNTM1NiBDMTYuODkxNzQ4NCwxLjU0MDk2NDA1IDE0LjAxMzQ0ODIsMS41MzkzODEwNSAxMi4yMzU5OTI1LDMuMzc3NzE2NDggTDEwLjk3MDIwNjksNC42ODk2MzgyMyBMOS43NDY2MzAyNCwzLjQyMTA2MjU3IEM3Ljk3NDIxNjc3LDEuNTg0NDM0OTggNS4xMDA4NzAxNSwxLjU4NDc0OTQ0IDMuMzI4ODMwOTUsMy40MjE3NjQ5NCBDMS41NTY3OTE3NCw1LjI1ODc4MDQzIDEuNTU3MDk1MTQsOC4yMzY4NTY1NyAzLjMyOTUwODYxLDEwLjA3MzQ4NDIgTDEwLjk3NTA0NzMsMTggTDE4LjY3MDczMzUsMTAuMDQ2OTk0OSBaIE05LjUzNTU1MDQ4LDE5LjM4ODQ2OTkgTDEuODkwMzYwMzQsMTEuNDYyMzE1NCBDLTAuNjI5NzQ0MDM3LDguODUwOTA4MjUgLTAuNjMwMTcyNTA5LDQuNjQ1MTg1NjUgMS44ODkzODk1OSwyLjAzMzIzNzQ1IEM0LjM3NjU1MTcyLC0wLjU0NTEyMjc1NiA4LjM5NTQzMzk3LC0wLjYxNzMyOTY2IDEwLjk2ODcxNjksMS44MTczMDE2MiBDMTMuNTQ0NTU3NiwtMC42NjMxMjY5NCAxNy42MDEyMywtMC42MDQxMjkyMzkgMjAuMTA2NjE1NiwxLjk5MjU3NDE5IEMyMi42MjkyMzUyLDQuNjA3MTM5NzggMjIuNjMxMzkwNCw4LjgxNjg2MDg3IDIwLjExMTUwMDIsMTEuNDM0MTQ3IEwxMi40NDI3MDc0LDE5LjM4MjQ1ODQgQzEyLjE1NDQ2ODUsMTkuNjgxMjAzMiAxMS43OTY0NzAxLDE5Ljg3MDQ1MzQgMTEuNDE5ODQ4MSwxOS45NTAyMDg4IEMxMC43NjA5MzcxLDIwLjA5OTc2MzcgMTAuMDQwODkwNCwxOS45MTIzODEzIDkuNTM1NTUwNDgsMTkuMzg4NDY5OSBaIi8+CiAgPC9kZWZzPgogIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSAyKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4KSI+CiAgICAgIDxtYXNrIGlkPSJoZWFydC1iIiBmaWxsPSIjZmZmZmZmIj4KICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNoZWFydC1hIi8+CiAgICAgIDwvbWFzaz4KICAgICAgPHVzZSBmaWxsPSIjRDhEOEQ4IiB4bGluazpocmVmPSIjaGVhcnQtYSIvPgogICAgICA8ZyBmaWxsPSIjRkZBMEEwIiBtYXNrPSJ1cmwoI2hlYXJ0LWIpIj4KICAgICAgICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05IC0yKSIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8bWFzayBpZD0iaGVhcnQtZCIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2hlYXJ0LWMiLz4KICAgIDwvbWFzaz4KICAgIDx1c2UgZmlsbD0iIzAwMDAwMCIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjaGVhcnQtYyIvPgogICAgPGcgZmlsbD0iIzc2MDBGRiIgbWFzaz0idXJsKCNoZWFydC1kKSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTIpIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=">
-    <!-- Enhanced Open Graph and Twitter Card meta tags -->
-    <meta property="og:title" content="A Special Question">
-    <meta property="og:description" content="Someone has a special question for you...">
-    <meta property="og:image" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:url" content="https://duongbill.github.io/will-you-date-me/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPGRlZnM+CiAgICA8cGF0aCBpZD0iaGVhcnQtYSIgZD0iTTcuNjQ2NDg0MzcsMS4xOTMxMTUyMyBDOC4zMzA1NjY0MSw1LjMwMTM1MDkxIDYuOTYxNDI1NzgsNy45NDU1NTY2NCAzLjUzOTA2MjUsOS4xMjU3MzI0MiBDMC4xMTY2OTkyMTksMTAuMzA1OTA4MiAtMC44MDE3NTcxMywxMi45NDkyMTg4IDAuNzgzNjkxNDA2LDE3LjA1NTY2NDEgTDMtMTkuMjY1MzgwOSBMMTIuNTIyOTQ5Miw5LjU0Nzg1MTU2IEMxMy41MDUwNDU2LDYuNDE2MTc4MzkgMTIuODA4MjY4MiwzLjgyOTUwODQ2IDEwLjQzMjYxNzIsMS43ODc4NDE4IEM4Ljg1Nzc0NzQtMC41NzQ5NTExNzIgNy45MjkwMzY0NiwwLjM3NjcwODk4NCA3LjY0NjQ4NDM3LDEuMTkzMTE1MjMgWiIvPgogICAgPHBhdGggaWQ9ImhlYXJ0LWMiIGQ9Ik0xOC42NzA3MzM1LDEwLjA0Njk5NDkgQzIwLjQ0NDQyMDQsOC4yMDQ3NTMzMyAyMC40NDI4OTMxLDUuMjIxNTQzMDggMTguNjY3MzIwOCwzLjM4MTI1MzU2IEMxNi44OTE3NDg0LDEuNTQwOTY0MDUgMTQuMDEzNDQ4MiwxLjUzOTM4MTA1IDEyLjIzNTk5MjUsMy4zNzc3MTY0OCBMMTAuOTcwMjA2OSw0LjY4OTYzODIzIEw5Ljc0NjYzMDI0LDMuNDIxMDYyNTcgQzcuOTc0MjE2NzcsMS41ODQ0MzQ5OCA1LjEwMDg3MDE1LDEuNTg0NzQ5NDQgMy4zMjg4MzA5NSwzLjQyMTc2NDk0IEMxLjU1Njc5MTc0LDUuMjU4NzgwNDMgMS41NTcwOTUxNCw4LjIzNjg1NjU3IDMuMzI5NTA4NjEsMTAuMDczNDg0MiBMMTAuOTc1MDQ3MywxOCBMMTguNjcwNzMzNSwxMC4wNDY5OTQ5IFogTTkuNTM1NTUwNDgsMTkuMzg4NDY5OSBMMi44OTAzNjAzNCwxMS40NjIzMTU0IEMtMC42Mjk3NDQwMzcsOC44NTA5MDgyNSAtMC42MzAxNzI1MDksNC42NDUxODU2NSAxLjg4OTM4OTU5LDIuMDMzMjM3NDUgQzQuMzc2NTUxNzIsLTAuNTQ1MTIyNzU2IDguMzk1NDMzOTcsLTAuNjE3MzI5NjYgMTAuOTY4NzE2OSwxLjgxNzMwMTYyIEMxMy41NDQ1NTc2LC0wLjY2MzEyNjk0IDE3LjYwMTIzLC0wLjYwNDEyOTIzOSAyMC4xMDY2MTU2LDEuOTkyNTc0MTkgQzIyLjYyOTIzNTIsNC42MDcxMzk3OCAyMi42MzEzOTA0LDguODE2ODYwODcgMjAuMTExNTAwMiwxMS40MzQxNDcgTDEyLjQ0MjcwNzQsMTkuMzgyNDU4NCBDMTIuMTU0NDY4NSwxOS42ODEyMDMyIDExLjc5NjQ3MDEsMTkuODcwNDUzNCAxMS40MTk4NDgxLDE5Ljk1MDIwODggQzEwLjc2MDkzNzEsMjAuMDk5NzYzNyAxMC4wNDA4OTA0LDE5LjkxMjM4MTMgOS41MzU1NTA0OCwxOS4zODg0Njk5IFoiLz4KICA8L2RlZnM+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDIpIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgpIj4KICAgICAgPG1hc2sgaWQ9ImhlYXJ0LWIiIGZpbGw9IiNmZmZmZmYiPgogICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2hlYXJ0LWEiLz4KICAgICAgPC9tYXNrPgogICAgICA8dXNlIGZpbGw9IiNEOEQ4RDgiIHhsaW5rOmhyZWY9IiNoZWFydC1hIi8+CiAgICAgIDxnIGZpbGw9IiNGRkEwQTAiIG1hc2s9InVybCgjaGVhcnQtYikpIj4KICAgICAgICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05IC0yKSIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8bWFzayBpZD0iaGVhcnQtZCIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2hlYXJ0LWMiLz4KICAgIDwvbWFzaz4KICAgIDx1c2UgZmlsbD0iIzAwMDAwMCIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjaGVhcnQtYyIvPgogICAgPGcgZmlsbD0iIzc2MDBGRiIgbWFzaz0idXJsKCNoZWFydC1kKSI+CiAgICAgIDxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdHJhbnNmb3J0PSJ0cmFuc2xhdGUoLTEgLTIpIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=">
+    
+    <meta property="og:title" content="Gửi lời nhắn">
+    <meta property="og:description" content="Bạn có điều gì muốn nói...">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="A Special Question">
 
-    <!-- Twitter Card meta tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="A Special Question">
-    <meta name="twitter:description" content="Someone has a special question for you...">
-    <meta name="twitter:image" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
+    <style>
+        /* --- CÀI ĐẶT GỐC & BIẾN --- */
+        :root {
+            /* Light Theme - Modern Gradient Palette */
+            --bg-gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg-light: rgba(255, 255, 255, 0.95);
+            --card-glass-light: rgba(255, 255, 255, 0.25);
+            --text-color-light: #2d3748;
+            --text-secondary-light: #4a5568;
+            --special-text-light: #e53e3e;
+            --accent-light: #805ad5;
+            --divider-light: linear-gradient(90deg, transparent, #e53e3e, transparent);
+            --btn-primary-bg: linear-gradient(135deg, #e53e3e, #c53030);
+            --btn-primary-hover: linear-gradient(135deg, #c53030, #9c2626);
+            --btn-secondary-bg: rgba(255, 255, 255, 0.2);
+            --btn-secondary-hover: rgba(255, 255, 255, 0.3);
+            --btn-secondary-text: #2d3748;
+            --input-bg-light: rgba(255, 255, 255, 0.9);
+            --input-border-light: rgba(255, 255, 255, 0.3);
+            --input-focus-light: #805ad5;
+            --shadow-light: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --shadow-card-light: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --toast-bg-light: rgba(255, 255, 255, 0.95);
 
-    <!-- Additional meta tags to prevent other images from being used -->
-    <meta name="description" content="Someone has a special question for you...">
-    <meta name="robots" content="index, follow">
+            /* Dark Theme - Modern Dark Palette */
+            --bg-gradient-dark: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            --card-bg-dark: rgba(45, 55, 72, 0.95);
+            --card-glass-dark: rgba(45, 55, 72, 0.25);
+            --text-color-dark: #f7fafc;
+            --text-secondary-dark: #e2e8f0;
+            --special-text-dark: #f56565;
+            --accent-dark: #9f7aea;
+            --divider-dark: linear-gradient(90deg, transparent, #f56565, transparent);
+            --btn-primary-bg-dark: linear-gradient(135deg, #f56565, #e53e3e);
+            --btn-primary-hover-dark: linear-gradient(135deg, #e53e3e, #c53030);
+            --btn-secondary-bg-dark: rgba(45, 55, 72, 0.5);
+            --btn-secondary-hover-dark: rgba(45, 55, 72, 0.7);
+            --btn-secondary-text-dark: #f7fafc;
+            --input-bg-dark: rgba(45, 55, 72, 0.8);
+            --input-border-dark: rgba(255, 255, 255, 0.1);
+            --input-focus-dark: #9f7aea;
+            --shadow-dark: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-card-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --toast-bg-dark: rgba(45, 55, 72, 0.95);
+        }
 
-    <!-- Prevent any other images from being used as preview -->
-    <meta property="og:image:secure_url" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
-    <meta name="twitter:image:src" content="https://duongbill.github.io/will-you-date-me/someone.jpg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        /* --- CHẾ ĐỘ SÁNG (MẶC ĐỊNH) --- */
+        body {
+            background: var(--bg-gradient-light);
+            color: var(--text-color-light);
+            min-height: 100vh;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 149, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+        .card {
+            background: var(--card-bg-light);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 { 
+            color: var(--text-color-light);
+            background: linear-gradient(135deg, var(--text-color-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .special-text { 
+            color: var(--special-text-light);
+            font-weight: 700;
+        }
+        .gorgeous { color: var(--accent-light); }
+        .sakura-divider { 
+            background: var(--divider-light);
+            height: 3px;
+            border-radius: 2px;
+        }
+        .btn.yes-btn {
+            background: var(--btn-primary-bg);
+            color: white;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn.yes-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn.yes-btn:hover::before {
+            left: 100%;
+        }
+        .btn.yes-btn:hover { 
+            background: var(--btn-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(229, 62, 62, 0.3);
+        }
+        .btn.secondary-btn {
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .btn.secondary-btn:hover { 
+            background: var(--btn-secondary-hover);
+            transform: translateY(-2px);
+        }
+        .form-textarea {
+            background: var(--input-bg-light);
+            border: 2px solid var(--input-border-light);
+            color: var(--text-color-light);
+            backdrop-filter: blur(10px);
+        }
+        .form-textarea:focus { 
+            border-color: var(--input-focus-light);
+            box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.1);
+        }
+        .input-helper { color: var(--text-secondary-light); }
+        .toast {
+            background: var(--toast-bg-light);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-light);
+            color: var(--text-color-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .telegram-setup {
+            background: var(--card-bg-light);
+            backdrop-filter: blur(20px);
+            color: var(--text-color-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .theme-toggle label { 
+            background: var(--card-bg-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- CHẾ ĐỘ TỐI --- */
+        .dark-mode {
+            background: var(--bg-gradient-dark);
+            color: var(--text-color-dark);
+        }
+        .dark-mode::before {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(159, 122, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 101, 101, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(159, 122, 234, 0.2) 0%, transparent 50%);
+        }
+        .dark-mode .card {
+            background: var(--card-bg-dark);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode h1 { 
+            background: linear-gradient(135deg, var(--text-color-dark), var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .dark-mode .special-text { 
+            color: var(--special-text-dark);
+            font-weight: 700;
+        }
+        .dark-mode .gorgeous { color: var(--accent-dark); }
+        .dark-mode .sakura-divider { 
+            background: var(--divider-dark);
+            height: 3px;
+            border-radius: 2px;
+        }
+        .dark-mode .btn.yes-btn {
+            background: var(--btn-primary-bg-dark);
+            color: white;
+        }
+        .dark-mode .btn.yes-btn:hover { 
+            background: var(--btn-primary-hover-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 101, 101, 0.3);
+        }
+        .dark-mode .btn.secondary-btn {
+            background: var(--btn-secondary-bg-dark);
+            color: var(--btn-secondary-text-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .btn.secondary-btn:hover { 
+            background: var(--btn-secondary-hover-dark);
+            transform: translateY(-2px);
+        }
+        .dark-mode .form-textarea {
+            background: var(--input-bg-dark);
+            border: 2px solid var(--input-border-dark);
+            color: var(--text-color-dark);
+        }
+        .dark-mode .form-textarea:focus { 
+            border-color: var(--input-focus-dark);
+            box-shadow: 0 0 0 3px rgba(159, 122, 234, 0.1);
+        }
+        .dark-mode .input-helper { color: var(--text-secondary-dark); }
+        .dark-mode .toast {
+            background: var(--toast-bg-dark);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-dark);
+            color: var(--text-color-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .telegram-setup {
+            background: var(--card-bg-dark);
+            backdrop-filter: blur(20px);
+            color: var(--text-color-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .theme-toggle label { 
+            background: var(--card-bg-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .theme-toggle .sun { fill: var(--text-color-dark); }
+        .dark-mode .theme-toggle .moon { fill: var(--text-color-dark); }
+        .dark-mode #darkmode-toggle:checked + label .sun {
+            transform: scale(0);
+        }
+        .dark-mode #darkmode-toggle:checked + label .moon {
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* --- STYLES CƠ BẢN --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card {
+            border-radius: 32px;
+            padding: 40px 32px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            animation: cardFloat 6s ease-in-out infinite;
+        }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .card.hidden {
+            display: none;
+        }
+        .card-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        p, .question {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        .sakura-divider {
+            height: 4px;
+            width: 100px;
+            margin: 25px auto;
+            border-radius: 2px;
+            position: relative;
+        }
+        .sakura-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+        
+        /* --- NÚT BẤM --- */
+        .btn {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px;
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .btn:disabled:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* --- FORM NHẬP LIỆU --- */
+        .full-width {
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-textarea {
+            width: 100%;
+            padding: 20px 24px;
+            border-radius: 20px;
+            border: 2px solid;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            resize: vertical;
+            min-height: 140px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+        .form-textarea:focus {
+            outline: none;
+            transform: translateY(-2px);
+        }
+        .form-textarea::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        .form-textarea:focus::placeholder {
+            opacity: 0.6;
+            transform: translateY(-2px);
+        }
+        .input-helper {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            text-align: left;
+            margin-top: 8px;
+        }
+        .char-count {
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+        .dark-mode .char-count {
+            color: var(--accent-dark);
+        }
+        .helper-text {
+            text-align: right;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        /* --- CARD HOÀN THÀNH --- */
+        .celebration-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: celebrationBounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes celebrationBounce {
+            0%, 20%, 50%, 80%, 100% { 
+                transform: translateY(0) scale(1); 
+            }
+            40% { 
+                transform: translateY(-15px) scale(1.1); 
+            }
+            60% { 
+                transform: translateY(-8px) scale(1.05); 
+            }
+        }
+        .big-message {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--special-text-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .dark-mode .big-message {
+            background: linear-gradient(135deg, var(--special-text-dark), var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- HIỆU ỨNG --- */
+        .hidden { 
+            display: none; 
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hearts-celebration {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: heartFloat 5s ease-in-out forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 149, 0.5));
+        }
+        @keyframes heartFloat {
+            0% { 
+                transform: translateY(0) scale(0.5) rotate(0deg); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: translateY(-150px) scale(1.2) rotate(180deg); 
+                opacity: 0.8; 
+            }
+            100% { 
+                transform: translateY(-300px) scale(0.3) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+        .cherry-blossoms {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .blossom {
+            position: absolute;
+            font-size: 18px;
+            color: var(--special-text-light);
+            opacity: 0.8;
+            animation: blossomFall 12s linear forwards;
+            filter: drop-shadow(0 0 8px rgba(255, 107, 149, 0.3));
+        }
+        .dark-mode .blossom {
+            color: var(--special-text-dark);
+            filter: drop-shadow(0 0 8px rgba(245, 101, 101, 0.3));
+        }
+        @keyframes blossomFall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0.8;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Hiệu ứng Rung (Cải thiện) */
+        .shake {
+            animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+        
+        /* Hiệu ứng Pulse cho buttons */
+        .btn.pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(229, 62, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+        }
+
+
+        /* --- THÔNG BÁO (TOAST) --- */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+        }
+        .toast {
+            border-radius: 16px;
+            padding: 20px 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateX(100%) scale(0.8);
+            animation: toastSlideIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards, toastFadeOut 0.5s 4.5s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        .toast::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .toast.error { 
+            border-left: 4px solid #ff4d4d;
+        }
+        .toast.error::before {
+            background: linear-gradient(180deg, #ff4d4d, #ff7875);
+        }
+        .toast.success { 
+            border-left: 4px solid #52c41a;
+        }
+        .toast.success::before {
+            background: linear-gradient(180deg, #52c41a, #73d13d);
+        }
+        @keyframes toastSlideIn {
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+        @keyframes toastFadeOut {
+            to { 
+                opacity: 0; 
+                transform: translateX(100%) scale(0.8); 
+            }
+        }
+
+        /* --- CẤU HÌNH TELEGRAM --- */
+        .telegram-setup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-light);
+            z-index: 2000;
+            animation: modalSlideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        .telegram-setup h3 { 
+            margin-bottom: 20px; 
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .telegram-setup ol { 
+            margin-left: 24px; 
+            margin-bottom: 24px; 
+            line-height: 1.6;
+        }
+        .telegram-setup .setup-buttons { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            justify-content: center; 
+        }
+
+        /* --- DARK MODE TOGGLE --- */
+        .theme-toggle {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+        }
+        .theme-toggle input { display: none; }
+        .theme-toggle label {
+            cursor: pointer;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: var(--shadow-card-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .theme-toggle label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        .theme-toggle label:hover::before {
+            transform: translateX(100%);
+        }
+        .dark-mode .theme-toggle label { 
+            box-shadow: var(--shadow-card-dark); 
+        }
+        .theme-toggle svg {
+            width: 26px;
+            height: 26px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: absolute;
+        }
+        .theme-toggle .sun {
+            fill: var(--text-color-light);
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        .theme-toggle .moon {
+            fill: var(--text-color-light);
+            transform: scale(0) rotate(-90deg);
+            opacity: 0;
+        }
+        #darkmode-toggle:checked + label .sun {
+            transform: scale(0) rotate(90deg);
+            opacity: 0;
+        }
+        #darkmode-toggle:checked + label .moon {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .container {
+                max-width: 100%;
+            }
+            .card {
+                padding: 32px 24px;
+                border-radius: 24px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p, .question {
+                font-size: 1.1rem;
+            }
+            .btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+            .form-textarea {
+                padding: 16px 20px;
+                font-size: 1rem;
+                min-height: 120px;
+            }
+            .theme-toggle {
+                top: 16px;
+                left: 16px;
+            }
+            .theme-toggle label {
+                width: 48px;
+                height: 48px;
+            }
+            .theme-toggle svg {
+                width: 22px;
+                height: 22px;
+            }
+            .toast-container {
+                top: 16px;
+                right: 16px;
+                left: 16px;
+                max-width: none;
+            }
+            .telegram-setup {
+                width: 95%;
+                padding: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                padding: 24px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    
     <script>
         // Initialize dark mode immediately to prevent flash of wrong theme
         (function() {
@@ -56,47 +804,17 @@
     </script>
     <div class="cherry-blossoms" id="cherry-blossoms"></div>
     
-    <!-- Progress Indicator -->
-    <div class="progress-container" id="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-steps">
-            <div class="step active" data-step="1">
-                <div class="step-circle">1</div>
-                <div class="step-label">Câu hỏi</div>
-            </div>
-            <div class="step" data-step="2">
-                <div class="step-circle">2</div>
-                <div class="step-label">Địa điểm</div>
-            </div>
-            <div class="step" data-step="3">
-                <div class="step-circle">3</div>
-                <div class="step-label">Thông tin</div>
-            </div>
-            <div class="step" data-step="4">
-                <div class="step-circle">4</div>
-                <div class="step-label">Thời gian</div>
-            </div>
-            <div class="step" data-step="5">
-                <div class="step-circle">5</div>
-                <div class="step-label">Hoàn thành</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Enhanced Toast Notification Container -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- Telegram Setup Panel (chỉ hiện khi cần setup) -->
     <div class="telegram-setup" id="telegram-setup" style="display: none;">
         <div class="setup-content">
             <h3>🤖 Cấu hình Telegram Bot</h3>
-            <p>Để nhận thông tin form qua Telegram:</p>
+            <p>Trang của bạn chưa được cấu hình. Vui lòng:</p>
             <ol>
-                <li>Gửi tin nhắn bất kỳ cho bot của bạn</li>
-                <li>Nhấn nút "Lấy Chat ID" bên dưới</li>
-                <li>Test bot để đảm bảo hoạt động</li>
+                <li>Điền <b>TOKEN</b> bot của bạn vào file HTML.</li>
+                <li>Gửi tin nhắn <code>/start</code> cho bot của bạn.</li>
+                <li>Nhấn nút "Lấy Chat ID" bên dưới.</li>
+                <li>Copy <b>Chat ID</b> và điền vào file HTML.</li>
             </ol>
             <div class="setup-buttons">
                 <button id="get-chat-id-btn" class="btn secondary-btn">Lấy Chat ID</button>
@@ -106,9 +824,6 @@
         </div>
     </div>
 
-
-
-    <!-- Dark mode toggle -->
     <div class="theme-toggle">
         <input type="checkbox" id="darkmode-toggle">
         <label for="darkmode-toggle">
@@ -128,481 +843,401 @@
             </svg>
         </label>
     </div>
-    
-
 
     <div class="container">
-        <div class="card" id="main-card">
-            <div class="hearts-container" id="hearts-container"></div>
-            <!-- Nervous cat -->
-            <div class="nervous-cat">
-                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="120" height="70" viewBox="0 0 498.000000 284.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g class="sweat-drops">
-                        <ellipse class="sweat-drop drop1" cx="1650" cy="1800" rx="30" ry="40" fill="#a3d9ff" />
-                        <ellipse class="sweat-drop drop2" cx="1850" cy="1900" rx="25" ry="35" fill="#a3d9ff" />
-                        <ellipse class="sweat-drop drop3" cx="2050" cy="1850" rx="20" ry="30" fill="#a3d9ff" />
-                        <ellipse class="sweat-drop drop4" cx="1750" cy="1700" rx="22" ry="32" fill="#a3d9ff" />
-                        <ellipse class="sweat-drop drop5" cx="1950" cy="1750" rx="18" ry="28" fill="#a3d9ff" />
-                    </g>
-                    <g transform="translate(0.000000,284.000000) scale(0.100000,-0.100000)"
-                    fill="#6fbce8" stroke="none">
-                        <path d="M1872 2628 c-62 -30 -158 -128 -223 -228 -83 -127 -96 -149 -133
-                        -223 -19 -37 -38 -73 -43 -80 -5 -7 -22 -41 -38 -77 -16 -36 -45 -83 -65 -105
-                        -136 -152 -245 -328 -300 -485 -41 -117 -65 -421 -40 -505 70 -230 133 -339
-                        282 -484 85 -83 141 -128 195 -156 71 -37 90 -57 123 -127 53 -112 100 -147
-                        172 -127 39 10 78 59 78 97 0 34 31 44 102 33 189 -29 304 -34 593 -22 160 7
-                        324 17 365 22 184 25 211 28 224 23 8 -3 21 -22 29 -43 34 -83 93 -124 149
-                        -102 30 11 80 58 132 124 34 43 41 47 81 47 24 0 56 5 71 11 39 14 72 4 80
-                        -26 8 -33 81 -95 111 -95 45 0 143 79 158 128 9 31 39 28 67 -7 26 -32 77 -61
-                        108 -61 33 0 98 47 125 90 14 22 25 42 25 46 0 3 6 20 14 37 13 30 60 178 92
-                        292 7 28 21 111 30 185 25 208 9 613 -32 784 -31 126 -100 174 -289 201 -140
-                        19 -183 31 -189 53 -3 10 -17 86 -31 168 -43 262 -84 386 -146 438 -59 50
-                        -205 71 -319 46 -52 -12 -257 -111 -314 -152 -21 -15 -43 -28 -48 -28 -5 0
-                        -16 -6 -23 -12 -52 -47 -43 -46 -200 -12 -100 22 -150 27 -297 29 -97 2 -181
-                        6 -187 10 -6 3 -20 23 -30 43 -34 64 -167 199 -235 237 -53 29 -73 35 -122 35
-                        -39 -1 -74 -8 -102 -22z m217 -89 c62 -43 185 -184 178 -203 -3 -8 -34 -19
-                        -79 -26 -40 -7 -104 -21 -143 -32 -38 -11 -83 -23 -100 -28 -95 -27 -291 -112
-                        -347 -151 -64 -46 -63 -15 4 98 111 190 202 306 278 355 39 26 52 29 102 26
-                        46 -3 68 -11 107 -39z m1571 -110 c62 -35 91 -74 109 -145 5 -22 18 -73 29
-                        -114 11 -41 23 -104 27 -140 4 -36 11 -72 15 -80 5 -9 11 -47 15 -86 l7 -71
-                        -31 -13 c-38 -15 -39 -30 -3 -84 68 -102 131 -251 148 -346 4 -25 8 -47 9 -50
-                        9 -38 25 -126 30 -167 7 -58 24 -78 54 -68 39 12 36 44 -20 275 -11 47 -38
-                        140 -64 224 -8 27 -15 64 -15 82 0 18 -4 44 -9 58 -15 37 3 44 105 36 86 -7
-                        109 -14 211 -63 55 -26 76 -102 94 -337 11 -143 7 -536 -5 -585 -3 -11 -11
-                        -49 -19 -85 -21 -92 -48 -183 -58 -194 -5 -6 -9 -18 -9 -28 0 -9 -6 -32 -14
-                        -50 -8 -18 -20 -49 -27 -67 -17 -45 -66 -101 -89 -101 -26 0 -64 34 -97 85
-                        -30 49 -66 67 -87 44 -7 -8 -21 -34 -31 -59 -24 -56 -70 -117 -95 -125 -32
-                        -10 -61 14 -86 71 -13 30 -31 57 -39 61 -9 3 -39 -2 -68 -10 -29 -9 -74 -17
-                        -102 -18 -66 -3 -76 -9 -130 -80 -62 -80 -83 -98 -107 -94 -25 5 -43 29 -58
-                        77 -6 21 -21 50 -34 65 l-24 28 -48 -18 c-71 -25 -291 -46 -596 -58 -228 -8
-                        -291 -8 -424 6 -86 9 -168 21 -181 26 -64 24 -123 -8 -123 -66 0 -37 -25 -75
-                        -49 -75 -27 0 -65 48 -94 120 -26 61 -32 68 -100 109 -225 138 -389 333 -462
-                        552 -24 74 -34 211 -23 328 11 120 51 251 106 351 20 36 41 74 47 85 64 119
-                        225 296 342 375 41 28 77 50 82 50 4 0 30 11 56 26 76 40 273 106 410 138 206
-                        48 613 46 738 -3 16 -6 39 -11 51 -11 53 0 284 -109 426 -201 60 -39 117 -69
-                        127 -67 22 4 29 43 13 63 -7 8 -37 30 -67 47 -31 18 -72 43 -92 56 -58 36
-                        -112 64 -176 94 -33 14 -61 33 -63 41 -2 10 36 38 113 81 64 36 120 66 123 66
-                        4 0 34 14 67 31 56 28 66 30 150 26 52 -2 101 -10 115 -18z"/>
-                        <path d="M1535 1574 c-58 -21 -103 -69 -122 -131 l-17 -53 39 -40 c38 -39 41
-                        -40 107 -40 69 0 88 9 176 81 18 15 14 80 -8 116 -21 36 -90 83 -117 82 -10 0
-                        -36 -7 -58 -15z m75 -62 c-1 -38 -90 -65 -90 -27 0 25 60 59 83 48 4 -2 7 -12
-                        7 -21z m-130 -98 c0 -8 -4 -12 -10 -9 -5 3 -10 10 -10 16 0 5 5 9 10 9 6 0 10
-                        -7 10 -16z m70 -18 c0 -20 -19 -31 -32 -18 -6 6 -7 15 -4 21 10 16 36 13 36
-                        -3z"/>
-                        <path d="M3167 1535 c-41 -28 -52 -57 -50 -128 1 -47 21 -90 52 -114 22 -17
-                        81 -16 124 2 20 8 48 15 61 15 14 0 37 10 52 23 22 19 28 34 31 78 2 33 -1 64
-                        -9 79 -37 69 -186 95 -261 45z m111 -52 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3
-                        22 9 14 37 9 43 -7z m80 -21 c3 -19 -1 -23 -15 -20 -10 2 -19 14 -21 26 -3 19
-                        1 23 15 20 10 -2 19 -14 21 -26z m-158 -83 c0 -31 -9 -36 -28 -17 -13 13 -16
-                        50 -5 61 12 13 33 -15 33 -44z m90 -9 c0 -13 -7 -20 -20 -20 -19 0 -27 20 -13
-                        33 13 14 33 6 33 -13z m70 -6 c0 -8 -5 -12 -10 -9 -6 4 -8 11 -5 16 9 14 15
-                        11 15 -7z"/>
-                        <path d="M2731 1496 c-7 -8 -14 -27 -17 -43 -11 -59 -69 -88 -162 -81 -51 5
-                        -59 9 -96 50 -43 47 -70 53 -81 18 -12 -36 -123 -83 -151 -63 -15 11 -37 54
-                        -30 60 9 9 -14 43 -29 43 -45 0 -61 -87 -25 -133 41 -52 137 -59 220 -17 46
-                        23 66 25 73 6 7 -17 90 -46 135 -46 50 0 142 29 168 54 12 11 32 40 44 63 19
-                        37 20 45 8 70 -15 32 -40 40 -57 19z"/>
-                    </g>
-                </svg>
-            </div>
-            
-            <div class="card-content">
-                <h1>Xin chào <span class="special-text gorgeous">Ai đó</span>...</h1>
-                <div class="sakura-divider"></div>
-                <p class="question">Bạn muốn đi chơi với mình chứ ?</p>
-                <div class="buttons">
-                    <button id="yes-btn" class="btn yes-btn">Cóoooo ♥</button>
-                    <button id="no-btn" class="btn no-btn"><b>Hong ☹</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card hidden" id="success-card">
-            <div class="hearts-celebration" id="celebration"></div>
-            <div class="card-content">
-                <h1>Cảm ơn vì bạn đã đồng ý</h1>
-                <div class="sakura-divider"></div>
-                <p>Mình rất mong chờ buổi gặp sắp tới!</p>
-                <p class="message">Mình hứa sẽ làm cho nó thật đặc biệt, hứa đấy!</p>
-                <div class="cute-animation">
-                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                         width="320" height="220" viewBox="0 0 370.000000 270.000000"
-                         preserveAspectRatio="xMidYMid meet" class="cat-svg">
-                        <g transform="translate(0.000000,270.000000) scale(0.100000,-0.100000)" fill="#ff6b95" stroke="none">
-                            <path d="M745 2534 c-189 -34 -253 -64 -356 -171 -94 -96 -117 -140 -131 -249
-                            -21 -163 17 -282 118 -372 105 -94 233 -142 378 -142 56 0 65 -3 91 -30 38
-                            -39 102 -68 169 -76 68 -8 74 1 52 77 -22 74 -21 76 28 83 120 18 255 131 292
-                            242 15 46 19 89 19 199 l0 140 -34 63 c-63 117 -193 204 -353 236 -93 19 -166
-                            19 -273 0z m267 -49 c155 -33 273 -115 322 -225 25 -55 28 -73 27 -164 -2
-                            -174 -39 -265 -138 -337 -50 -35 -142 -69 -189 -69 -18 0 -36 -4 -39 -10 -3
-                            -5 1 -38 10 -71 8 -34 13 -64 11 -66 -12 -12 -89 22 -127 55 -41 37 -49 39
-                            -127 46 -158 13 -225 36 -327 111 -64 47 -98 95 -119 164 -26 90 -18 228 20
-                            307 24 50 144 169 200 197 46 22 190 62 259 70 71 9 149 6 217 -8z"/>
-                            <path d="M901 2339 c-13 -5 -45 -25 -72 -45 -26 -19 -50 -30 -53 -25 -3 5 -27
-                            23 -53 40 -62 42 -106 41 -169 -1 -87 -58 -117 -161 -74 -255 32 -71 162 -186
-                            291 -257 62 -34 66 -35 94 -20 135 70 252 174 297 264 53 105 9 249 -89 291
-                            -48 20 -132 24 -172 8z m-241 -53 c0 -3 -4 -8 -10 -11 -5 -3 -10 -1 -10 4 0 6
-                            5 11 10 11 6 0 10 -2 10 -4z m230 -20 c0 -2 -8 -10 -17 -17 -16 -13 -17 -12
-                            -4 4 13 16 21 21 21 13z m-130 -56 c0 -5 -7 -10 -16 -10 -8 0 -12 5 -9 10 3 6
-                            10 10 16 10 5 0 9 -4 9 -10z m-239 -37 c-12 -20 -14 -14 -5 12 4 9 9 14 11 11
-                            3 -2 0 -13 -6 -23z m606 -45 c-3 -7 -5 -2 -5 12 0 14 2 19 5 13 2 -7 2 -19 0
-                            -25z m-567 -78 c0 -5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6 -1 10 4 10 6 0 11
-                            -4 11 -10z m90 -90 c0 -5 -5 -10 -11 -10 -5 0 -7 5 -4 10 3 6 8 10 11 10 2 0
-                            4 -4 4 -10z m351 -23 c-10 -9 -11 -8 -5 6 3 10 9 15 12 12 3 -3 0 -11 -7 -18z
-                            m-237 -64 c4 -11 1 -11 -14 -3 -24 13 -25 17 -5 17 8 0 16 -6 19 -14z m86 -32
-                            c0 -5 -7 -12 -16 -15 -14 -5 -15 -4 -4 9 14 17 20 19 20 6z"/>
-                            <path d="M1831 2053 c-75 -45 -199 -171 -268 -274 -28 -41 -96 -120 -151 -175
-                            -154 -154 -211 -259 -232 -431 -36 -287 89 -547 360 -747 54 -40 71 -60 102
-                            -121 40 -77 67 -105 106 -105 37 0 58 17 76 60 18 46 10 44 141 25 60 -9 180
-                            -14 303 -15 176 0 202 -2 202 -15 0 -20 29 -78 44 -87 6 -4 28 -8 49 -8 40 0
-                            57 13 117 88 21 26 34 32 83 37 54 6 57 5 57 -15 0 -28 61 -90 89 -90 51 0 86
-                            37 115 123 3 9 17 22 31 29 22 10 29 8 53 -14 59 -55 105 -60 135 -14 9 13 25
-                            68 36 123 11 54 30 125 41 158 47 136 93 376 115 592 25 256 3 323 -107 323
-                            -25 0 -69 12 -107 29 l-64 29 -24 119 c-41 204 -91 273 -200 273 -92 0 -260
-                            -67 -342 -135 -26 -23 -30 -23 -68 -10 -41 14 -200 48 -285 60 -44 7 -49 11
-                            -78 61 -93 165 -197 205 -329 127z m207 -47 c21 -19 50 -57 65 -85 l27 -49
-                            -77 -7 c-109 -9 -274 -42 -357 -71 -38 -13 -71 -23 -73 -21 -6 7 107 135 158
-                            179 82 70 118 88 171 88 41 0 54 -5 86 -34z m956 -127 c14 -11 33 -34 41 -49
-                            17 -33 61 -204 69 -271 4 -25 13 -69 21 -97 12 -40 20 -52 36 -52 25 0 33 19
-                            20 53 -6 15 -8 27 -5 27 2 0 27 -12 55 -26 34 -17 64 -24 89 -23 77 6 87 -36
-                            65 -261 -21 -205 -68 -450 -119 -608 -13 -42 -33 -113 -43 -157 -22 -97 -39
-                            -106 -90 -50 -36 39 -43 40 -113 7 -29 -14 -38 -26 -53 -74 -12 -39 -25 -59
-                            -38 -63 -31 -10 -57 20 -61 69 -3 41 -3 41 -43 40 -114 -3 -174 -30 -213 -96
-                            -8 -14 -26 -31 -39 -37 -20 -9 -25 -7 -39 15 -14 21 -15 29 -4 48 7 13 10 29
-                            6 34 -4 7 -70 8 -184 5 -147 -5 -206 -2 -351 17 -257 32 -355 69 -487 181 -97
-                            82 -146 139 -198 228 -140 241 -123 527 45 737 145 182 280 263 524 312 164
-                            34 290 38 426 13 115 -21 216 -47 276 -72 40 -16 65 -1 47 29 -13 21 5 37 96
-                            83 124 63 216 76 264 38z m-1206 -1577 c5 -17 -34 -56 -51 -49 -13 5 -57 75
-                            -57 90 0 8 105 -32 108 -41z"/>
-                            <path d="M1447 1409 c-59 -39 -88 -98 -95 -190 -4 -54 -1 -74 13 -95 16 -25
-                            19 -26 101 -22 108 4 128 21 145 123 14 86 1 145 -41 187 -36 36 -65 35 -123
-                            -3z"/>
-                            <path d="M2590 1334 c-56 -35 -97 -144 -87 -232 5 -50 33 -82 71 -82 11 -1 32
-                            -7 46 -15 57 -33 129 -2 148 63 16 53 15 165 -2 206 -28 67 -116 97 -176 60z"/>
-                            <path d="M1947 1215 c-34 -30 -63 -32 -79 -5 -13 21 -58 28 -58 9 0 -6 6 -23
-                            14 -37 8 -15 21 -64 29 -109 18 -96 47 -142 111 -172 53 -26 112 -27 152 -2
-                            42 26 84 114 84 177 0 38 5 54 26 75 41 43 10 67 -42 33 -35 -23 -97 -13 -149
-                            25 -24 17 -47 31 -52 31 -4 0 -21 -12 -36 -25z m-27 -84 c0 -6 -4 -13 -10 -16
-                            -5 -3 -10 1 -10 9 0 9 5 16 10 16 6 0 10 -4 10 -9z m213 -28 c-7 -2 -19 -2
-                            -25 0 -7 3 -2 5 12 5 14 0 19 -2 13 -5z m-138 -151 c-3 -3 -11 0 -18 7 -9 10
-                            -8 11 6 5 10 -3 15 -9 12 -12z"/>
-                            <path d="M1442 998 c-1 -66 -1 -70 -12 -63 -5 3 -10 1 -10 -4 0 -21 20 -10 35
-                            19 9 17 13 30 9 30 -4 0 -1 7 6 15 10 11 9 18 -3 30 -22 22 -25 20 -25 -27z"/>
-                            <path d="M1578 1029 c-10 -5 -18 -20 -18 -31 0 -12 -5 -37 -12 -55 -9 -26 -9
-                            -36 0 -45 20 -20 31 3 33 62 1 30 6 61 12 68 11 14 8 15 -15 1z"/>
-                            <path d="M1315 1022 c-10 -7 -12 -14 -20 -55 -2 -9 -7 -22 -10 -27 -3 -6 3
-                            -10 14 -10 15 0 21 6 21 21 0 11 4 28 9 38 11 20 0 43 -14 33z"/>
-                            <path d="M2465 951 c3 -5 -2 -16 -10 -24 -8 -9 -15 -33 -15 -53 0 -39 16 -38
-                            23 1 2 11 8 29 14 40 11 22 7 45 -8 45 -6 0 -8 -4 -4 -9z"/>
-                            <path d="M2572 935 c-15 -32 -16 -115 -2 -115 6 0 10 8 11 18 0 9 2 24 4 32
-                            12 50 14 64 7 77 -6 11 -11 8 -20 -12z"/>
-                            <path d="M2721 890 c1 -27 6 -50 10 -50 9 0 13 30 10 59 -2 7 2 10 9 6 7 -4 7
-                            1 -2 14 -20 33 -28 25 -27 -29z"/>
-                        </g>
-                    </svg>
-                    
-                    <div class="cat-hearts">
-                        <div class="cat-heart ch1"></div>
-                        <div class="cat-heart ch2"></div>
-                        <div class="cat-heart ch3"></div>
-                        <div class="cat-heart ch4"></div>
-                        <div class="cat-heart ch5"></div>
-                    </div>
-                </div>
-                <div class="next-step">
-                    <button id="choose-location-btn" class="btn yes-btn">Chọn địa điểm mà bạn muốn đi chơi ♥</button>
-                </div>
-            </div>
-        </div>
-
-            <div class="card hidden" id="location-card">
-                <div class="hearts-celebration" id="location-celebration"></div>
-                <div class="card-content">
-                    <h1>Chọn nơi <span class="special-text">đi chơi</span>...</h1>
-                    <div class="sakura-divider"></div>
-                    <p class="question">Bạn muốn đi đâu? 💕</p>
-                    <div class="location-options">
-                        <button class="location-btn" data-location="cafe" data-needs-detail="true">
-                            <span class="location-icon">☕</span>
-                            <span>Uống nước</span>
-                        </button>
-                        <button class="location-btn" data-location="restaurant" data-needs-detail="true">
-                            <span class="location-icon">🍽️</span>
-                            <span>Đi ăn</span>
-                        </button>
-                        <button class="location-btn" data-location="cinema" data-needs-detail="true">
-                            <span class="location-icon">🎬</span>
-                            <span>Rạp phim</span>
-                        </button>
-                        <button class="location-btn" data-location="park" data-needs-detail="true">
-                            <span class="location-icon">🌳</span>
-                            <span>Công viên</span>
-                        </button>
-                        <button class="location-btn" data-location="mall" data-needs-detail="true">
-                            <span class="location-icon">🛍️</span>
-                            <span>Trung tâm thương mại</span>
-                        </button>
-                        <button class="location-btn" data-location="street" data-needs-detail="false">
-                            <span class="location-icon">🏍️</span>
-                            <span>Lên phố</span>
-                        </button>
-                        <button class="location-btn" data-location="hotel" data-needs-detail="true">
-                            <span class="location-icon">🏨</span>
-                            <span>Khách sạn</span>
-                        </button>
-                        <button class="location-btn" data-location="travel" data-needs-detail="true">
-                            <span class="location-icon">🌍</span>
-                            <span>Du lịch</span>
-                        </button>
-                        <button class="location-btn" data-location="karaoke" data-needs-detail="true">
-                            <span class="location-icon">🎤</span>
-                            <span>Karaoke</span>
-                        </button>
-                        <button class="location-btn" data-location="home" data-needs-detail="false">
-                            <span class="location-icon">🏠</span>
-                            <span>Ở nhà</span>
-                        </button>
-                        <button class="location-btn" data-location="custom" data-needs-detail="true">
-                            <span class="location-icon">✨</span>
-                            <span>Nơi khác</span>
-                        </button>
-                    </div>
-
-                    <!-- Location Detail Input -->
-                    <div class="location-detail-container hidden" id="location-detail-container">
-                        <div class="location-detail-input-group">
-                            <label for="location-detail-input" class="location-detail-label">
-                                <span class="detail-icon">📍</span>
-                                <span class="detail-text">Bạn có chỗ nào cụ thể muốn tới hông:</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="location-detail-input"
-                                class="location-detail-input"
-                                placeholder="Ví dụ: Lào Cai, Hồ Gươm, Lotte Center..."
-                                maxlength="100"
-                            >
-                            <div class="input-helper-text">
-                                <span class="char-count">0/100</span>
-                                <span class="helper-tip">Đi đâu cũm được miễn là nơi bạn mún heheh</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="selected-location-message hidden" id="selected-location-message">
-                        <div class="message-content">
-                            <span class="message-icon">💕</span>
-                            <p class="message-text">Lựa chọn tuyệt vời nha!</p>
-                            <div class="selected-info" id="selected-info">
-                                <span class="selected-type"></span>
-                                <span class="selected-detail"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="location-actions">
-                        <button id="confirm-location-btn" class="btn yes-btn" disabled>
-                            <span class="btn-icon">💖</span>
-                            <span class="btn-text">Xác nhận & Tiếp tục</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-                <div class="card hidden" id="info-card">
-                    <div class="hearts-celebration" id="info-celebration"></div>
-                    <div class="card-content">
-                        <h1>Hãy để lại <span class="special-text">thông tin</span> nhé!</h1>
-                        <div class="sakura-divider"></div>
-                        <p class="question">Nhập thông tin để mình có thể liên hệ với bạn (Không thì biết ai mà đón) 💌</p>
-
-                        <form id="info-form" class="info-form">
-                            <div class="form-row">
-                                <div class="input-group">
-                                    <label for="name" class="input-label">
-                                        <span class="label-icon">👤</span>
-                                        <span class="label-text">Tên của bạn</span>
-                                    </label>
-                                    <input type="text" id="name" name="name" placeholder="Tên của em" required class="form-input">
-                                    <div class="input-helper">
-                                        <span class="helper-text">Tên của bạn, hoặc biệt danh</span>
-                                    </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="phone" class="input-label">
-                                        <span class="label-icon">📱</span>
-                                        <span class="label-text">Số điện thoại</span>
-                                    </label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" required class="form-input">
-                                    <div class="input-helper">
-                                        <span class="helper-text">Để có thể liên lạc khi cần thiết</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="input-group">
-                                    <label for="email" class="input-label">
-                                        <span class="label-icon">📧</span>
-                                        <span class="label-text">Email</span>
-                                    </label>
-                                    <input type="email" id="email" name="email" placeholder="Email (không bắt buộc)" class="form-input">
-                                    <div class="input-helper">
-                                        <span class="helper-text">Email để gửi thông tin chi tiết về buổi hẹn của chúng ta</span>
-                                    </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="address" class="input-label">
-                                        <span class="label-icon">📍</span>
-                                        <span class="label-text">Địa chỉ đón</span>
-                                    </label>
-                                    <input type="text" id="address" name="address" placeholder="Địa chỉ để mình đón bạn" required class="form-input">
-                                    <div class="input-helper">
-                                        <span class="helper-text">Nơi mình có thể đến đón bạn</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="input-group full-width">
-                                <label for="note" class="input-label">
-                                    <span class="label-icon">💭</span>
-                                    <span class="label-text">Ghi chú thêm (tùy chọn)</span>
-                                </label>
-                                <textarea id="note" name="note" placeholder="Có gì muốn nói thêm không...?" class="form-textarea" rows="3" maxlength="200"></textarea>
-                                <div class="input-helper">
-                                    <span class="char-count">0/200</span>
-                                    <span class="helper-text">Nếu bạn còn có mong muốn hay chia sẻ gì khác nói ở đây nhaa</span>
-                                </div>
-                            </div>
-
-                            <button type="submit" id="confirm-info-btn" class="btn yes-btn">Tiếp tục ♥</button>
-                        </form>
-                    </div>
-                </div>
-                
-        <!-- Add the date and time selection card -->
-        <div class="card hidden" id="datetime-card">
-            <div class="hearts-celebration" id="datetime-celebration"></div>
-            <div class="card-content">
-                <h1>Giờ hãy bạn chọn <span class="special-text">thời gian nhé</span>...</h1>
-                <div class="sakura-divider"></div>
-                <p class="question">Bạn muốn mình sang đón bạn lúc mấy giờ?</p>
-                <div class="datetime-container">
-                    <div class="datetime-row" id="datetime-row-template">
-                        <div class="date-input">
-                            <label>Ngày</label>
-                            <input type="date" class="date-picker" placeholder="">
-                        </div>
-                        <div class="time-input">
-                            <label>Giờ</label>
-                            <div class="time-picker-container">
-                                <select class="hour-picker">
-                                    <option value="08">08</option>
-                                    <option value="09">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19" selected>19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                </select>
-                                <span class="time-separator">:</span>
-                                <select class="minute-picker">
-                                    <option value="00" selected>00</option>
-                                    <option value="15">15</option>
-                                    <option value="30">30</option>
-                                    <option value="45">45</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="remove-datetime btn-icon" title="Remove this option">
-                            <span>✕</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="datetime-actions">
-                    <button id="confirm-datetime" class="btn yes-btn">Xác nhận♥</button>
-                </div>
-                
-                <div class="selected-datetime-message hidden" id="selected-datetime-message">
-                    <p class="message">Hoàn hảo! 💕</p>
-                    <button id="food-next-btn" class="btn yes-btn" style="margin-top: 15px; display: inline-block;">Hoàn tất ♥</button>
-
-                </div>
-            </div>
-        </div>
-
         
-
-
-        <!-- Review Summary Card -->
-        <div class="card hidden" id="review-card">
-            <div class="hearts-celebration" id="review-celebration"></div>
+        <div class="card" id="message-card">
+            <div class="hearts-celebration" id="message-celebration"></div>
             <div class="card-content">
-                <h1>Xem lại <span class="special-text">thông tin</span> nhé!</h1>
+                <h1>Gửi <span class="special-text">lời nhắn</span> ẩn danh...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">Kiểm tra lại thông tin trước khi gửi 💌</p>
-
-                <div class="summary-container">
-                    <div class="summary-section">
-                        <h3>👤 Thông tin cá nhân</h3>
-                        <div id="summary-personal"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <h3>📍 Địa điểm</h3>
-                        <div id="summary-locations"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <h3>📅 Thời gian</h3>
-                        <div id="summary-datetime"></div>
+               
+                
+                <div class="input-group full-width">
+                    <textarea id="message-input" name="note" placeholder="Nhập lời nhắn của bạn ở đây..." class="form-textarea" rows="5" maxlength="500"></textarea>
+                    <div class="input-helper">
+                        <span class="char-count">0/500</span>
+                       
                     </div>
                 </div>
 
-                <div class="review-actions">
-                    <button id="edit-info-btn" class="btn secondary-btn">Chỉnh sửa</button>
-                    <button id="confirm-final-btn" class="btn yes-btn">Xác nhận gửi ♥</button>
-                </div>
+                <button id="send-message-btn" class="btn yes-btn">Gửi lời nhắn </button>
             </div>
         </div>
 
         <div class="card hidden" id="completion-card">
             <div class="hearts-celebration" id="completion-hearts"></div>
             <div class="card-content">
-                <h1>Cảm ơn bạn rất nhiều! <span class="special-text">💕</span></h1>
+                <h1>Cảm ơn bạn! <span class="special-text">💕</span></h1>
                 <div class="sakura-divider"></div>
                 <div class="celebration-icon">🎉</div>
-                <p class="big-message">Mình đã được thông tin thành công!</p>
-                <p class="message">Hy vọng chúng ta sẽ có những khoảnh khắc tuyệt vời bên nhau! ✨</p>
+                <p class="big-message">Đã gửi lời nhắn thành công!</p>
+                
 
                 <div class="final-actions">
-               
-                    <button id="restart-btn" class="btn yes-btn">Bắt đầu lại ♥</button>
+                    <button id="send-another-btn" class="btn yes-btn">Gửi lời nhắn khác ♥</button>
                 </div>
-
-                <!-- Hidden canvas for screenshot -->
-                <canvas id="screenshot-canvas" style="display: none;"></canvas>
             </div>
         </div>
         
-        <!-- Add the perpetual hearts container for endless hearts -->
         <div class="perpetual-hearts" id="perpetual-hearts"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- CONFIG TELEGRAM ---
+        // !!! BẮT BUỘC: Thay 'YOUR_BOT_TOKEN' bằng Token bot của bạn
+        const TELEGRAM_BOT_TOKEN = "8188463035:AAEQtz13139Qsnmb_Gzgb18NU5m2u9VibOM"; // 'YOUR_BOT_TOKEN';
+        
+        // !!! BẮT BUỘC: Thay 'YOUR_CHAT_ID' bằng Chat ID của bạn
+        const TELEGRAM_CHAT_ID = "1898063540"; // 'YOUR_CHAT_ID';
+        // -------------------------
 
 
+        // --- DOM Elements ---
+        const messageCard = document.getElementById('message-card');
+        const completionCard = document.getElementById('completion-card');
+        const sendMessageBtn = document.getElementById('send-message-btn');
+        const sendAnotherBtn = document.getElementById('send-another-btn');
+        const messageInput = document.getElementById('message-input');
+        const charCount = document.querySelector('#message-card .char-count');
+        const toastContainer = document.getElementById('toast-container');
+        
+        // Telegram Setup Panel
+        const telegramSetup = document.getElementById('telegram-setup');
+        const getChatIdBtn = document.getElementById('get-chat-id-btn');
+        const testBotBtn = document.getElementById('test-bot-btn');
+        const closeSetupBtn = document.getElementById('close-setup-btn');
+        
+        // Dark Mode
+        const darkModeToggle = document.getElementById('darkmode-toggle');
+        
+        // Celebrations
+        const messageCelebration = document.getElementById('message-celebration');
+        const completionHearts = document.getElementById('completion-hearts');
+        const perpetualHearts = document.getElementById('perpetual-hearts');
+        const cherryBlossomsContainer = document.getElementById('cherry-blossoms');
+
+        // --- HÀM GỬI THÔNG BÁO (TOAST) ---
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        // --- HÀM GỬI TIN NHẮN TELEGRAM ---
+        async function sendTelegramMessage(messageText) {
+            if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID') {
+                console.error('Telegram Token hoặc Chat ID chưa được cấu hình.');
+                showToast('Lỗi: Trang web chưa được cấu hình!', 'error');
+                telegramSetup.style.display = 'block'; // Hiển thị panel cấu hình
+                return false;
+            }
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const payload = {
+                chat_id: TELEGRAM_CHAT_ID,
+                text: messageText,
+                parse_mode: 'HTML' // Thay đổi thành 'HTML' để hỗ trợ định dạng
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                
+                if (data.ok) {
+                    return true;
+                } else {
+                    console.error('Lỗi gửi Telegram:', data);
+                    // Hiển thị lỗi chi tiết hơn từ Telegram
+                    let errorMsg = `Lỗi: ${data.description || 'Không gửi được tin nhắn'}`;
+                    if (data.description && data.description.includes("chat not found")) {
+                        errorMsg = "Lỗi: Không tìm thấy Chat ID. Bạn đã nhập đúng Chat ID chưa?";
+                    } else if (data.description && data.description.includes("bot token")) {
+                        errorMsg = "Lỗi: Bot Token không hợp lệ.";
+                    }
+                    showToast(errorMsg, 'error');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Lỗi fetch:', error);
+                showToast('Lỗi kết nối. Vui lòng thử lại.', 'error');
+                return false;
+            }
+        }
+        
+        // --- LOGIC LẤY IP VÀ THÔNG TIN THIẾT BỊ (MỚI) ---
+        /**
+         * Hàm lấy thông tin thiết bị và địa chỉ IP của người dùng.
+         * @returns {Promise<string>} Một chuỗi đã định dạng HTML chứa thông tin.
+         */
+        async function getDeviceAndIpInfo() {
+            let ipAddress = 'Không thể lấy IP';
+            let ipDetails = '';
+
+            try {
+                // 1. Lấy địa chỉ IP từ ipinfo.io
+                const response = await fetch('https://ipinfo.io/json');
+                if (response.ok) {
+                    const data = await response.json();
+                    ipAddress = data.ip || 'Không rõ';
+                    ipDetails = `(${data.city || '?'}, ${data.region || '?'}, ${data.country || '?'})`;
+                } else {
+                    // Thử API dự phòng nếu ipinfo thất bại
+                    const ipifyResponse = await fetch('https://api.ipify.org?format=json');
+                    if (ipifyResponse.ok) {
+                        const ipifyData = await ipifyResponse.json();
+                        ipAddress = ipifyData.ip || 'Không rõ';
+                    }
+                }
+            } catch (error) {
+                console.error('Lỗi khi lấy IP (có thể do Ad-blocker):', error);
+            }
+
+            // 2. Lấy thông tin thiết bị (User Agent)
+            const userAgent = navigator.userAgent || 'Không rõ';
+            
+            // 3. Lấy thông tin nền tảng (Platform)
+            const platform = navigator.platform || 'Không rõ';
+            
+            // 4. Lấy thông tin ngôn ngữ
+            const language = navigator.language || 'Không rõ';
+
+            // Tổng hợp thông tin (định dạng HTML cho Telegram)
+            const deviceInfo = `
+-------------------------
+<b>🕵️‍♂️ THÔNG TIN NGƯỜI DÙNG</b>
+-------------------------
+<b>IP:</b> <code>${ipAddress}</code> ${ipDetails}
+<b>Thiết bị:</b> <code>${userAgent}</code>
+<b>Nền tảng:</b> <code>${platform}</code>
+<b>Ngôn ngữ:</b> <code>${language}</code>
+-------------------------
+`;
+
+            return deviceInfo;
+        }
+
+
+        // --- XỬ LÝ SỰ KIỆN ---
+
+        // Đếm ký tự
+        if(messageInput && charCount) {
+            messageInput.addEventListener('input', () => {
+                const len = messageInput.value.length;
+                charCount.textContent = `${len}/500`;
+            });
+        }
+
+        // Nút Gửi Lời Nhắn (ĐÃ CẬP NHẬT)
+        if(sendMessageBtn) {
+            sendMessageBtn.addEventListener('click', async () => {
+                const message = messageInput.value.trim();
+                
+                if (message === '') {
+                    showToast('Bạn chưa nhập lời nhắn!', 'error');
+                    triggerCelebration(messageCard, ['shake']); // Rung card
+                    return;
+                }
+                
+                sendMessageBtn.disabled = true;
+                sendMessageBtn.textContent = 'Đang gửi...';
+
+                // Lấy thông tin thiết bị và IP (MỚI)
+                const deviceInfo = await getDeviceAndIpInfo(); 
+                
+                // Tạo nội dung tin nhắn để gửi đi (MỚI)
+                // Sử dụng thẻ <pre> để giữ nguyên định dạng và xuống dòng
+                const formattedMessage = `<pre>💌 Lời nhắn ẩn danh:\n\n${message}\n\n${deviceInfo}</pre>`;
+                
+                const success = await sendTelegramMessage(formattedMessage);
+                
+                sendMessageBtn.disabled = false;
+                sendMessageBtn.innerHTML = 'Gửi lời nhắn ♥';
+                
+                if (success) {
+                    messageCard.classList.add('hidden');
+                    completionCard.classList.remove('hidden');
+                    triggerCelebration(completionHearts);
+                    messageInput.value = '';
+                    charCount.textContent = '0/500';
+                }
+            });
+        }
+
+        // Nút Gửi Lời Nhắn Khác
+        if(sendAnotherBtn) {
+            sendAnotherBtn.addEventListener('click', () => {
+                completionCard.classList.add('hidden');
+                messageCard.classList.remove('hidden');
+            });
+        }
+        
+        // --- CẤU HÌNH TELEGRAM PANEL ---
+        if(telegramSetup) {
+            // Nút Lấy Chat ID
+            getChatIdBtn.addEventListener('click', async () => {
+                if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN') {
+                    showToast('Vui lòng điền TOKEN bot của bạn vào file HTML!', 'error');
+                    return;
+                }
+                getChatIdBtn.textContent = 'Đang lấy...';
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?limit=1&offset=-1`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (data.ok && data.result.length > 0) {
+                        const chat = data.result[0].message ? data.result[0].message.chat : data.result[0].edited_message.chat;
+                        prompt('Đã tìm thấy Chat ID! Sao chép ID này và dán vào file HTML:', chat.id);
+                        showToast(`Tìm thấy Chat ID: ${chat.id}`, 'success');
+                    } else if (data.result.length === 0) {
+                        showToast('Không tìm thấy tin nhắn nào. Bạn đã gửi /start cho bot chưa?', 'error');
+                    } else {
+                        showToast(`Lỗi: ${data.description}`, 'error');
+                    }
+                } catch (error) {
+                    showToast('Lỗi kết nối. Không thể lấy Chat ID.', 'error');
+                }
+                getChatIdBtn.textContent = 'Lấy Chat ID';
+            });
+
+            // Nút Test Bot
+            testBotBtn.addEventListener('click', async () => {
+                if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID') {
+                    showToast('Vui lòng điền đầy đủ TOKEN và Chat ID!', 'error');
+                    return;
+                }
+                testBotBtn.textContent = 'Đang test...';
+                const success = await sendTelegramMessage('<b>🤖 Test:</b> Bot đã kết nối thành công!');
+                if (success) {
+                    showToast('Test thành công! Bot đã gửi tin nhắn.', 'success');
+                } else {
+                    showToast('Test thất bại. Kiểm tra lại TOKEN và Chat ID.', 'error');
+                }
+                testBotBtn.textContent = 'Test Bot';
+            });
+
+            // Nút Đóng
+            closeSetupBtn.addEventListener('click', () => {
+                telegramSetup.style.display = 'none';
+            });
+
+            // Tự động kiểm tra cấu hình khi tải trang
+            if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID') {
+                setTimeout(() => {
+                    telegramSetup.style.display = 'block';
+                    showToast('Trang web chưa được cấu hình!', 'error');
+                }, 1000);
+            }
+        }
+        
+        // --- HÀM HIỆU ỨNG ---
+
+        // Hiệu ứng Tim (Cải thiện)
+        function createHeart(container) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞', '💝', '💘', '💟', '💌'];
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDuration = `${Math.random() * 3 + 4}s`; // 4-7 giây
+            heart.style.fontSize = `${Math.random() * 12 + 16}px`; // 16-28px
+            heart.style.animationDelay = `${Math.random() * 0.5}s`;
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                }
+            }, 7000); // Xóa tim sau 7 giây
+        }
+
+        function triggerCelebration(container, types = ['heart']) {
+            if (!container) return;
+            if (types.includes('heart')) {
+                for (let i = 0; i < 25; i++) {
+                    setTimeout(() => createHeart(container), i * 80);
+                }
+            }
+            if (types.includes('shake')) {
+                container.classList.add('shake');
+                setTimeout(() => container.classList.remove('shake'), 600);
+            }
+        }
+        
+        // Chạy tim vĩnh cửu (Cải thiện)
+        setInterval(() => {
+            if (perpetualHearts) {
+                createHeart(perpetualHearts);
+            }
+        }, 800);
+        
+        // Hiệu ứng Hoa Anh Đào (Cải thiện)
+        function createBlossom() {
+            const blossom = document.createElement('div');
+            blossom.className = 'blossom';
+            const blossoms = ['🌸', '🌺', '🌻', '🌼', '🌷', '🌹', '🥀', '🌿', '🍀'];
+            blossom.innerHTML = blossoms[Math.floor(Math.random() * blossoms.length)];
+            blossom.style.left = `${Math.random() * 100}vw`;
+            blossom.style.animationDuration = `${Math.random() * 8 + 12}s`; // 12-20 giây
+            blossom.style.fontSize = `${Math.random() * 12 + 14}px`; // 14-26px
+            blossom.style.animationDelay = `${Math.random() * 3}s`;
+            cherryBlossomsContainer.appendChild(blossom);
+
+            setTimeout(() => {
+                if (blossom.parentNode) {
+                    blossom.remove();
+                }
+            }, 20000); // Xóa hoa sau 20 giây
+        }
+        
+        // Tạo hoa ban đầu
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => createBlossom(), i * 200);
+        }
+        
+        // Tạo hoa mới định kỳ
+        setInterval(createBlossom, 3000); // Tạo hoa mới mỗi 3 giây
+
+        // --- DARK MODE ---
+        function setDarkMode(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.checked = true;
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.checked = false;
+            }
+        }
+
+        // Đặt trạng thái ban đầu cho toggle
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'enabled' || (savedDarkMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setDarkMode(true);
+        } else {
+            setDarkMode(false);
+        }
+
+        // Listener cho toggle
+        darkModeToggle.addEventListener('change', () => {
+            setDarkMode(darkModeToggle.checked);
+        });
+
+    });
+    </script>
 </body>
 </html>
